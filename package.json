@@ -1,24 +1,9 @@
 {
   "name": "vscode-logicapps",
   "displayName": "Azure Logic Apps (Consumption)",
-  "description": "%extension.description%",
   "version": "0.0.1",
-  "publisher": "ms-azuretools",
-  "icon": "resources/azLogicApps.png",
-  "aiKey": "b6385546-3be0-489c-a298-baccd6c152fb",
-  "engines": {
-    "vscode": "1.74.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
-  },
-  "galleryBanner": {
-    "color": "#3a3d41",
-    "theme": "dark"
-  },
-  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
-  "license": "MIT",
+  "private": "false",
+  "description": "%extension.description%",
   "categories": [
     "Azure"
   ],
@@ -27,8 +12,35 @@
     "Logic Apps",
     "Integration Accounts"
   ],
-  "activationEvents": [],
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "publisher": "ms-azuretools",
+  "type": "module",
   "main": "./out/extension",
+  "scripts": {
+    "compile": "webpack --mode development",
+    "lint": "eslint --ext .ts src",
+    "lint-fix": "eslint --ext .ts --fix src",
+    "package": "vsce package",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts",
+    "test": "npm run webpack-prod && node ./src/test/runTest.js",
+    "vscode:prepublish": "npm run webpack-prod",
+    "watch": "webpack --mode development --watch",
+    "webpack-dev": "webpack --mode development --watch",
+    "webpack-prod": "webpack --mode production"
+  },
   "contributes": {
     "commands": [
       {
@@ -296,29 +308,44 @@
         "title": "%azIntegrationAccounts.viewProperties%"
       }
     ],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "icon": "resources/azure.svg",
-          "id": "azure",
-          "title": "Azure"
+    "configuration": [
+      {
+        "title": "Azure Logic Apps (Consumption)",
+        "properties": {
+          "azureLogicApps.canvasMode": {
+            "default": false,
+            "description": "%azLogicApps.canvasMode%",
+            "type": "boolean"
+          },
+          "azureLogicApps.showExplorer": {
+            "default": true,
+            "description": "%azLogicApps.showExplorerDescription%",
+            "type": "boolean"
+          },
+          "azureLogicApps.showSavePrompt": {
+            "default": true,
+            "description": "%azLogicApps.showSavePrompt%",
+            "type": "boolean"
+          }
         }
-      ]
-    },
-    "views": {
-      "azure": [
-        {
-          "id": "azureLogicAppsExplorer",
-          "name": "Logic Apps (Consumption)",
-          "when": "config.azureLogicApps.showExplorer == true"
-        },
-        {
-          "id": "azureIntegrationAccountsExplorer",
-          "name": "Integration Accounts",
-          "when": "config.azureLogicApps.showExplorer == true"
+      },
+      {
+        "title": "Azure Integration Accounts",
+        "properties": {
+          "azIntegrationAccounts.showExplorer": {
+            "default": true,
+            "description": "%azIntegrationAccounts.showExplorerDescription%",
+            "type": "boolean"
+          },
+          "azIntegrationAccounts.showSavePrompt": {
+            "default": true,
+            "description": "%azIntegrationAccounts.showSavePrompt%",
+            "type": "boolean"
+          }
         }
-      ]
-    },
+      }
+    ],
+    "jsonValidation": [],
     "menus": {
       "commandPalette": [
         {
@@ -639,62 +666,49 @@
         }
       ]
     },
-    "jsonValidation": [],
-    "configuration": [
-      {
-        "title": "Azure Logic Apps (Consumption)",
-        "properties": {
-          "azureLogicApps.canvasMode": {
-            "default": false,
-            "description": "%azLogicApps.canvasMode%",
-            "type": "boolean"
-          },
-          "azureLogicApps.showExplorer": {
-            "default": true,
-            "description": "%azLogicApps.showExplorerDescription%",
-            "type": "boolean"
-          },
-          "azureLogicApps.showSavePrompt": {
-            "default": true,
-            "description": "%azLogicApps.showSavePrompt%",
-            "type": "boolean"
-          }
-        }
-      },
-      {
-        "title": "Azure Integration Accounts",
-        "properties": {
-          "azIntegrationAccounts.showExplorer": {
-            "default": true,
-            "description": "%azIntegrationAccounts.showExplorerDescription%",
-            "type": "boolean"
-          },
-          "azIntegrationAccounts.showSavePrompt": {
-            "default": true,
-            "description": "%azIntegrationAccounts.showSavePrompt%",
-            "type": "boolean"
-          }
-        }
-      }
-    ],
     "snippets": [
       {
         "language": "json",
         "path": "./snippets/logicapps.snippets.json"
       }
-    ]
+    ],
+    "views": {
+      "azure": [
+        {
+          "id": "azureLogicAppsExplorer",
+          "name": "Logic Apps (Consumption)",
+          "when": "config.azureLogicApps.showExplorer == true"
+        },
+        {
+          "id": "azureIntegrationAccountsExplorer",
+          "name": "Integration Accounts",
+          "when": "config.azureLogicApps.showExplorer == true"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "icon": "resources/azure.svg",
+          "id": "azure",
+          "title": "Azure"
+        }
+      ]
+    }
   },
-  "scripts": {
-    "compile": "webpack --mode development",
-    "lint": "eslint --ext .ts src",
-    "lint-fix": "eslint --ext .ts --fix src",
-    "package": "vsce package",
-    "test": "npm run webpack-prod && node ./src/test/runTest.js",
-    "vscode:prepublish": "npm run webpack-prod",
-    "watch": "webpack --mode development --watch",
-    "webpack-dev": "webpack --mode development --watch",
-    "webpack-prod": "webpack --mode production",
-    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
+  "activationEvents": [],
+  "dependencies": {
+    "azure-arm-logic": "6.0.0",
+    "azure-arm-resource": "4.1.0-preview",
+    "fs-extra": "11.1.1",
+    "glob": "10.3.10",
+    "js-yaml": "4.1.0",
+    "lodash": "4.17.21",
+    "request": "2.88.2",
+    "request-promise-native": "1.0.9",
+    "vscode-azureextensionui": "0.16.6",
+    "vscode-extension-telemetry": "0.0.18",
+    "vscode-nls": "5.2.0"
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.3",
@@ -712,43 +726,29 @@
     "mocha": "10.2.0",
     "ts-loader": "9.5.0",
     "typescript": "5.2.2",
+    "typescript-esbuild": "0.3.1",
     "webpack": "5.89.0",
-    "webpack-cli": "5.1.4",
-    "typescript-esbuild": "0.3.1"
-  },
-  "dependencies": {
-    "azure-arm-logic": "6.0.0",
-    "azure-arm-resource": "4.1.0-preview",
-    "fs-extra": "11.1.1",
-    "glob": "10.3.10",
-    "js-yaml": "4.1.0",
-    "lodash": "4.17.21",
-    "request": "2.88.2",
-    "request-promise-native": "1.0.9",
-    "vscode-azureextensionui": "0.16.6",
-    "vscode-extension-telemetry": "0.0.18",
-    "vscode-nls": "5.2.0"
+    "webpack-cli": "5.1.4"
   },
   "extensionDependencies": [
     "ms-vscode.azure-account"
   ],
+  "engines": {
+    "vscode": "1.74.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "icon": "resources/azLogicApps.png",
+  "galleryBanner": {
+    "color": "#3a3d41",
+    "theme": "dark"
+  },
+  "aiKey": "b6385546-3be0-489c-a298-baccd6c152fb",
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
     },
     "virtualWorkspaces": false
-  },
-  "bugs": {
-    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
-  },
-  "type": "module",
-  "private": "false",
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": {
-    "name": "Nikola Hristov",
-    "email": "nikola@nikolahristov.tech",
-    "url": "https://nikolahristov.tech"
   }
 }
