@@ -10,19 +10,32 @@ import { generateBuildDefinition } from "../../utils/logic-app/templateUtils";
 import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class BuildDefinitionCreateStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
-    public async execute(wizardContext: IBuildDefinitionWizardContext): Promise<IBuildDefinitionWizardContext> {
-        const { azureSubscription, buildDefinitionFilename, csmFilename, csmParametersFilename, location, resourceGroupName, workspaceFolderPath } = wizardContext;
+	public async execute(
+		wizardContext: IBuildDefinitionWizardContext
+	): Promise<IBuildDefinitionWizardContext> {
+		const {
+			azureSubscription,
+			buildDefinitionFilename,
+			csmFilename,
+			csmParametersFilename,
+			location,
+			resourceGroupName,
+			workspaceFolderPath,
+		} = wizardContext;
 
-        const buildDefinition = generateBuildDefinition({
-            azureSubscription: azureSubscription!,
-            csmFile: path.relative(workspaceFolderPath!, csmFilename!),
-            csmParametersFile: path.relative(workspaceFolderPath!, csmParametersFilename!),
-            location: location!,
-            resourceGroupName: resourceGroupName!
-        });
+		const buildDefinition = generateBuildDefinition({
+			azureSubscription: azureSubscription!,
+			csmFile: path.relative(workspaceFolderPath!, csmFilename!),
+			csmParametersFile: path.relative(
+				workspaceFolderPath!,
+				csmParametersFilename!
+			),
+			location: location!,
+			resourceGroupName: resourceGroupName!,
+		});
 
-        await fse.writeFile(buildDefinitionFilename!, buildDefinition);
+		await fse.writeFile(buildDefinitionFilename!, buildDefinition);
 
-        return wizardContext;
-    }
+		return wizardContext;
+	}
 }

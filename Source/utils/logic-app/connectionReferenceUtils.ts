@@ -10,58 +10,78 @@ import { getAuthorization } from "../authorizationUtils";
 export type ConnectionReferences = Record<string, IConnectionReference>;
 
 export interface IConnectionReference {
-    connectionId: string;
-    connectionName: string;
-    id: string;
+	connectionId: string;
+	connectionName: string;
+	id: string;
 }
 
 interface IConnectionsParameter {
-    value: ConnectionReferences;
+	value: ConnectionReferences;
 }
 
 interface IWorkflowWithConnectionReferences {
-    properties: IWorkflowPropertiesWithConnectionReferences;
+	properties: IWorkflowPropertiesWithConnectionReferences;
 }
 
 interface IWorkflowParametersWithConnectionReferences {
-    $connections?: IConnectionsParameter;
+	$connections?: IConnectionsParameter;
 }
 
 interface IWorkflowPropertiesWithConnectionReferences {
-    parameters?: IWorkflowParametersWithConnectionReferences;
+	parameters?: IWorkflowParametersWithConnectionReferences;
 }
 
-export async function getConnectionReferencesForLogicApp(credentials: ServiceClientCredentials, subscriptionId: string, resourceGroupName: string, workflowName: string, apiVersion: string): Promise<ConnectionReferences> {
-    return getConnectionReferences(credentials, `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}?api-version=${apiVersion}`);
+export async function getConnectionReferencesForLogicApp(
+	credentials: ServiceClientCredentials,
+	subscriptionId: string,
+	resourceGroupName: string,
+	workflowName: string,
+	apiVersion: string
+): Promise<ConnectionReferences> {
+	return getConnectionReferences(
+		credentials,
+		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}?api-version=${apiVersion}`
+	);
 }
 
-export async function getConnectionReferencesForLogicAppVersion(credentials: ServiceClientCredentials, subscriptionId: string, resourceGroupName: string, workflowName: string, workflowVersionName: string, apiVersion: string): Promise<ConnectionReferences> {
-    return getConnectionReferences(credentials, `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}/versions/${workflowVersionName}?api-version=${apiVersion}`);
+export async function getConnectionReferencesForLogicAppVersion(
+	credentials: ServiceClientCredentials,
+	subscriptionId: string,
+	resourceGroupName: string,
+	workflowName: string,
+	workflowVersionName: string,
+	apiVersion: string
+): Promise<ConnectionReferences> {
+	return getConnectionReferences(
+		credentials,
+		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}/versions/${workflowVersionName}?api-version=${apiVersion}`
+	);
 }
 
-async function getConnectionReferences(credentials: ServiceClientCredentials, uri: string): Promise<ConnectionReferences> {
-    const authorization = await getAuthorization(credentials);
-    const options: request.RequestPromiseOptions = {
-        headers: {
-            "Authorization": authorization,
-            "Content-Type": "application/json"
-        },
-        method: "GET",
-        qs: {
-            $expand: "properties/connectionReferences"
-        }
-    };
-    const response = await request(uri, options);
-    const {
-        properties: {
-            parameters
-        }
-    }: IWorkflowWithConnectionReferences = JSON.parse(response);
+async function getConnectionReferences(
+	credentials: ServiceClientCredentials,
+	uri: string
+): Promise<ConnectionReferences> {
+	const authorization = await getAuthorization(credentials);
+	const options: request.RequestPromiseOptions = {
+		headers: {
+			"Authorization": authorization,
+			"Content-Type": "application/json",
+		},
+		method: "GET",
+		qs: {
+			$expand: "properties/connectionReferences",
+		},
+	};
+	const response = await request(uri, options);
+	const {
+		properties: { parameters },
+	}: IWorkflowWithConnectionReferences = JSON.parse(response);
 
-    if (parameters === undefined) {
-        return {};
-    } else {
-        const { $connections } = parameters;
-        return $connections === undefined ? {} : $connections.value;
-    }
+	if (parameters === undefined) {
+		return {};
+	} else {
+		const { $connections } = parameters;
+		return $connections === undefined ? {} : $connections.value;
+	}
 }

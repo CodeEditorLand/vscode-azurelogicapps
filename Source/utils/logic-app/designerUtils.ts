@@ -9,35 +9,52 @@ import { Callbacks } from "./callbackUtils";
 import { ConnectionReferences } from "./connectionReferenceUtils";
 
 interface IGetWebviewContentOptions {
-    authorization: string;
-    callbacks: Callbacks;
-    canvasMode: boolean;
-    definition: string;
-    integrationAccountId?: string;
-    location: string;
-    parameters: Record<string, any> | undefined;
-    readOnly?: boolean;
-    references: ConnectionReferences;
-    resourceGroupName: string;
-    sku?: Sku;
-    subscriptionId: string;
-    tenantId?: string;
-    title: string;
-    userId?: string;
-    workflowId: string;
+	authorization: string;
+	callbacks: Callbacks;
+	canvasMode: boolean;
+	definition: string;
+	integrationAccountId?: string;
+	location: string;
+	parameters: Record<string, any> | undefined;
+	readOnly?: boolean;
+	references: ConnectionReferences;
+	resourceGroupName: string;
+	sku?: Sku;
+	subscriptionId: string;
+	tenantId?: string;
+	title: string;
+	userId?: string;
+	workflowId: string;
 }
 
 const version = Constants.DesignerVersion;
 
-export function getWebviewContentForDesigner({ authorization, callbacks, canvasMode, definition, integrationAccountId, location, parameters, references, readOnly, resourceGroupName, sku, subscriptionId, tenantId, title, userId, workflowId }: IGetWebviewContentOptions): string {
-    readOnly = readOnly || false;
-    sku = sku || { name: "Consumption" };
+export function getWebviewContentForDesigner({
+	authorization,
+	callbacks,
+	canvasMode,
+	definition,
+	integrationAccountId,
+	location,
+	parameters,
+	references,
+	readOnly,
+	resourceGroupName,
+	sku,
+	subscriptionId,
+	tenantId,
+	title,
+	userId,
+	workflowId,
+}: IGetWebviewContentOptions): string {
+	readOnly = readOnly || false;
+	sku = sku || { name: "Consumption" };
 
-    const workflowOptions = readOnly
-        ? JSON.stringify({ initReadonly: true })
-        : "undefined";
+	const workflowOptions = readOnly
+		? JSON.stringify({ initReadonly: true })
+		: "undefined";
 
-    return `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -60,7 +77,9 @@ export function getWebviewContentForDesigner({ authorization, callbacks, canvasM
         .msla-container {
             margin-top: 52px;
         }
-${canvasMode ? `
+${
+	canvasMode
+		? `
         .msla-container {
             margin-top: 0;
             max-height: 100vh;
@@ -72,7 +91,9 @@ ${canvasMode ? `
         .msla-panel-container .panel-container .msla-panel-root {
             height: calc(100vh + 7px); /* offset 7px negative margin */
         }
-`: ''}
+`
+		: ""
+}
         #app {
             position: fixed;
             top: 0;
@@ -85,10 +106,14 @@ ${canvasMode ? `
 <body>
     <div id="app"></div>
     <div id="designer" class="msla-container"></div>
-${canvasMode ? `
+${
+	canvasMode
+		? `
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/serverless/dagre.min.js"></script>
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/serverless/jsplumb.min.js"></script>
-` : ''}
+`
+		: ""
+}
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/logicappdesigner/require.min.js"></script>
     <script>
         (global => {
@@ -428,7 +453,11 @@ ${canvasMode ? `
                                 baseUrl: options.baseUrl,
                                 getAccessToken: getArmAccessToken,
                                 getTenantId() {
-                                    return ${tenantId !== undefined ? JSON.stringify(tenantId) : "undefined"};
+                                    return ${
+										tenantId !== undefined
+											? JSON.stringify(tenantId)
+											: "undefined"
+									};
                                 },
                                 locale: $locale,
                                 location: options.location,
@@ -477,7 +506,11 @@ ${canvasMode ? `
                                 analytics,
                                 baseUrl: options.baseUrl,
                                 getAccessToken: getArmAccessToken,
-                                currentTenantId: ${tenantId !== undefined ? JSON.stringify(tenantId) : "undefined"},
+                                currentTenantId: ${
+									tenantId !== undefined
+										? JSON.stringify(tenantId)
+										: "undefined"
+								},
                                 apiVersion: options.armApiVersion
                             });
                         };
@@ -678,7 +711,11 @@ ${canvasMode ? `
                                 schemaVersion,
                                 subscription: options.subscriptionId,
                                 smartRecommendationServiceOptions: {
-                                    getMruKey: () => \`\${options.subscriptionId}/${userId !== undefined ? userId : "undefined"}\`,
+                                    getMruKey: () => \`\${options.subscriptionId}/${
+										userId !== undefined
+											? userId
+											: "undefined"
+									}\`,
                                     recommendOperationGroupsPath: \`/subscriptions/\${options.subscriptionId}/resourceGroups/\${options.resourceGroup}/providers/Microsoft.Logic/locations/\${options.location}/workflows/\${options.logicAppName}/recommendOperationGroups\`
                                 }
                             });
@@ -778,7 +815,11 @@ ${canvasMode ? `
                                 showforeachtokens: false
                             },
                             hideCustomConnectors: false,
-                            integrationAccountId: ${integrationAccountId !== undefined ? `"${integrationAccountId}"` : "undefined"},
+                            integrationAccountId: ${
+								integrationAccountId !== undefined
+									? `"${integrationAccountId}"`
+									: "undefined"
+							},
                             integrationServiceEnvironmentApiVersion: "2018-07-01-preview",
                             location: "${location}",
                             resourceGroup: "${resourceGroupName}",
