@@ -7,15 +7,15 @@ import { MessageItem } from "vscode";
 import { localize } from "../localize";
 
 export namespace DialogResponses {
-	export const no: MessageItem = {
-		title: localize("no", "No"),
-	};
+    export const no: MessageItem = {
+        title: localize("no", "No")
+    };
 
-	export const ok: MessageItem = {
-		title: localize("ok", "OK"),
-	};
+    export const ok: MessageItem = {
+        title: localize("ok", "OK")
+    };
 
-	export const yes: MessageItem = {
-		title: localize("yes", "Yes"),
-	};
+    export const yes: MessageItem = {
+        title: localize("yes", "Yes")
+    };
 }

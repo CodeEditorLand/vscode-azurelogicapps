@@ -3,59 +3,39 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import {
-	AzureTreeDataProvider,
-	BaseEditor,
-	IAzureNode,
-} from "vscode-azureextensionui";
+import { AzureTreeDataProvider, BaseEditor, IAzureNode } from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { IntegrationAccountMapTreeItem } from "../../tree/integration-account/IntegrationAccountMapTreeItem";
 import { openAndShowTextDocument } from "../../utils/commandUtils";
 
-export async function deleteIntegrationAccountMap(
-	tree: AzureTreeDataProvider,
-	node?: IAzureNode
-): Promise<void> {
-	if (!node) {
-		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
-		);
-	}
+export async function deleteIntegrationAccountMap(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
+    if (!node) {
+        node = await tree.showNodePicker(IntegrationAccountMapTreeItem.contextValue);
+    }
 
-	await node.runWithTemporaryDescription(
-		localize("azIntegrationAccounts.deleting", "Deleting..."),
-		async () => {
-			await node!.deleteNode();
-		}
-	);
+    await node.runWithTemporaryDescription(
+        localize("azIntegrationAccounts.deleting", "Deleting..."),
+        async () => {
+            await node!.deleteNode();
+        }
+    );
 }
 
-export async function openIntegrationAccountMapInEditor(
-	tree: AzureTreeDataProvider,
-	editor: BaseEditor<IAzureNode>,
-	node?: IAzureNode
-): Promise<void> {
-	if (!node) {
-		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
-		);
-	}
+export async function openIntegrationAccountMapInEditor(tree: AzureTreeDataProvider, editor: BaseEditor<IAzureNode>, node?: IAzureNode): Promise<void> {
+    if (!node) {
+        node = await tree.showNodePicker(IntegrationAccountMapTreeItem.contextValue);
+    }
 
-	await editor.showEditor(node);
+    await editor.showEditor(node);
 }
 
-export async function viewIntegrationAccountMapProperties(
-	tree: AzureTreeDataProvider,
-	node?: IAzureNode
-): Promise<void> {
-	if (!node) {
-		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
-		);
-	}
+export async function viewIntegrationAccountMapProperties(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
+    if (!node) {
+        node = await tree.showNodePicker(IntegrationAccountMapTreeItem.contextValue);
+    }
 
-	const map = node.treeItem as IntegrationAccountMapTreeItem;
-	const mapProperties = await map.getProperties();
+    const map = node.treeItem as IntegrationAccountMapTreeItem;
+    const mapProperties = await map.getProperties();
 
-	await openAndShowTextDocument(mapProperties, "json");
+    await openAndShowTextDocument(mapProperties, "json");
 }
