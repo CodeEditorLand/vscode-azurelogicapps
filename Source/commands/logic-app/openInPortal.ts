@@ -6,12 +6,15 @@
 import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
 import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
 
-export async function openInPortal(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
-    } else if (node.treeItem.contextValue !== LogicAppTreeItem.contextValue) {
-        node = await tree.showNodePicker(LogicAppTreeItem.contextValue, node);
-    }
+export async function openInPortal(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
+	} else if (node.treeItem.contextValue !== LogicAppTreeItem.contextValue) {
+		node = await tree.showNodePicker(LogicAppTreeItem.contextValue, node);
+	}
 
-    node.openInPortal();
+	node.openInPortal();
 }

@@ -10,20 +10,20 @@ import { localize } from "../../localize";
 import { openFolder, selectWorkspaceFolder } from "../../utils/workspaceUtils";
 
 export async function createProject(): Promise<void> {
-    const fsPath = await selectWorkspaceFolder(ext.ui);
-    if (!fsPath) {
-        return;
-    }
+	const fsPath = await selectWorkspaceFolder(ext.ui);
+	if (!fsPath) {
+		return;
+	}
 
-    const options: vscode.ProgressOptions = {
-        location: vscode.ProgressLocation.Notification,
-        title: localize("azLogicApp.creatingProject", "Creating project...")
-    };
+	const options: vscode.ProgressOptions = {
+		location: vscode.ProgressLocation.Notification,
+		title: localize("azLogicApp.creatingProject", "Creating project..."),
+	};
 
-    await vscode.window.withProgress(options, async () => {
-        await fse.ensureDir(fsPath);
+	await vscode.window.withProgress(options, async () => {
+		await fse.ensureDir(fsPath);
 
-        const uri = vscode.Uri.file(fsPath);
-        await openFolder(uri);
-    });
+		const uri = vscode.Uri.file(fsPath);
+		await openFolder(uri);
+	});
 }

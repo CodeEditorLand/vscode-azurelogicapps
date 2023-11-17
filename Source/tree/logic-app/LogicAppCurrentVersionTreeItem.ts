@@ -6,7 +6,12 @@
 import { IAzureTreeItem } from "vscode-azureextensionui";
 import { LogicAppVersionTreeItem } from "./LogicAppVersionTreeItem";
 
-export class LogicAppCurrentVersionTreeItem extends LogicAppVersionTreeItem implements IAzureTreeItem {
-    public static readonly contextValue: string = "azLogicAppsWorkflowCurrentVersion";
-    public readonly contextValue: string = LogicAppCurrentVersionTreeItem.contextValue;
+export class LogicAppCurrentVersionTreeItem
+	extends LogicAppVersionTreeItem
+	implements IAzureTreeItem
+{
+	public static readonly contextValue: string =
+		"azLogicAppsWorkflowCurrentVersion";
+	public readonly contextValue: string =
+		LogicAppCurrentVersionTreeItem.contextValue;
 }

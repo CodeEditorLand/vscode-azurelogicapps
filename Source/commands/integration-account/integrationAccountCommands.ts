@@ -10,33 +10,48 @@ import { IntegrationAccountTreeItem } from "../../tree/integration-account/Integ
 import { openAndShowTextDocument } from "../../utils/commandUtils";
 import { DialogResponses } from "../../utils/dialogResponses";
 
-export async function deleteIntegrationAccount(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker(IntegrationAccountTreeItem.contextValue);
-    }
+export async function deleteIntegrationAccount(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker(
+			IntegrationAccountTreeItem.contextValue
+		);
+	}
 
-    const result = await vscode.window.showWarningMessage(
-        localize("azIntegrationAccounts.deleteIntegrationAccountPrompt", "Are you sure that you want to delete the whole integration account? This can not be undone."),
-        DialogResponses.yes,
-        DialogResponses.no);
+	const result = await vscode.window.showWarningMessage(
+		localize(
+			"azIntegrationAccounts.deleteIntegrationAccountPrompt",
+			"Are you sure that you want to delete the whole integration account? This can not be undone."
+		),
+		DialogResponses.yes,
+		DialogResponses.no
+	);
 
-    if (result === DialogResponses.yes) {
-        await node.runWithTemporaryDescription(
-            localize("azIntegrationAccounts.deleting", "Deleting..."),
-            async () => {
-                await node!.deleteNode();
-            }
-        );
-    }
+	if (result === DialogResponses.yes) {
+		await node.runWithTemporaryDescription(
+			localize("azIntegrationAccounts.deleting", "Deleting..."),
+			async () => {
+				await node!.deleteNode();
+			}
+		);
+	}
 }
 
-export async function viewIntegrationAccountProperties(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker(IntegrationAccountTreeItem.contextValue);
-    }
+export async function viewIntegrationAccountProperties(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker(
+			IntegrationAccountTreeItem.contextValue
+		);
+	}
 
-    const integrationAccount = node.treeItem as IntegrationAccountTreeItem;
-    const integrationAccountProperties = await integrationAccount.getProperties();
+	const integrationAccount = node.treeItem as IntegrationAccountTreeItem;
+	const integrationAccountProperties =
+		await integrationAccount.getProperties();
 
-    await openAndShowTextDocument(integrationAccountProperties, "json");
+	await openAndShowTextDocument(integrationAccountProperties, "json");
 }

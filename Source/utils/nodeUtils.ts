@@ -7,30 +7,41 @@ import * as path from "path";
 import { ext } from "../extensionVariables";
 
 export interface IThemedIconPath {
-    dark: string;
-    light: string;
+	dark: string;
+	light: string;
 }
 
 export function getIconPath(iconName: string): string {
-    return ext.context.asAbsolutePath(path.join("resources", `${iconName}.svg`));
+	return ext.context.asAbsolutePath(
+		path.join("resources", `${iconName}.svg`)
+	);
 }
 
 export function getStatusIconPath(iconName: string): string {
-    return ext.context.asAbsolutePath(path.join("resources", "status", `${iconName}.svg`));
+	return ext.context.asAbsolutePath(
+		path.join("resources", "status", `${iconName}.svg`)
+	);
 }
 
 export function getThemedIconPath(iconName: string): IThemedIconPath {
-    return {
-        dark: ext.context.asAbsolutePath(path.join("resources", "dark", `${iconName}.svg`)),
-        light: ext.context.asAbsolutePath(path.join("resources", "light", `${iconName}.svg`))
-    };
+	return {
+		dark: ext.context.asAbsolutePath(
+			path.join("resources", "dark", `${iconName}.svg`)
+		),
+		light: ext.context.asAbsolutePath(
+			path.join("resources", "light", `${iconName}.svg`)
+		),
+	};
 }
 
-export function arrayToMap<T, K extends keyof T>(array: T[], key: K): Map<string, T> {
-    const mappedObjects: Map<string, T> = new Map();
-    for (const item of array) {
-        mappedObjects.set(String(item[key]), item);
-    }
+export function arrayToMap<T, K extends keyof T>(
+	array: T[],
+	key: K
+): Map<string, T> {
+	const mappedObjects: Map<string, T> = new Map();
+	for (const item of array) {
+		mappedObjects.set(String(item[key]), item);
+	}
 
-    return mappedObjects;
+	return mappedObjects;
 }

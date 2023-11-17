@@ -4,19 +4,24 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureWizardPromptStep, UserCancelledError } from "vscode-azureextensionui";
+import {
+	AzureWizardPromptStep,
+	UserCancelledError,
+} from "vscode-azureextensionui";
 import { MapType } from "../../../utils/integration-account/mapUtils";
 import { IMapWizardContext } from "./createMapWizard";
 
 export class MapTypeStep extends AzureWizardPromptStep<IMapWizardContext> {
-    public async prompt(wizardContext: IMapWizardContext): Promise<IMapWizardContext> {
-        const mapTypes = Object.keys(MapType);
-        wizardContext.mapType = await vscode.window.showQuickPick(mapTypes);
+	public async prompt(
+		wizardContext: IMapWizardContext
+	): Promise<IMapWizardContext> {
+		const mapTypes = Object.keys(MapType);
+		wizardContext.mapType = await vscode.window.showQuickPick(mapTypes);
 
-        if (wizardContext.mapType) {
-            return wizardContext;
-        }
+		if (wizardContext.mapType) {
+			return wizardContext;
+		}
 
-        throw new UserCancelledError();
-    }
+		throw new UserCancelledError();
+	}
 }
