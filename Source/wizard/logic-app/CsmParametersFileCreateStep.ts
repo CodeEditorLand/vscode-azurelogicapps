@@ -9,12 +9,19 @@ import { generateDeploymentTemplateParameters } from "../../utils/logic-app/temp
 import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class CsmParametersFileCreateStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
-    public async execute(wizardContext: IBuildDefinitionWizardContext): Promise<IBuildDefinitionWizardContext> {
-        const { csmParametersFilename, templateParameters } = wizardContext;
-        const deploymentTemplateParameters = generateDeploymentTemplateParameters(templateParameters);
+	public async execute(
+		wizardContext: IBuildDefinitionWizardContext
+	): Promise<IBuildDefinitionWizardContext> {
+		const { csmParametersFilename, templateParameters } = wizardContext;
+		const deploymentTemplateParameters =
+			generateDeploymentTemplateParameters(templateParameters);
 
-        await fse.writeJSON(csmParametersFilename!, deploymentTemplateParameters, { spaces: 4 });
+		await fse.writeJSON(
+			csmParametersFilename!,
+			deploymentTemplateParameters,
+			{ spaces: 4 }
+		);
 
-        return wizardContext;
-    }
+		return wizardContext;
+	}
 }

@@ -6,20 +6,24 @@
 import { IntegrationAccount } from "azure-arm-logic/lib/models";
 
 export enum IntegrationAccountSku {
-    Free = "Free",
-    Basic = "Basic",
-    Standard = "Standard"
+	Free = "Free",
+	Basic = "Basic",
+	Standard = "Standard",
 }
 
-export async function createNewIntegrationAccount(integrationAccountName: string, sku: IntegrationAccountSku, location: string): Promise<IntegrationAccount> {
-    const integrationAccount: IntegrationAccount = {
-        location,
-        name: integrationAccountName,
-        properties: {},
-        sku: {
-            name: sku
-        }
-    };
+export async function createNewIntegrationAccount(
+	integrationAccountName: string,
+	sku: IntegrationAccountSku,
+	location: string
+): Promise<IntegrationAccount> {
+	const integrationAccount: IntegrationAccount = {
+		location,
+		name: integrationAccountName,
+		properties: {},
+		sku: {
+			name: sku,
+		},
+	};
 
-    return integrationAccount;
+	return integrationAccount;
 }

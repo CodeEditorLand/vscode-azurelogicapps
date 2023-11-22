@@ -8,11 +8,21 @@ import { LogicAppCurrentVersionTreeItem } from "../../tree/logic-app/LogicAppCur
 import { LogicAppVersionTreeItem } from "../../tree/logic-app/LogicAppVersionTreeItem";
 import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 
-export async function openVersionInEditor(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker([LogicAppCurrentVersionTreeItem.contextValue, LogicAppVersionTreeItem.contextValue]);
-    }
+export async function openVersionInEditor(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker([
+			LogicAppCurrentVersionTreeItem.contextValue,
+			LogicAppVersionTreeItem.contextValue,
+		]);
+	}
 
-    const content = await (node.treeItem as LogicAppCurrentVersionTreeItem | LogicAppVersionTreeItem).getData();
-    await openReadOnlyJson(node.id, content);
+	const content = await (
+		node.treeItem as
+			| LogicAppCurrentVersionTreeItem
+			| LogicAppVersionTreeItem
+	).getData();
+	await openReadOnlyJson(node.id, content);
 }
