@@ -2,19 +2,19 @@
   "name": "vscode-logicapps",
   "displayName": "Azure Logic Apps (Consumption)",
   "description": "%extension.description%",
-  "version": "1.2.9",
-  "publisher": "ms-azuretools",
+  "version": "0.0.1",
+  "publisher": "playform",
   "icon": "resources/azLogicApps.png",
   "aiKey": "b6385546-3be0-489c-a298-baccd6c152fb",
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/vscode-azurelogicapps"
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
   },
   "galleryBanner": {
     "color": "#3a3d41",
     "theme": "dark"
   },
-  "homepage": "https://github.com/microsoft/vscode-azurelogicapps/blob/main/README.md",
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
   "license": "MIT",
   "activationEvents": [],
   "main": "./out/extension",
@@ -682,7 +682,8 @@
     "vscode:prepublish": "npm run webpack-prod",
     "watch": "webpack --mode development --watch",
     "webpack-dev": "webpack --mode development --watch",
-    "webpack-prod": "webpack --mode production"
+    "webpack-prod": "webpack --mode production",
+    "prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
   },
   "devDependencies": {
     "@types/fs-extra": "11.0.4",
@@ -701,7 +702,8 @@
     "ts-loader": "9.5.1",
     "typescript": "5.3.2",
     "webpack": "5.89.0",
-    "webpack-cli": "5.1.4"
+    "webpack-cli": "5.1.4",
+    "typescript-esbuild": "0.3.1"
   },
   "dependencies": {
     "azure-arm-logic": "6.0.0",
@@ -724,5 +726,18 @@
       "supported": true
     },
     "virtualWorkspaces": false
+  },
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
   }
 }
