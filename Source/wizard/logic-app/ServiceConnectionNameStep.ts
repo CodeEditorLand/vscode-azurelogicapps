@@ -4,50 +4,37 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import {
-	AzureWizardPromptStep,
-	UserCancelledError,
-} from "vscode-azureextensionui";
+import { AzureWizardPromptStep, UserCancelledError } from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class ServiceConnectionNameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
-	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext
-	): Promise<IBuildDefinitionWizardContext> {
-		const azureSubscription = await askForAzureSubscriptionName();
-		if (!azureSubscription) {
-			throw new UserCancelledError();
-		}
+    public async prompt(wizardContext: IBuildDefinitionWizardContext): Promise<IBuildDefinitionWizardContext> {
+        const azureSubscription = await askForAzureSubscriptionName();
+        if (!azureSubscription) {
+            throw new UserCancelledError();
+        }
 
-		return {
-			...wizardContext,
-			azureSubscription,
-		};
-	}
+        return {
+            ...wizardContext,
+            azureSubscription
+        };
+    }
 }
 
 async function askForAzureSubscriptionName(): Promise<string | undefined> {
-	function validateInput(
-		value: string
-	): string | null | undefined | Thenable<string | null | undefined> {
-		if (value === "") {
-			return localize(
-				"azLogicApps.azureSubscriptionRequired",
-				"An ARM service connection name is required."
-			);
-		}
+    function validateInput(value: string): string | null | undefined | Thenable<string | null | undefined> {
+        if (value === "") {
+            return localize("azLogicApps.azureSubscriptionRequired", "An ARM service connection name is required.");
+        }
 
-		return undefined;
-	}
+        return undefined;
+    }
 
-	const azureSubscriptionInputBoxOptions: vscode.InputBoxOptions = {
-		prompt: localize(
-			"azLogicApps.azureSubscriptionPrompt",
-			"Enter Azure Resource Manager connection name."
-		),
-		validateInput,
-	};
+    const azureSubscriptionInputBoxOptions: vscode.InputBoxOptions = {
+        prompt: localize("azLogicApps.azureSubscriptionPrompt", "Enter Azure Resource Manager connection name."),
+        validateInput
+    };
 
-	return vscode.window.showInputBox(azureSubscriptionInputBoxOptions);
+    return vscode.window.showInputBox(azureSubscriptionInputBoxOptions);
 }

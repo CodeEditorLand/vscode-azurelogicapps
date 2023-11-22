@@ -8,16 +8,12 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 import { IdentityStep } from "./identityStep";
 
 export class HostIdentityStep extends AzureWizardPromptStep<IAgreementWizardContext> {
-	public async prompt(
-		wizardContext: IAgreementWizardContext
-	): Promise<IAgreementWizardContext> {
-		const identityStep = new IdentityStep();
-		await identityStep
-			.prompt(wizardContext, wizardContext.hostPartner!)
-			.then((result) => {
-				wizardContext.hostIdentity = result;
-			});
+    public async prompt(wizardContext: IAgreementWizardContext): Promise<IAgreementWizardContext> {
+        const identityStep = new IdentityStep();
+        await identityStep.prompt(wizardContext, wizardContext.hostPartner!).then((result) => {
+            wizardContext.hostIdentity = result;
+        });
 
-		return wizardContext;
-	}
+        return wizardContext;
+    }
 }

@@ -7,18 +7,11 @@ import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
 import { LogicAppRunActionTreeItem } from "../../tree/logic-app/LogicAppRunActionTreeItem";
 import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 
-export async function openRunActionInEditor(
-	tree: AzureTreeDataProvider,
-	node?: IAzureNode
-): Promise<void> {
-	if (!node) {
-		node = await tree.showNodePicker(
-			LogicAppRunActionTreeItem.contextValue
-		);
-	}
+export async function openRunActionInEditor(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
+    if (!node) {
+        node = await tree.showNodePicker(LogicAppRunActionTreeItem.contextValue);
+    }
 
-	const content = await (
-		node.treeItem as LogicAppRunActionTreeItem
-	).getData();
-	await openReadOnlyJson(node.id, content);
+    const content = await (node.treeItem as LogicAppRunActionTreeItem).getData();
+    await openReadOnlyJson(node.id, content);
 }
