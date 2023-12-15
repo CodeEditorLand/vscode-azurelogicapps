@@ -45,7 +45,7 @@ export async function selectWorkspaceFolder(
 				data: fsPath,
 				description: fsPath,
 				label: path.basename(fsPath),
-		  }));
+			}));
 	const browseItem = {
 		label: localize("azLogicApps.browse", "$(file-directory) Browse..."),
 	};
