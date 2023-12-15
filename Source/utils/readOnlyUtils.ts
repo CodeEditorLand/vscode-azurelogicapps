@@ -27,7 +27,7 @@ const providerScheme = "azurelogicappsReadonly";
 
 export async function openReadOnlyJson(
 	name: string,
-	content: string
+	content: string,
 ): Promise<void> {
 	return openReadOnlyContent(name, content, ".json");
 }
@@ -35,15 +35,15 @@ export async function openReadOnlyJson(
 export async function openReadOnlyContent(
 	name: string,
 	content: string,
-	fileExt: string
+	fileExt: string,
 ): Promise<void> {
 	if (!contentProvider) {
 		contentProvider = new ReadOnlyContentProvider();
 		ext.context.subscriptions.push(
 			workspace.registerTextDocumentContentProvider(
 				providerScheme,
-				contentProvider
-			)
+				contentProvider,
+			),
 		);
 	}
 	await contentProvider.openReadOnlyContent(name, content, fileExt);
@@ -60,11 +60,11 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 	public async openReadOnlyContent(
 		name: string,
 		content: string,
-		fileExt: string
+		fileExt: string,
 	): Promise<void> {
 		const nameHash = createHash("sha256").update(name).digest("hex");
 		const uri = Uri.parse(
-			`${providerScheme}:///${nameHash}/${name}${fileExt}`
+			`${providerScheme}:///${nameHash}/${name}${fileExt}`,
 		);
 		this._contentMap.set(uri.toString(), content);
 		await window.showTextDocument(uri);
@@ -75,7 +75,7 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 		const content = this._contentMap.get(uri.toString());
 		if (isNullOrUndefined(content)) {
 			throw new Error(
-				"Internal error: Expected content from read-only provider to be neither null nor undefined"
+				"Internal error: Expected content from read-only provider to be neither null nor undefined",
 			);
 		}
 		return content;

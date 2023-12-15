@@ -8,7 +8,7 @@ import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
 
 export async function openInPortal(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);

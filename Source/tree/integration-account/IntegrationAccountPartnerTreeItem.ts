@@ -19,7 +19,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private integrationAccountPartner: IntegrationAccountPartner
+		private integrationAccountPartner: IntegrationAccountPartner,
 	) {}
 
 	public get commandId(): string {
@@ -30,7 +30,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 		await this.client.integrationAccountPartners.deleteMethod(
 			this.resourceGroupName,
 			this.integrationAccountName,
-			this.label
+			this.label,
 		);
 	}
 
@@ -72,7 +72,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 				await this.client.integrationAccountPartners.get(
 					this.resourceGroupName,
 					this.integrationAccountName,
-					this.integrationAccountPartnerName
+					this.integrationAccountPartnerName,
 				);
 		}
 
@@ -90,7 +90,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 				this.resourceGroupName,
 				this.integrationAccountName,
 				this.integrationAccountPartnerName,
-				partner
+				partner,
 			);
 		return JSON.stringify(updatedPartner.content, null, 4);
 	}

@@ -11,7 +11,7 @@ import { getWebviewContent } from "../../utils/logic-app/monitoringViewUtils";
 
 export async function openRunInMonitoringView(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppRunTreeItem.contextValue);
@@ -39,7 +39,7 @@ export async function openRunInMonitoringView(
 		"monitoringView",
 		title,
 		vscode.ViewColumn.Beside,
-		options
+		options,
 	);
 	panel.webview.html = getWebviewContent({
 		authorization,

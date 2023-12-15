@@ -14,11 +14,11 @@ import { openAndShowTextDocument } from "../../utils/commandUtils";
 
 export async function deleteIntegrationAccountMap(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
+			IntegrationAccountMapTreeItem.contextValue,
 		);
 	}
 
@@ -26,18 +26,18 @@ export async function deleteIntegrationAccountMap(
 		localize("azIntegrationAccounts.deleting", "Deleting..."),
 		async () => {
 			await node!.deleteNode();
-		}
+		},
 	);
 }
 
 export async function openIntegrationAccountMapInEditor(
 	tree: AzureTreeDataProvider,
 	editor: BaseEditor<IAzureNode>,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
+			IntegrationAccountMapTreeItem.contextValue,
 		);
 	}
 
@@ -46,11 +46,11 @@ export async function openIntegrationAccountMapInEditor(
 
 export async function viewIntegrationAccountMapProperties(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountMapTreeItem.contextValue
+			IntegrationAccountMapTreeItem.contextValue,
 		);
 	}
 

@@ -18,7 +18,7 @@ import { IntegrationAccountTreeItem } from "./IntegrationAccountTreeItem";
 export class IntegrationAccountProvider implements IChildProvider {
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.IntegrationAccount",
-		"Integration Account"
+		"Integration Account",
 	);
 
 	private nextLink: string | undefined;
@@ -29,7 +29,7 @@ export class IntegrationAccountProvider implements IChildProvider {
 
 	public async loadMoreChildren(
 		node: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -37,7 +37,7 @@ export class IntegrationAccountProvider implements IChildProvider {
 
 		const client = new LogicAppsManagementClient(
 			node.credentials,
-			node.subscriptionId
+			node.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -45,20 +45,20 @@ export class IntegrationAccountProvider implements IChildProvider {
 			this.nextLink === undefined
 				? await client.integrationAccounts.listBySubscription()
 				: await client.integrationAccounts.listBySubscriptionNext(
-						this.nextLink
+						this.nextLink,
 				  );
 
 		this.nextLink = integrationAccounts.nextLink;
 
 		return integrationAccounts.map(
 			(integrationAccount: IntegrationAccount) =>
-				new IntegrationAccountTreeItem(client, integrationAccount)
+				new IntegrationAccountTreeItem(client, integrationAccount),
 		);
 	}
 
 	public async createChild(
 		node: IAzureNode,
-		showCreatingNode: (label: string) => void
+		showCreatingNode: (label: string) => void,
 	): Promise<IAzureTreeItem> {
 		return runNewIntegrationAccountWizard(node, showCreatingNode);
 	}

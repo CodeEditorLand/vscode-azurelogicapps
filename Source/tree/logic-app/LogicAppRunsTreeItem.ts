@@ -24,7 +24,7 @@ export class LogicAppRunsTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly workflow: Workflow
+		private readonly workflow: Workflow,
 	) {}
 
 	public hasMoreChildren(): boolean {
@@ -49,7 +49,7 @@ export class LogicAppRunsTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -59,7 +59,7 @@ export class LogicAppRunsTreeItem implements IAzureParentTreeItem {
 			this.nextLink === undefined
 				? await this.client.workflowRuns.list(
 						this.resourceGroupName,
-						this.workflowName
+						this.workflowName,
 				  )
 				: await this.client.workflowRuns.listNext(this.nextLink);
 
@@ -67,7 +67,11 @@ export class LogicAppRunsTreeItem implements IAzureParentTreeItem {
 
 		return workflowRuns.map(
 			(workflowRun: WorkflowRun) =>
-				new LogicAppRunTreeItem(this.client, this.workflow, workflowRun)
+				new LogicAppRunTreeItem(
+					this.client,
+					this.workflow,
+					workflowRun,
+				),
 		);
 	}
 }

@@ -14,11 +14,11 @@ export async function createLogicApp(
 	tree: AzureTreeDataProvider,
 	editor: BaseEditor<IAzureNode>,
 	subscription?: IAzureParentNode,
-	resourceGroup?: string
+	resourceGroup?: string,
 ): Promise<string> {
 	const node = !subscription
 		? ((await tree.showNodePicker(
-				AzureTreeDataProvider.subscriptionContextValue
+				AzureTreeDataProvider.subscriptionContextValue,
 		  )) as IAzureParentNode)
 		: subscription;
 

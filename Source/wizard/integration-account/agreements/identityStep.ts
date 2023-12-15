@@ -15,14 +15,14 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 export class IdentityStep {
 	public async prompt(
 		wizardContext: IAgreementWizardContext,
-		partnerName: string
+		partnerName: string,
 	): Promise<BusinessIdentity> {
 		if (!wizardContext.partners) {
 			const partners = await getAllPartners(
 				wizardContext.credentials,
 				wizardContext.subscriptionId,
 				wizardContext.resourceGroup!.name!,
-				wizardContext.integrationAccountName
+				wizardContext.integrationAccountName,
 			);
 			wizardContext.partners = arrayToMap(partners, "name");
 		}
@@ -33,12 +33,12 @@ export class IdentityStep {
 		const filteredBusinessIdentities =
 			this.filterBusinessIdentitiesForAgreementType(
 				wizardContext.agreementType!,
-				businessIdentities
+				businessIdentities,
 			);
 		const dropdownValues = filteredBusinessIdentities.map(
 			(businessIdentity) => {
 				return `${businessIdentity.qualifier} : ${businessIdentity.value}`;
-			}
+			},
 		);
 
 		const selectedValue = await vscode.window.showQuickPick(dropdownValues);
@@ -47,7 +47,7 @@ export class IdentityStep {
 			const selectedIdentity = filteredBusinessIdentities.find(
 				(identity) => {
 					return selectedValue.startsWith(identity.qualifier);
-				}
+				},
 			);
 
 			return selectedIdentity!;
@@ -58,7 +58,7 @@ export class IdentityStep {
 
 	private filterBusinessIdentitiesForAgreementType(
 		agreementType: string,
-		businessIdentities: BusinessIdentity[]
+		businessIdentities: BusinessIdentity[],
 	): BusinessIdentity[] {
 		let qualifiersToInclude: string[];
 

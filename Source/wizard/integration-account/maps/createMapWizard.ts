@@ -31,7 +31,7 @@ export interface IMapWizardContext
 export async function runNewMapWizard(
 	integrationAccount: IntegrationAccount,
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void
+	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a map type and map name.
 	const promptSteps: Array<AzureWizardPromptStep<IMapWizardContext>> = [
@@ -60,7 +60,7 @@ export async function runNewMapWizard(
 	const wizard = new AzureWizard<IMapWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext
+		wizardContext,
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

@@ -36,11 +36,11 @@ export async function getConnectionReferencesForLogicApp(
 	subscriptionId: string,
 	resourceGroupName: string,
 	workflowName: string,
-	apiVersion: string
+	apiVersion: string,
 ): Promise<ConnectionReferences> {
 	return getConnectionReferences(
 		credentials,
-		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}?api-version=${apiVersion}`
+		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}?api-version=${apiVersion}`,
 	);
 }
 
@@ -50,22 +50,22 @@ export async function getConnectionReferencesForLogicAppVersion(
 	resourceGroupName: string,
 	workflowName: string,
 	workflowVersionName: string,
-	apiVersion: string
+	apiVersion: string,
 ): Promise<ConnectionReferences> {
 	return getConnectionReferences(
 		credentials,
-		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}/versions/${workflowVersionName}?api-version=${apiVersion}`
+		`https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Logic/workflows/${workflowName}/versions/${workflowVersionName}?api-version=${apiVersion}`,
 	);
 }
 
 async function getConnectionReferences(
 	credentials: ServiceClientCredentials,
-	uri: string
+	uri: string,
 ): Promise<ConnectionReferences> {
 	const authorization = await getAuthorization(credentials);
 	const options: request.RequestPromiseOptions = {
 		headers: {
-			"Authorization": authorization,
+			Authorization: authorization,
 			"Content-Type": "application/json",
 		},
 		method: "GET",

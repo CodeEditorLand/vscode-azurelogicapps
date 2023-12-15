@@ -13,7 +13,7 @@ import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWiza
 
 export class IntegrationAccountSkuStep extends AzureWizardPromptStep<IIntegrationAccountWizardContext> {
 	public async prompt(
-		wizardContext: IIntegrationAccountWizardContext
+		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<IIntegrationAccountWizardContext> {
 		const skus = Object.keys(IntegrationAccountSku);
 		wizardContext.sku = await vscode.window.showQuickPick(skus);

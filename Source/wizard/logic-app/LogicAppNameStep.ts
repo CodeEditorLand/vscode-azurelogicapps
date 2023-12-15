@@ -17,12 +17,12 @@ import { IAzureLogicAppWizardContext } from "./createLogicApp";
 
 export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizardContext> {
 	public async prompt(
-		wizardContext: IAzureLogicAppWizardContext
+		wizardContext: IAzureLogicAppWizardContext,
 	): Promise<IAzureLogicAppWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azLogicApps.promptForName",
-				"Enter a name for the new Logic App."
+				"Enter a name for the new Logic App.",
 			),
 			validateInput: async (name: string) => {
 				name = name ? name.trim() : "";
@@ -30,22 +30,22 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 				if (!name) {
 					return localize(
 						"azLogicApps.nameRequired",
-						"A name is required."
+						"A name is required.",
 					);
 				} else if (name.length > 80) {
 					return localize(
 						"azLogicApps.nameTooLong",
-						"The name has a maximum length of 80 characters."
+						"The name has a maximum length of 80 characters.",
 					);
 				} else if (!/^[0-9a-zA-Z-_.()]+$/.test(name)) {
 					return localize(
 						"azLogicApps.nameContainsInvalidCharacters",
-						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
+						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
 					);
 				} else if (!(await this.isNameAvailable(name, wizardContext))) {
 					return localize(
 						"azLogicApps.nameAlreadyInUse",
-						"The name is already in use."
+						"The name is already in use.",
 					);
 				} else {
 					return undefined;
@@ -65,14 +65,14 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 
 	protected async isRelatedNameAvailable(
 		wizardContext: IAzureLogicAppWizardContext,
-		name: string
+		name: string,
 	): Promise<boolean> {
 		return ResourceGroupListStep.isNameAvailable(wizardContext, name);
 	}
 
 	private async isNameAvailable(
 		name: string,
-		wizardContext: IAzureLogicAppWizardContext
+		wizardContext: IAzureLogicAppWizardContext,
 	): Promise<boolean> {
 		let resourceGroupName: string;
 		if (wizardContext.newResourceGroupName) {
@@ -83,7 +83,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 

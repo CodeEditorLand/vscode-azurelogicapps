@@ -9,7 +9,7 @@ import { LogicAppTriggerTreeItem } from "../../tree/logic-app/LogicAppTriggerTre
 
 export async function runTrigger(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTriggerTreeItem.contextValue);
@@ -22,6 +22,6 @@ export async function runTrigger(
 				.treeItem as LogicAppTriggerTreeItem;
 			await logicAppTriggerTreeItem.run();
 			await node!.parent!.parent!.refresh();
-		}
+		},
 	);
 }

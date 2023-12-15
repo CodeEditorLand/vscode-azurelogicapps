@@ -13,7 +13,7 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class WorkspaceFolderSelectionStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext
+		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const workspaceFolderPath =
 			wizardContext.workspaceFolderPath ||

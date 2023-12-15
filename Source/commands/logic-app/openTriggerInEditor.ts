@@ -9,7 +9,7 @@ import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 
 export async function openTriggerInEditor(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTriggerTreeItem.contextValue);

@@ -9,11 +9,11 @@ import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 
 export async function openRunActionInEditor(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			LogicAppRunActionTreeItem.contextValue
+			LogicAppRunActionTreeItem.contextValue,
 		);
 	}
 

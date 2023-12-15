@@ -22,19 +22,19 @@ export class IntegrationAccountSchemasTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azIntegrationAccountSchemas";
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.Schema",
-		"Schema"
+		"Schema",
 	);
 	public readonly contextValue =
 		IntegrationAccountSchemasTreeItem.contextValue;
 	public readonly label = localize(
 		"azIntegrationAccounts.Schemas",
-		"Schemas"
+		"Schemas",
 	);
 	private nextLink: string | undefined;
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly integrationAccount: IntegrationAccount
+		private readonly integrationAccount: IntegrationAccount,
 	) {}
 
 	public get iconPath(): IThemedIconPath {
@@ -59,7 +59,7 @@ export class IntegrationAccountSchemasTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -69,28 +69,28 @@ export class IntegrationAccountSchemasTreeItem implements IAzureParentTreeItem {
 			this.nextLink === undefined
 				? await this.client.integrationAccountSchemas.list(
 						this.resourceGroupName,
-						this.integrationAccountName
+						this.integrationAccountName,
 				  )
 				: await this.client.integrationAccountSchemas.listNext(
-						this.nextLink
+						this.nextLink,
 				  );
 
 		this.nextLink = integrationAccountSchemas.nextLink;
 
 		return integrationAccountSchemas.map(
 			(schema: IntegrationAccountSchema) =>
-				new IntegrationAccountSchemaTreeItem(this.client, schema)
+				new IntegrationAccountSchemaTreeItem(this.client, schema),
 		);
 	}
 
 	public async createChild(
 		node: IAzureNode,
-		showCreatingNode: (label: string) => void
+		showCreatingNode: (label: string) => void,
 	): Promise<IAzureTreeItem> {
 		return runNewSchemaWizard(
 			this.integrationAccount,
 			node,
-			showCreatingNode
+			showCreatingNode,
 		);
 	}
 }

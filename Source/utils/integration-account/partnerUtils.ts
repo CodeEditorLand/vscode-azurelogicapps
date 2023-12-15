@@ -15,7 +15,7 @@ export enum PartnerType {
 export async function createNewPartner(
 	partnerName: string,
 	qualifier: string,
-	value: string
+	value: string,
 ): Promise<IntegrationAccountPartner> {
 	const partner: IntegrationAccountPartner = {
 		content: {
@@ -39,20 +39,20 @@ export async function getAllPartners(
 	credentials: ServiceClientCredentials,
 	subscriptionId: string,
 	resourceGroup: string,
-	integrationAccount: string
+	integrationAccount: string,
 ): Promise<IntegrationAccountPartner[]> {
 	const client = new LogicAppsManagementClient(credentials, subscriptionId);
 	addExtensionUserAgent(client);
 
 	const partners = await client.integrationAccountPartners.list(
 		resourceGroup,
-		integrationAccount
+		integrationAccount,
 	);
 	let nextPageLink = partners.nextLink;
 
 	while (nextPageLink) {
 		partners.push(
-			...(await client.integrationAccountPartners.listNext(nextPageLink))
+			...(await client.integrationAccountPartners.listNext(nextPageLink)),
 		);
 		nextPageLink = partners.nextLink;
 	}

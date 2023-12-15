@@ -12,21 +12,21 @@ import { DialogResponses } from "../../utils/dialogResponses";
 
 export async function deleteIntegrationAccount(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountTreeItem.contextValue
+			IntegrationAccountTreeItem.contextValue,
 		);
 	}
 
 	const result = await vscode.window.showWarningMessage(
 		localize(
 			"azIntegrationAccounts.deleteIntegrationAccountPrompt",
-			"Are you sure that you want to delete the whole integration account? This can not be undone."
+			"Are you sure that you want to delete the whole integration account? This can not be undone.",
 		),
 		DialogResponses.yes,
-		DialogResponses.no
+		DialogResponses.no,
 	);
 
 	if (result === DialogResponses.yes) {
@@ -34,18 +34,18 @@ export async function deleteIntegrationAccount(
 			localize("azIntegrationAccounts.deleting", "Deleting..."),
 			async () => {
 				await node!.deleteNode();
-			}
+			},
 		);
 	}
 }
 
 export async function viewIntegrationAccountProperties(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountTreeItem.contextValue
+			IntegrationAccountTreeItem.contextValue,
 		);
 	}
 

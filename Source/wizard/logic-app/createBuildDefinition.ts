@@ -35,7 +35,7 @@ export interface IBuildDefinitionWizardContext {
 }
 
 export async function createBuildDefinition(
-	workspaceFolderPath?: string
+	workspaceFolderPath?: string,
 ): Promise<IBuildDefinitionWizardContext> {
 	// Prompt the user for an Azure DevOps ARM service connection, resource group, location, deployment template filename, deployment template parameters filename, and build definition filename.
 	const promptSteps: Array<
@@ -72,7 +72,7 @@ export async function createBuildDefinition(
 	const wizard = new AzureWizard<IBuildDefinitionWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext
+		wizardContext,
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

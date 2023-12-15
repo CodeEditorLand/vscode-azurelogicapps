@@ -16,7 +16,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private integrationAccountAgreement: IntegrationAccountAgreement
+		private integrationAccountAgreement: IntegrationAccountAgreement,
 	) {}
 
 	public get commandId(): string {
@@ -27,7 +27,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 		await this.client.integrationAccountAgreements.deleteMethod(
 			this.resourceGroupName,
 			this.integrationAccountName,
-			this.label
+			this.label,
 		);
 	}
 
@@ -66,7 +66,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 			await this.client.integrationAccountAgreements.get(
 				this.resourceGroupName,
 				this.integrationAccountName,
-				this.integrationAccountAgreementName
+				this.integrationAccountAgreementName,
 			);
 
 		return JSON.stringify(this.integrationAccountAgreement, null, 4);
@@ -78,7 +78,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 				await this.client.integrationAccountAgreements.get(
 					this.resourceGroupName,
 					this.integrationAccountName,
-					this.integrationAccountAgreementName
+					this.integrationAccountAgreementName,
 				);
 		}
 
@@ -100,7 +100,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 				this.resourceGroupName,
 				this.integrationAccountName,
 				this.integrationAccountAgreementName,
-				agreement
+				agreement,
 			);
 		return JSON.stringify(updatedAgreement, null, 4);
 	}

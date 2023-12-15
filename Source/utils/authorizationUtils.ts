@@ -11,22 +11,25 @@ export interface CredentialsMetadata {
 }
 
 export function getAuthorization(
-	credentials: ServiceClientCredentials
+	credentials: ServiceClientCredentials,
 ): Promise<string> {
 	return new Promise((resolve, reject) => {
 		const webResource = new WebResource();
-		credentials.signRequest(webResource, (err: Error | undefined): void => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(webResource.headers.authorization);
-			}
-		});
+		credentials.signRequest(
+			webResource,
+			(err: Error | undefined): void => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(webResource.headers.authorization);
+				}
+			},
+		);
 	});
 }
 
 export function getCredentialsMetadata(
-	credentials: ServiceClientCredentials
+	credentials: ServiceClientCredentials,
 ): CredentialsMetadata {
 	return credentials as unknown as CredentialsMetadata;
 }

@@ -14,11 +14,11 @@ import { IAzureLogicAppWizardContext } from "./createLogicApp";
 
 export class LogicAppCreateStep extends AzureWizardExecuteStep<IAzureLogicAppWizardContext> {
 	public async execute(
-		wizardContext: IAzureLogicAppWizardContext
+		wizardContext: IAzureLogicAppWizardContext,
 	): Promise<IAzureLogicAppWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -40,7 +40,7 @@ export class LogicAppCreateStep extends AzureWizardExecuteStep<IAzureLogicAppWiz
 		const workflow = await client.workflows.createOrUpdate(
 			resourceGroupName,
 			workflowName,
-			emptyWorkflow
+			emptyWorkflow,
 		);
 
 		wizardContext.logicApp = new LogicAppTreeItem(client, workflow);

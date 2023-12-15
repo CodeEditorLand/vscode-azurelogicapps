@@ -18,11 +18,11 @@ import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWiza
 
 export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegrationAccountWizardContext> {
 	public async execute(
-		wizardContext: IIntegrationAccountWizardContext
+		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<IIntegrationAccountWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -35,13 +35,13 @@ export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegr
 					IntegrationAccountSku[
 						wizardContext.sku! as IntegrationAccountSku
 					],
-					wizardContext.location!.name!
-				)
+					wizardContext.location!.name!,
+				),
 			);
 
 		wizardContext.integrationAccount = new IntegrationAccountTreeItem(
 			client,
-			newIntegrationAccount
+			newIntegrationAccount,
 		);
 
 		return wizardContext;

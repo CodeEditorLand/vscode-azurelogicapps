@@ -17,7 +17,7 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azIntegrationAccount";
 	public readonly childTypeLabel: string = localize(
 		"azIntegrationAccounts.child",
-		"Child"
+		"Child",
 	);
 	public contextValue = IntegrationAccountTreeItem.contextValue;
 	public integrationAccountAgreementsItem: IntegrationAccountAgreementsTreeItem;
@@ -27,16 +27,16 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private integrationAccount: IntegrationAccount
+		private integrationAccount: IntegrationAccount,
 	) {
 		this.integrationAccountAgreementsItem =
 			new IntegrationAccountAgreementsTreeItem(
 				client,
-				integrationAccount
+				integrationAccount,
 			);
 		this.integrationAccountMapsItem = new IntegrationAccountMapsTreeItem(
 			client,
-			integrationAccount
+			integrationAccount,
 		);
 		this.integrationAccountPartnersItem =
 			new IntegrationAccountPartnersTreeItem(client, integrationAccount);
@@ -76,7 +76,7 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 		if (refresh) {
 			this.integrationAccount = await this.client.integrationAccounts.get(
 				this.resourceGroupName,
-				this.integrationAccountName
+				this.integrationAccountName,
 			);
 		}
 
@@ -86,7 +86,7 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 	public async deleteTreeItem(): Promise<void> {
 		await this.client.integrationAccounts.deleteMethod(
 			this.resourceGroupName,
-			this.integrationAccountName
+			this.integrationAccountName,
 		);
 	}
 
@@ -100,7 +100,7 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 	}
 
 	public pickTreeItem(
-		expectedContextValue: string
+		expectedContextValue: string,
 	): IAzureTreeItem | undefined {
 		switch (expectedContextValue) {
 			case IntegrationAccountAgreementsTreeItem.contextValue:

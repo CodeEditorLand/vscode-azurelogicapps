@@ -11,7 +11,7 @@ import { DialogResponses } from "../../utils/dialogResponses";
 
 export async function promoteVersion(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppVersionTreeItem.contextValue);
@@ -20,10 +20,10 @@ export async function promoteVersion(
 	const result = await vscode.window.showWarningMessage(
 		localize(
 			"azLogicApps.promotePrompt",
-			"Are you sure that you want to promote this version?"
+			"Are you sure that you want to promote this version?",
 		),
 		DialogResponses.yes,
-		DialogResponses.no
+		DialogResponses.no,
 	);
 
 	if (result === DialogResponses.yes) {
@@ -34,7 +34,7 @@ export async function promoteVersion(
 					.treeItem as LogicAppVersionTreeItem;
 				await logicAppRunTreeItem.promote();
 				await node!.parent!.refresh();
-			}
+			},
 		);
 	}
 }

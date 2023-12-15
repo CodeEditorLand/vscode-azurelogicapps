@@ -11,7 +11,7 @@ export enum SchemaType {
 }
 
 export async function createNewSchema(
-	schemaName: string
+	schemaName: string,
 ): Promise<IntegrationAccountSchema> {
 	const schema: IntegrationAccountSchema = {
 		content:

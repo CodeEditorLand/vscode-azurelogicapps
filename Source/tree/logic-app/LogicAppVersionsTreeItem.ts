@@ -25,7 +25,7 @@ export class LogicAppVersionsTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly workflow: Workflow
+		private readonly workflow: Workflow,
 	) {}
 
 	public hasMoreChildren(): boolean {
@@ -50,7 +50,7 @@ export class LogicAppVersionsTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -60,7 +60,7 @@ export class LogicAppVersionsTreeItem implements IAzureParentTreeItem {
 			this.nextLink === undefined
 				? await this.client.workflowVersions.list(
 						this.resourceGroupName,
-						this.workflowName
+						this.workflowName,
 				  )
 				: await this.client.workflowVersions.listNext(this.nextLink);
 
@@ -71,12 +71,12 @@ export class LogicAppVersionsTreeItem implements IAzureParentTreeItem {
 				? new LogicAppCurrentVersionTreeItem(
 						this.client,
 						this.workflow,
-						workflowVersion
+						workflowVersion,
 				  )
 				: new LogicAppVersionTreeItem(
 						this.client,
 						this.workflow,
-						workflowVersion
+						workflowVersion,
 				  );
 		});
 	}
