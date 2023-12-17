@@ -13,7 +13,7 @@ import {
 
 export async function openAndShowTextDocument(
 	content: string,
-	language = "json",
+	language = "json"
 ): Promise<void> {
 	const document = await vscode.workspace.openTextDocument({
 		content,
@@ -26,11 +26,11 @@ export async function openAndShowTextDocument(
 export async function createChildNode(
 	tree: AzureTreeDataProvider,
 	parentContextValue: string,
-	node?: IAzureParentNode,
+	node?: IAzureParentNode
 ): Promise<IAzureNode<IAzureTreeItem>> {
 	if (!node) {
 		node = (await tree.showNodePicker(
-			parentContextValue,
+			parentContextValue
 		)) as IAzureParentNode;
 	}
 

@@ -15,11 +15,11 @@ import { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerCreateStep extends AzureWizardExecuteStep<IPartnerWizardContext> {
 	public async execute(
-		wizardContext: IPartnerWizardContext,
+		wizardContext: IPartnerWizardContext
 	): Promise<IPartnerWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId,
+			wizardContext.subscriptionId
 		);
 		addExtensionUserAgent(client);
 
@@ -31,13 +31,13 @@ export class PartnerCreateStep extends AzureWizardExecuteStep<IPartnerWizardCont
 				await createNewPartner(
 					wizardContext.partnerName!,
 					wizardContext.partnerQualifier!,
-					wizardContext.partnerValue!,
-				),
+					wizardContext.partnerValue!
+				)
 			);
 
 		wizardContext.partner = new IntegrationAccountPartnerTreeItem(
 			client,
-			newPartner,
+			newPartner
 		);
 
 		return wizardContext;

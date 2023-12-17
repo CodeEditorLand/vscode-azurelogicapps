@@ -36,15 +36,15 @@ export async function getCallbacks(
 	client: LogicAppsManagementClient,
 	definition: any,
 	resourceGroupName: string,
-	workflowName: string,
+	workflowName: string
 ): Promise<Callbacks> {
 	const triggers = await client.workflowTriggers.list(
 		resourceGroupName,
-		workflowName,
+		workflowName
 	);
 	const hasCallbackFn = hasCallback(definition);
 	const triggersWithCallbacks = triggers.filter((trigger) =>
-		hasCallbackFn(trigger.name!),
+		hasCallbackFn(trigger.name!)
 	);
 	const callbackUrls: ICallbackUrlAndTriggerName[] = await Promise.all(
 		triggersWithCallbacks.map(async (trigger) => {
@@ -52,14 +52,14 @@ export async function getCallbacks(
 			const callbackUrl = await client.workflowTriggers.listCallbackUrl(
 				resourceGroupName,
 				workflowName,
-				triggerName,
+				triggerName
 			);
 
 			return {
 				callbackUrl,
 				triggerName,
 			};
-		}),
+		})
 	);
 
 	return callbackUrls.reduce(
@@ -71,7 +71,7 @@ export async function getCallbacks(
 				[triggerName]: getCallback(callbackUrl),
 			};
 		},
-		{},
+		{}
 	);
 }
 
@@ -104,7 +104,7 @@ function getCallback(callbackUrl: WorkflowTriggerCallbackUrl): ICallback {
 }
 
 function getQueryString(
-	queries: WorkflowTriggerListCallbackUrlQueries | undefined,
+	queries: WorkflowTriggerListCallbackUrlQueries | undefined
 ): string | undefined {
 	if (queries === undefined) {
 		return undefined;
@@ -115,15 +115,15 @@ function getQueryString(
 			.map(
 				(key) =>
 					`${encodeURIComponent(key)}=${encodeURIComponent(
-						queryMap[key],
-					)}`,
+						queryMap[key]
+					)}`
 			)
 			.join("&");
 	}
 }
 
 function hasCallback(
-	definition: IWorkflowDefinitionWithTriggers,
+	definition: IWorkflowDefinitionWithTriggers
 ): HasCallbackFunction {
 	if (definition === undefined || definition.triggers === undefined) {
 		return () => false;

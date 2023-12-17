@@ -17,25 +17,25 @@ export class IntegrationAccountPartnerEditor extends BaseEditor<
 	}
 
 	public async getData(
-		node: IAzureNode<IntegrationAccountPartnerTreeItem>,
+		node: IAzureNode<IntegrationAccountPartnerTreeItem>
 	): Promise<string> {
 		return node.treeItem.getContent();
 	}
 
 	public async getFilename(
-		node: IAzureNode<IntegrationAccountPartnerTreeItem>,
+		node: IAzureNode<IntegrationAccountPartnerTreeItem>
 	): Promise<string> {
 		return `${node.treeItem.label}.json`;
 	}
 
 	public async getSaveConfirmationText(
-		node: IAzureNode<IntegrationAccountPartnerTreeItem>,
+		node: IAzureNode<IntegrationAccountPartnerTreeItem>
 	): Promise<string> {
 		const { label } = node.treeItem;
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Partner in your integration account.",
-			label,
+			label
 		);
 	}
 
@@ -44,14 +44,14 @@ export class IntegrationAccountPartnerEditor extends BaseEditor<
 	}
 
 	public async updateData(
-		node: IAzureNode<IntegrationAccountPartnerTreeItem>,
+		node: IAzureNode<IntegrationAccountPartnerTreeItem>
 	): Promise<string> {
 		if (!vscode.window.activeTextEditor) {
 			throw new Error(
 				localize(
 					"azIntegrationAccounts.errorUpdatingFile",
-					"Cannot update Partner after it has been closed.",
-				),
+					"Cannot update Partner after it has been closed."
+				)
 			);
 		}
 

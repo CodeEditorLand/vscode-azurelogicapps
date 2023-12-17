@@ -16,25 +16,25 @@ export class IntegrationAccountSchemaEditor extends BaseEditor<
 	}
 
 	public async getData(
-		node: IAzureNode<IntegrationAccountSchemaTreeItem>,
+		node: IAzureNode<IntegrationAccountSchemaTreeItem>
 	): Promise<string> {
 		return node.treeItem.getContent();
 	}
 
 	public async getFilename(
-		node: IAzureNode<IntegrationAccountSchemaTreeItem>,
+		node: IAzureNode<IntegrationAccountSchemaTreeItem>
 	): Promise<string> {
 		return `${node.treeItem.label}.xml`;
 	}
 
 	public async getSaveConfirmationText(
-		node: IAzureNode<IntegrationAccountSchemaTreeItem>,
+		node: IAzureNode<IntegrationAccountSchemaTreeItem>
 	): Promise<string> {
 		const { label } = node.treeItem;
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Schema in your integration account.",
-			label,
+			label
 		);
 	}
 
@@ -43,19 +43,19 @@ export class IntegrationAccountSchemaEditor extends BaseEditor<
 	}
 
 	public async updateData(
-		node: IAzureNode<IntegrationAccountSchemaTreeItem>,
+		node: IAzureNode<IntegrationAccountSchemaTreeItem>
 	): Promise<string> {
 		if (!vscode.window.activeTextEditor) {
 			throw new Error(
 				localize(
 					"azIntegrationAccounts.errorUpdatingFile",
-					"Cannot update Schema after it has been closed.",
-				),
+					"Cannot update Schema after it has been closed."
+				)
 			);
 		}
 
 		return node.treeItem.update(
-			vscode.window.activeTextEditor.document.getText(),
+			vscode.window.activeTextEditor.document.getText()
 		);
 	}
 }

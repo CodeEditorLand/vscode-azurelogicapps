@@ -14,12 +14,12 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class CsmParametersFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext,
+		wizardContext: IBuildDefinitionWizardContext
 	): Promise<IBuildDefinitionWizardContext> {
 		const { workspaceFolderPath } = wizardContext;
 		const csmParametersFilename =
 			await askForDeploymentTemplateParametersFilename(
-				workspaceFolderPath!,
+				workspaceFolderPath!
 			);
 		if (!csmParametersFilename) {
 			throw new UserCancelledError();
@@ -33,21 +33,21 @@ export class CsmParametersFilenameStep extends AzureWizardPromptStep<IBuildDefin
 }
 
 async function askForDeploymentTemplateParametersFilename(
-	workspaceFolderPath: string,
+	workspaceFolderPath: string
 ): Promise<string | undefined> {
 	const csmParametersFileSaveDialogOptions: vscode.SaveDialogOptions = {
 		defaultUri: vscode.Uri.file(
-			path.join(workspaceFolderPath, "csm-parameters-file.json"),
+			path.join(workspaceFolderPath, "csm-parameters-file.json")
 		),
 		filters: {
 			[localize(
 				"azLogicApps.armDeploymentTemplateParametersFiles",
-				"ARM Deployment Template Parameters Files",
+				"ARM Deployment Template Parameters Files"
 			)]: ["json"],
 		},
 	};
 	const csmParametersUri = await vscode.window.showSaveDialog(
-		csmParametersFileSaveDialogOptions,
+		csmParametersFileSaveDialogOptions
 	);
 
 	return csmParametersUri ? csmParametersUri.fsPath : undefined;

@@ -14,7 +14,7 @@ export class LogicAppTriggerTreeItem implements IAzureTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly workflowTrigger: WorkflowTrigger,
+		private readonly workflowTrigger: WorkflowTrigger
 	) {}
 
 	public get commandId(): string {
@@ -53,7 +53,7 @@ export class LogicAppTriggerTreeItem implements IAzureTreeItem {
 		await this.client.workflowTriggers.run(
 			this.resourceGroupName,
 			this.workflowName,
-			this.triggerName,
+			this.triggerName
 		);
 	}
 }

@@ -15,11 +15,11 @@ import { ISchemaWizardContext } from "./createSchemaWizard";
 
 export class SchemaCreateStep extends AzureWizardExecuteStep<ISchemaWizardContext> {
 	public async execute(
-		wizardContext: ISchemaWizardContext,
+		wizardContext: ISchemaWizardContext
 	): Promise<ISchemaWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId,
+			wizardContext.subscriptionId
 		);
 		addExtensionUserAgent(client);
 
@@ -28,12 +28,12 @@ export class SchemaCreateStep extends AzureWizardExecuteStep<ISchemaWizardContex
 				wizardContext.resourceGroup!.name!,
 				wizardContext.integrationAccountName,
 				wizardContext.schemaName!,
-				await createNewSchema(wizardContext.schemaName!),
+				await createNewSchema(wizardContext.schemaName!)
 			);
 
 		wizardContext.schema = new IntegrationAccountSchemaTreeItem(
 			client,
-			newSchema,
+			newSchema
 		);
 
 		return wizardContext;

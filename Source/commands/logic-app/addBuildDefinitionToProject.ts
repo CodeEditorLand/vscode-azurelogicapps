@@ -9,13 +9,13 @@ import { openFolder } from "../../utils/workspaceUtils";
 import { createBuildDefinition } from "../../wizard/logic-app/createBuildDefinition";
 
 export async function addBuildDefinitionToProject(
-	workspaceFolderPath?: string,
+	workspaceFolderPath?: string
 ): Promise<void> {
 	const options: vscode.ProgressOptions = {
 		location: vscode.ProgressLocation.Notification,
 		title: localize(
 			"azLogicApps.creatingBuildDefinition",
-			"Creating build definition...",
+			"Creating build definition..."
 		),
 	};
 

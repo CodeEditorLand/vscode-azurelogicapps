@@ -24,19 +24,19 @@ export class IntegrationAccountPartnersTreeItem
 	public static contextValue = "azIntegrationAccountPartners";
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.Partner",
-		"Partner",
+		"Partner"
 	);
 	public readonly contextValue =
 		IntegrationAccountPartnersTreeItem.contextValue;
 	public readonly label = localize(
 		"azIntegrationAccounts.Partners",
-		"Partners",
+		"Partners"
 	);
 	private nextLink: string | undefined;
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly integrationAccount: IntegrationAccount,
+		private readonly integrationAccount: IntegrationAccount
 	) {}
 
 	public get iconPath(): IThemedIconPath {
@@ -61,7 +61,7 @@ export class IntegrationAccountPartnersTreeItem
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean,
+		clearCache: boolean
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -71,28 +71,28 @@ export class IntegrationAccountPartnersTreeItem
 			this.nextLink === undefined
 				? await this.client.integrationAccountPartners.list(
 						this.resourceGroupName,
-						this.integrationAccountName,
-				  )
+						this.integrationAccountName
+					)
 				: await this.client.integrationAccountPartners.listNext(
-						this.nextLink,
-				  );
+						this.nextLink
+					);
 
 		this.nextLink = integrationAccountPartners.nextLink;
 
 		return integrationAccountPartners.map(
 			(partner: IntegrationAccountPartner) =>
-				new IntegrationAccountPartnerTreeItem(this.client, partner),
+				new IntegrationAccountPartnerTreeItem(this.client, partner)
 		);
 	}
 
 	public async createChild(
 		node: IAzureNode,
-		showCreatingNode: (label: string) => void,
+		showCreatingNode: (label: string) => void
 	): Promise<IAzureTreeItem> {
 		return runNewPartnerWizard(
 			this.integrationAccount,
 			node,
-			showCreatingNode,
+			showCreatingNode
 		);
 	}
 }

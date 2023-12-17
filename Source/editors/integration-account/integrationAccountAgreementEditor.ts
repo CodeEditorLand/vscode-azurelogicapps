@@ -16,25 +16,25 @@ export class IntegrationAccountAgreementEditor extends BaseEditor<
 	}
 
 	public async getData(
-		node: IAzureNode<IntegrationAccountAgreementTreeItem>,
+		node: IAzureNode<IntegrationAccountAgreementTreeItem>
 	): Promise<string> {
 		return node.treeItem.getContent();
 	}
 
 	public async getFilename(
-		node: IAzureNode<IntegrationAccountAgreementTreeItem>,
+		node: IAzureNode<IntegrationAccountAgreementTreeItem>
 	): Promise<string> {
 		return `${node.treeItem.label}.json`;
 	}
 
 	public async getSaveConfirmationText(
-		node: IAzureNode<IntegrationAccountAgreementTreeItem>,
+		node: IAzureNode<IntegrationAccountAgreementTreeItem>
 	): Promise<string> {
 		const { label } = node.treeItem;
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Agreement in your integration account.",
-			label,
+			label
 		);
 	}
 
@@ -43,19 +43,19 @@ export class IntegrationAccountAgreementEditor extends BaseEditor<
 	}
 
 	public async updateData(
-		node: IAzureNode<IntegrationAccountAgreementTreeItem>,
+		node: IAzureNode<IntegrationAccountAgreementTreeItem>
 	): Promise<string> {
 		if (!vscode.window.activeTextEditor) {
 			throw new Error(
 				localize(
 					"azIntegrationAccounts.errorUpdatingFile",
-					"Cannot update Agreement after it has been closed.",
-				),
+					"Cannot update Agreement after it has been closed."
+				)
 			);
 		}
 
 		return node.treeItem.update(
-			vscode.window.activeTextEditor.document.getText(),
+			vscode.window.activeTextEditor.document.getText()
 		);
 	}
 }

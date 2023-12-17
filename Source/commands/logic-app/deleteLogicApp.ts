@@ -9,7 +9,7 @@ import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
 
 export async function deleteLogicApp(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode,
+	node?: IAzureNode
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
@@ -19,6 +19,6 @@ export async function deleteLogicApp(
 		localize("azLogicApp.deleting", "Deleting..."),
 		async () => {
 			await node!.deleteNode();
-		},
+		}
 	);
 }

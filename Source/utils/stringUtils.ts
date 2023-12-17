@@ -12,7 +12,7 @@
  */
 export function normalizeParameterName(
 	value: string,
-	replaceWith = "_",
+	replaceWith = "_"
 ): string {
 	return value.replace(/[^$\w]/g, replaceWith).replace(/^\d/, replaceWith);
 }
@@ -26,7 +26,7 @@ export function normalizeParameterName(
  */
 export function normalizeResourceName(
 	value: string,
-	replaceWith = "_",
+	replaceWith = "_"
 ): string {
 	return value.replace(/[^-\w.()]/g, replaceWith).replace(/\.$/, replaceWith);
 }

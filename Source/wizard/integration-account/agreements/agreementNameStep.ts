@@ -16,12 +16,12 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardContext> {
 	public async prompt(
-		wizardContext: IAgreementWizardContext,
+		wizardContext: IAgreementWizardContext
 	): Promise<IAgreementWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azIntegrationAccounts.promptForAgreementName",
-				"Enter a name for the new Agreement.",
+				"Enter a name for the new Agreement."
 			),
 			validateInput: async (name: string) => {
 				name = name ? name.trim() : "";
@@ -29,22 +29,22 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 				if (!name) {
 					return localize(
 						"azIntegrationAccounts.nameRequired",
-						"A name is required.",
+						"A name is required."
 					);
 				} else if (name.length > 80) {
 					return localize(
 						"azIntegrationAccounts.nameTooLong",
-						"The name has a maximum length of 80 characters.",
+						"The name has a maximum length of 80 characters."
 					);
 				} else if (!/^[0-9a-zA-Z-_.()]+$/.test(name)) {
 					return localize(
 						"azIntegrationAccounts.nameContainsInvalidCharacters",
-						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
+						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
 					);
 				} else if (!(await this.isNameAvailable(name, wizardContext))) {
 					return localize(
 						"azIntegrationAccounts.nameAlreadyInUse",
-						"The name is already in use.",
+						"The name is already in use."
 					);
 				} else {
 					return undefined;
@@ -63,23 +63,23 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 
 	private async isNameAvailable(
 		name: string,
-		wizardContext: IAgreementWizardContext,
+		wizardContext: IAgreementWizardContext
 	): Promise<boolean> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId,
+			wizardContext.subscriptionId
 		);
 		addExtensionUserAgent(client);
 
 		let agreements = await client.integrationAccountAgreements.list(
 			wizardContext.resourceGroup!.name!,
-			wizardContext.integrationAccountName,
+			wizardContext.integrationAccountName
 		);
 		let nextPageLink = agreements.nextLink;
 		if (
 			agreements.some(
 				(agreement: IntegrationAccountAgreement) =>
-					agreement.name! === name,
+					agreement.name! === name
 			)
 		) {
 			return false;
@@ -88,12 +88,12 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 		while (nextPageLink) {
 			agreements =
 				await client.integrationAccountAgreements.listNext(
-					nextPageLink,
+					nextPageLink
 				);
 			if (
 				agreements.some(
 					(agreement: IntegrationAccountAgreement) =>
-						agreement.name! === name,
+						agreement.name! === name
 				)
 			) {
 				return false;

@@ -29,7 +29,7 @@ export interface ISchemaWizardContext
 export async function runNewSchemaWizard(
 	integrationAccount: IntegrationAccount,
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void,
+	showCreatingNode: (label: string) => void
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a schema type and schema name.
 	const promptSteps: Array<AzureWizardPromptStep<ISchemaWizardContext>> = [
@@ -57,7 +57,7 @@ export async function runNewSchemaWizard(
 	const wizard = new AzureWizard<ISchemaWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext,
+		wizardContext
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

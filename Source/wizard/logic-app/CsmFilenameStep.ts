@@ -14,11 +14,11 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class CsmFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext,
+		wizardContext: IBuildDefinitionWizardContext
 	): Promise<IBuildDefinitionWizardContext> {
 		const { workspaceFolderPath } = wizardContext;
 		const csmFilename = await askForDeploymentTemplateFilename(
-			workspaceFolderPath!,
+			workspaceFolderPath!
 		);
 		if (!csmFilename) {
 			throw new UserCancelledError();
@@ -32,16 +32,16 @@ export class CsmFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizar
 }
 
 async function askForDeploymentTemplateFilename(
-	workspaceFolderPath: string,
+	workspaceFolderPath: string
 ): Promise<string | undefined> {
 	const csmFileSaveDialogOptions: vscode.SaveDialogOptions = {
 		defaultUri: vscode.Uri.file(
-			path.join(workspaceFolderPath, "csm-file.json"),
+			path.join(workspaceFolderPath, "csm-file.json")
 		),
 		filters: {
 			[localize(
 				"azLogicApps.armDeploymentTemplateFiles",
-				"ARM Deployment Template Files",
+				"ARM Deployment Template Files"
 			)]: ["json"],
 		},
 	};

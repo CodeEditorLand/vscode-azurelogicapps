@@ -9,7 +9,7 @@ import { PartnerStep } from "./partnerStep";
 
 export class GuestPartnerStep extends AzureWizardPromptStep<IAgreementWizardContext> {
 	public async prompt(
-		wizardContext: IAgreementWizardContext,
+		wizardContext: IAgreementWizardContext
 	): Promise<IAgreementWizardContext> {
 		const partnerStep = new PartnerStep();
 		await partnerStep

@@ -10,13 +10,13 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class CsmFileCreateStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
 	public async execute(
-		wizardContext: IBuildDefinitionWizardContext,
+		wizardContext: IBuildDefinitionWizardContext
 	): Promise<IBuildDefinitionWizardContext> {
 		const { csmFilename, templateParameterDefinitions, templateResources } =
 			wizardContext;
 		const deploymentTemplate = generateDeploymentTemplate(
 			templateParameterDefinitions!,
-			templateResources!,
+			templateResources!
 		);
 
 		await fse.writeJSON(csmFilename!, deploymentTemplate, { spaces: 4 });

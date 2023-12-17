@@ -21,7 +21,7 @@ export function getContentType(mapType: MapType): string {
 
 export async function createNewMap(
 	mapName: string,
-	mapType: MapType,
+	mapType: MapType
 ): Promise<IntegrationAccountMap> {
 	let content: string;
 	switch (mapType) {

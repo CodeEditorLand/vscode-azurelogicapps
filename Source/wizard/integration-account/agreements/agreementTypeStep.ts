@@ -13,7 +13,7 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class AgreementTypeStep extends AzureWizardPromptStep<IAgreementWizardContext> {
 	public async prompt(
-		wizardContext: IAgreementWizardContext,
+		wizardContext: IAgreementWizardContext
 	): Promise<IAgreementWizardContext> {
 		const agreementTypes = Object.keys(AgreementType);
 		wizardContext.agreementType =

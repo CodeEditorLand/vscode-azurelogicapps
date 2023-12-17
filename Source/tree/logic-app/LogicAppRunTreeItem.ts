@@ -26,12 +26,12 @@ export class LogicAppRunTreeItem implements IAzureParentTreeItem {
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
 		private readonly workflow: Workflow,
-		private readonly workflowRun: WorkflowRun,
+		private readonly workflowRun: WorkflowRun
 	) {
 		this.logicAppRunActionsTreeItem = new LogicAppRunActionsTreeItem(
 			client,
 			workflow,
-			workflowRun,
+			workflowRun
 		);
 	}
 
@@ -101,7 +101,7 @@ export class LogicAppRunTreeItem implements IAzureParentTreeItem {
 	}
 
 	public pickTreeItem(
-		expectedContextValue: string,
+		expectedContextValue: string
 	): IAzureTreeItem | undefined {
 		switch (expectedContextValue) {
 			case LogicAppRunActionsTreeItem.contextValue:
@@ -117,7 +117,7 @@ export class LogicAppRunTreeItem implements IAzureParentTreeItem {
 			this.resourceGroupName,
 			this.workflowName,
 			this.triggerName,
-			this.historyName,
+			this.historyName
 		);
 	}
 }

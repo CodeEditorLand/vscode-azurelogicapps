@@ -31,7 +31,7 @@ export interface IIntegrationAccountWizardContext
 
 export async function runNewIntegrationAccountWizard(
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void,
+	showCreatingNode: (label: string) => void
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a integration account name, resource group, location, and sku.
 	const promptSteps: Array<
@@ -59,7 +59,7 @@ export async function runNewIntegrationAccountWizard(
 	const wizard = new AzureWizard<IIntegrationAccountWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext,
+		wizardContext
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

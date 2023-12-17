@@ -18,19 +18,19 @@ export class LogicAppEditor extends BaseEditor<IAzureNode<LogicAppTreeItem>> {
 	}
 
 	public async getFilename(
-		node: IAzureNode<LogicAppTreeItem>,
+		node: IAzureNode<LogicAppTreeItem>
 	): Promise<string> {
 		return `${node.treeItem.label}.logicapp.json`;
 	}
 
 	public async getSaveConfirmationText(
-		node: IAzureNode<LogicAppTreeItem>,
+		node: IAzureNode<LogicAppTreeItem>
 	): Promise<string> {
 		const { label } = node.treeItem;
 		return localize(
 			"azLogicApps.saveConfirmationText",
 			"Saving '{0}' will update the Logic App definition in your subscription.",
-			label,
+			label
 		);
 	}
 
@@ -39,19 +39,19 @@ export class LogicAppEditor extends BaseEditor<IAzureNode<LogicAppTreeItem>> {
 	}
 
 	public async updateData(
-		node: IAzureNode<LogicAppTreeItem>,
+		node: IAzureNode<LogicAppTreeItem>
 	): Promise<string> {
 		if (!vscode.window.activeTextEditor) {
 			throw new Error(
 				localize(
 					"azLogicApps.errorUpdatingFile",
-					"Cannot update Logic App after it has been closed.",
-				),
+					"Cannot update Logic App after it has been closed."
+				)
 			);
 		}
 
 		return await node.treeItem.update(
-			vscode.window.activeTextEditor.document.getText(),
+			vscode.window.activeTextEditor.document.getText()
 		);
 	}
 }

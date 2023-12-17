@@ -17,7 +17,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private integrationAccountSchema: IntegrationAccountSchema,
+		private integrationAccountSchema: IntegrationAccountSchema
 	) {}
 
 	public get commandId(): string {
@@ -28,7 +28,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 		await this.client.integrationAccountSchemas.deleteMethod(
 			this.resourceGroupName,
 			this.integrationAccountName,
-			this.label,
+			this.label
 		);
 	}
 
@@ -70,7 +70,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 				await this.client.integrationAccountSchemas.get(
 					this.resourceGroupName,
 					this.integrationAccountName,
-					this.integrationAccountSchemaName,
+					this.integrationAccountSchemaName
 				);
 		}
 
@@ -89,7 +89,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 				this.resourceGroupName,
 				this.integrationAccountName,
 				this.integrationAccountSchemaName,
-				schema,
+				schema
 			);
 		return request(updatedSchema.contentLink!.uri!);
 	}

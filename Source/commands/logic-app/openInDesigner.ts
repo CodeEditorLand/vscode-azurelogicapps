@@ -17,7 +17,7 @@ import { getWebviewContentForDesigner } from "../../utils/logic-app/designerUtil
 
 export async function openInDesigner(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode,
+	node?: IAzureNode
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
@@ -41,7 +41,7 @@ export async function openInDesigner(
 		sku,
 	} = treeItem;
 	const { domain: tenantId, userName: userId } = getCredentialsMetadata(
-		node.credentials,
+		node.credentials
 	);
 	const title = workflowName;
 
@@ -53,7 +53,7 @@ export async function openInDesigner(
 		"readonlyDesigner",
 		title,
 		vscode.ViewColumn.Beside,
-		options,
+		options
 	);
 	panel.webview.html = getWebviewContentForDesigner({
 		authorization,
@@ -84,14 +84,14 @@ export async function openInDesigner(
 					await handleSave(
 						node! as IAzureNode<LogicAppTreeItem>,
 						message.definition,
-						message.parameters,
+						message.parameters
 					);
 					break;
 
 				case "ShowError":
 					await vscode.window.showErrorMessage(
 						message.errorMessage,
-						DialogResponses.ok,
+						DialogResponses.ok
 					);
 					break;
 
@@ -100,14 +100,14 @@ export async function openInDesigner(
 			}
 		},
 		/* thisArgs */ undefined,
-		ext.context.subscriptions,
+		ext.context.subscriptions
 	);
 }
 
 async function handleSave(
 	node: IAzureNode<LogicAppTreeItem>,
 	definition: string,
-	parameters: Record<string, any> | undefined,
+	parameters: Record<string, any> | undefined
 ): Promise<string> {
 	const options: vscode.ProgressOptions = {
 		location: vscode.ProgressLocation.Notification,
@@ -118,14 +118,14 @@ async function handleSave(
 		try {
 			const updatedDefinition = await node.treeItem.update(
 				definition,
-				parameters,
+				parameters
 			);
 			await node.refresh();
 			return updatedDefinition;
 		} catch (error: any) {
 			await vscode.window.showErrorMessage(
 				error.message,
-				DialogResponses.ok,
+				DialogResponses.ok
 			);
 			throw error;
 		}

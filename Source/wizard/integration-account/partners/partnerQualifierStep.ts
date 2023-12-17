@@ -13,7 +13,7 @@ import { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerQualifierStep extends AzureWizardPromptStep<IPartnerWizardContext> {
 	public async prompt(
-		wizardContext: IPartnerWizardContext,
+		wizardContext: IPartnerWizardContext
 	): Promise<IPartnerWizardContext> {
 		const qualifiers = Array.from(Constants.Qualifier.keys());
 		const qualifier = await vscode.window.showQuickPick(qualifiers);

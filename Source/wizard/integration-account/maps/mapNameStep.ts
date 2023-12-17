@@ -16,12 +16,12 @@ import { IMapWizardContext } from "./createMapWizard";
 
 export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 	public async prompt(
-		wizardContext: IMapWizardContext,
+		wizardContext: IMapWizardContext
 	): Promise<IMapWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azIntegrationAccounts.promptForMapName",
-				"Enter a name for the new Map.",
+				"Enter a name for the new Map."
 			),
 			validateInput: async (name: string) => {
 				name = name ? name.trim() : "";
@@ -29,22 +29,22 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 				if (!name) {
 					return localize(
 						"azIntegrationAccounts.nameRequired",
-						"A name is required.",
+						"A name is required."
 					);
 				} else if (name.length > 80) {
 					return localize(
 						"azIntegrationAccounts.nameTooLong",
-						"The name has a maximum length of 80 characters.",
+						"The name has a maximum length of 80 characters."
 					);
 				} else if (!/^[0-9a-zA-Z-_.()]+$/.test(name)) {
 					return localize(
 						"azIntegrationAccounts.nameContainsInvalidCharacters",
-						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
+						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
 					);
 				} else if (!(await this.isNameAvailable(name, wizardContext))) {
 					return localize(
 						"azIntegrationAccounts.nameAlreadyInUse",
-						"The name is already in use.",
+						"The name is already in use."
 					);
 				} else {
 					return undefined;
@@ -63,17 +63,17 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 
 	private async isNameAvailable(
 		name: string,
-		wizardContext: IMapWizardContext,
+		wizardContext: IMapWizardContext
 	): Promise<boolean> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId,
+			wizardContext.subscriptionId
 		);
 		addExtensionUserAgent(client);
 
 		let maps = await client.integrationAccountMaps.list(
 			wizardContext.resourceGroup!.name!,
-			wizardContext.integrationAccountName,
+			wizardContext.integrationAccountName
 		);
 		let nextPageLink = maps.nextLink;
 		if (maps.some((map: IntegrationAccountMap) => map.name! === name)) {

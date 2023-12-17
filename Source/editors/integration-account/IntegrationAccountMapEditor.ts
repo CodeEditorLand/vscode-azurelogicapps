@@ -17,13 +17,13 @@ export class IntegrationAccountMapEditor extends BaseEditor<
 	}
 
 	public async getData(
-		node: IAzureNode<IntegrationAccountMapTreeItem>,
+		node: IAzureNode<IntegrationAccountMapTreeItem>
 	): Promise<string> {
 		return node.treeItem.getContent();
 	}
 
 	public async getFilename(
-		node: IAzureNode<IntegrationAccountMapTreeItem>,
+		node: IAzureNode<IntegrationAccountMapTreeItem>
 	): Promise<string> {
 		const extension =
 			node.treeItem.mapType === MapType.Liquid ? ".liquid" : ".xslt";
@@ -32,13 +32,13 @@ export class IntegrationAccountMapEditor extends BaseEditor<
 	}
 
 	public async getSaveConfirmationText(
-		node: IAzureNode<IntegrationAccountMapTreeItem>,
+		node: IAzureNode<IntegrationAccountMapTreeItem>
 	): Promise<string> {
 		const { label } = node.treeItem;
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Map in your integration account.",
-			label,
+			label
 		);
 	}
 
@@ -47,19 +47,19 @@ export class IntegrationAccountMapEditor extends BaseEditor<
 	}
 
 	public async updateData(
-		node: IAzureNode<IntegrationAccountMapTreeItem>,
+		node: IAzureNode<IntegrationAccountMapTreeItem>
 	): Promise<string> {
 		if (!vscode.window.activeTextEditor) {
 			throw new Error(
 				localize(
 					"azIntegrationAccounts.errorUpdatingFile",
-					"Cannot update Map after it has been closed.",
-				),
+					"Cannot update Map after it has been closed."
+				)
 			);
 		}
 
 		return node.treeItem.update(
-			vscode.window.activeTextEditor.document.getText(),
+			vscode.window.activeTextEditor.document.getText()
 		);
 	}
 }

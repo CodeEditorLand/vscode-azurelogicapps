@@ -9,7 +9,7 @@ import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
 
 export async function disableLogicApp(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode,
+	node?: IAzureNode
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
@@ -20,6 +20,6 @@ export async function disableLogicApp(
 		async () => {
 			const logicAppTreeItem = node!.treeItem as LogicAppTreeItem;
 			await logicAppTreeItem.disable();
-		},
+		}
 	);
 }

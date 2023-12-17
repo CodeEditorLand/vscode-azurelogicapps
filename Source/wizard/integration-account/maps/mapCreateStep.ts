@@ -18,11 +18,11 @@ import { IMapWizardContext } from "./createMapWizard";
 
 export class MapCreateStep extends AzureWizardExecuteStep<IMapWizardContext> {
 	public async execute(
-		wizardContext: IMapWizardContext,
+		wizardContext: IMapWizardContext
 	): Promise<IMapWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId,
+			wizardContext.subscriptionId
 		);
 		addExtensionUserAgent(client);
 
@@ -33,8 +33,8 @@ export class MapCreateStep extends AzureWizardExecuteStep<IMapWizardContext> {
 				wizardContext.mapName!,
 				await createNewMap(
 					wizardContext.mapName!,
-					MapType[wizardContext.mapType! as MapType],
-				),
+					MapType[wizardContext.mapType! as MapType]
+				)
 			);
 
 		wizardContext.map = new IntegrationAccountMapTreeItem(client, newMap);

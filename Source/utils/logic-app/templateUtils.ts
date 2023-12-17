@@ -16,7 +16,7 @@ export interface IGenerateBuildDefinitionOptions {
 }
 
 export function generateBuildDefinition(
-	options: IGenerateBuildDefinitionOptions,
+	options: IGenerateBuildDefinitionOptions
 ): string {
 	const {
 		azureSubscription,
@@ -56,7 +56,7 @@ export function generateBuildDefinition(
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function generateDeploymentTemplate(
 	parameters: Record<string, any>,
-	resources: any[],
+	resources: any[]
 ) {
 	return {
 		$schema:
@@ -70,7 +70,7 @@ export function generateDeploymentTemplate(
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function generateDeploymentTemplateParameters(
-	parameters: Record<string, any>,
+	parameters: Record<string, any>
 ) {
 	return {
 		$schema:
@@ -110,7 +110,7 @@ export function generateTemplate(workflow: Workflow) {
 export function generateTemplateParameter(workflow: Workflow) {
 	const value = normalizeResourceName(workflow.name!);
 	const nameParameter = normalizeParameterName(
-		`workflows_${workflow.name}_name`,
+		`workflows_${workflow.name}_name`
 	);
 	const parameters = { ...workflow.definition.parameters };
 	const parametersValue = { ...workflow.parameters };
@@ -143,7 +143,7 @@ export function generateTemplateParameter(workflow: Workflow) {
 export function generateTemplateParameterDefinition(workflow: Workflow) {
 	const defaultValue = normalizeResourceName(workflow.name!);
 	const nameParameter = normalizeParameterName(
-		`workflows_${workflow.name}_name`,
+		`workflows_${workflow.name}_name`
 	);
 	const parameters = { ...workflow.definition.parameters };
 	const parametersValue = { ...workflow.parameters };
