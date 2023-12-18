@@ -9,7 +9,7 @@ import { LogicAppRunTreeItem } from "../../tree/logic-app/LogicAppRunTreeItem";
 
 export async function resubmitRun(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppRunTreeItem.contextValue);
@@ -21,6 +21,6 @@ export async function resubmitRun(
 			const logicAppRunTreeItem = node!.treeItem as LogicAppRunTreeItem;
 			await logicAppRunTreeItem.resubmit();
 			await node!.parent!.refresh();
-		}
+		},
 	);
 }

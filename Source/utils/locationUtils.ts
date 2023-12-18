@@ -27,7 +27,7 @@ async function getLocations(): Promise<string[]> {
 	const locationListResult =
 		await client.subscriptions.listLocations(subscriptionId);
 	const locations = locationListResult.map(
-		(location) => location!.displayName!
+		(location) => location!.displayName!,
 	);
 	locations.sort();
 

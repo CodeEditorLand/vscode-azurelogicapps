@@ -8,10 +8,10 @@ import * as vscode from "vscode";
 import {
 	AzureTreeDataProvider,
 	AzureUserInput,
-	callWithTelemetryAndErrorHandling,
 	IActionContext,
 	IAzureNode,
 	IAzureParentNode,
+	callWithTelemetryAndErrorHandling,
 	registerCommand,
 	registerEvent,
 	registerUIExtensionVariables,
@@ -61,10 +61,10 @@ import { promoteVersion } from "./commands/logic-app/promoteVersion";
 import { resubmitRun } from "./commands/logic-app/resubmitRun";
 import { runTrigger } from "./commands/logic-app/runTrigger";
 import { Constants } from "./constants";
-import { IntegrationAccountAgreementEditor } from "./editors/integration-account/integrationAccountAgreementEditor";
 import { IntegrationAccountMapEditor } from "./editors/integration-account/IntegrationAccountMapEditor";
-import { IntegrationAccountPartnerEditor } from "./editors/integration-account/integrationAccountPartnerEditor";
 import { IntegrationAccountSchemaEditor } from "./editors/integration-account/IntegrationAccountSchemaEditor";
+import { IntegrationAccountAgreementEditor } from "./editors/integration-account/integrationAccountAgreementEditor";
+import { IntegrationAccountPartnerEditor } from "./editors/integration-account/integrationAccountPartnerEditor";
 import { LogicAppEditor } from "./editors/logic-app/LogicAppEditor";
 import { ext } from "./extensionVariables";
 import { IntegrationAccountAgreementsTreeItem } from "./tree/integration-account/IntegrationAccountAgreementsTreeItem";
@@ -81,13 +81,13 @@ function readJson(path: string) {
 }
 
 export async function activate(
-	context: vscode.ExtensionContext
+	context: vscode.ExtensionContext,
 ): Promise<void> {
 	registerUIExtensionVariables(ext);
 	ext.context = context;
 
 	const outputChannel = vscode.window.createOutputChannel(
-		"Azure Logic Apps (Consumption)"
+		"Azure Logic Apps (Consumption)",
 	);
 	ext.outputChannel = outputChannel;
 	context.subscriptions.push(outputChannel);
@@ -95,7 +95,7 @@ export async function activate(
 	let reporter: TelemetryReporter | undefined;
 	try {
 		const { aiKey, name, version } = readJson(
-			context.asAbsolutePath("./package.json")
+			context.asAbsolutePath("./package.json"),
 		);
 		reporter = new TelemetryReporter(name, version, aiKey);
 		ext.reporter = reporter;
@@ -113,14 +113,14 @@ export async function activate(
 			const logicAppsProvider = new LogicAppsProvider();
 			const tree = new AzureTreeDataProvider(
 				logicAppsProvider,
-				"azureLogicApps.loadMore"
+				"azureLogicApps.loadMore",
 			);
 			context.subscriptions.push(tree);
 			context.subscriptions.push(
 				vscode.window.registerTreeDataProvider(
 					"azureLogicAppsExplorer",
-					tree
-				)
+					tree,
+				),
 			);
 
 			const logicAppEditor = new LogicAppEditor();
@@ -134,7 +134,7 @@ export async function activate(
 							vscode.workspace.getWorkspaceFolder(uri);
 						if (workspaceFolder) {
 							await addBuildDefinitionToProject(
-								workspaceFolder.uri.fsPath
+								workspaceFolder.uri.fsPath,
 							);
 						} else {
 							await addBuildDefinitionToProject(uri.fsPath);
@@ -142,21 +142,21 @@ export async function activate(
 					} else {
 						await addBuildDefinitionToProject();
 					}
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.addLogicAppToProject",
 				async (node: IAzureNode) => {
 					await addLogicAppToProject(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.createLogicApp",
 				async (node: IAzureParentNode) => {
 					await createLogicApp(tree, logicAppEditor, node);
-				}
+				},
 			);
 
 			registerCommand("azureLogicApps.createProject", async () => {
@@ -167,124 +167,124 @@ export async function activate(
 				"azureLogicApps.deleteLogicApp",
 				async (node: IAzureNode) => {
 					await deleteLogicApp(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.disableLogicApp",
 				async (node: IAzureNode) => {
 					await disableLogicApp(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.enableLogicApp",
 				async (node: IAzureNode) => {
 					await enableLogicApp(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.loadMore",
 				async (node: IAzureNode) => {
 					await tree.loadMore(node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openInDesigner",
 				async (node?: IAzureNode) => {
 					await openInDesigner(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openInEditor",
 				async (node?: IAzureNode) => {
 					await openInEditor(tree, logicAppEditor, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openInPortal",
 				async (node?: IAzureNode) => {
 					await openInPortal(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openRunActionInEditor",
 				async (node?: IAzureNode) => {
 					await openRunActionInEditor(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openRunInEditor",
 				async (node?: IAzureNode) => {
 					await openRunInEditor(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openRunInMonitoringView",
 				async (node?: IAzureNode) => {
 					await openRunInMonitoringView(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openTriggerInEditor",
 				async (node?: IAzureNode) => {
 					await openTriggerInEditor(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openVersionInDesigner",
 				async (node?: IAzureNode) => {
 					await openVersionInDesigner(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.openVersionInEditor",
 				async (node?: IAzureNode) => {
 					await openVersionInEditor(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.promoteVersion",
 				async (node?: IAzureNode) => {
 					await promoteVersion(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.refresh",
 				async (node?: IAzureNode) => {
 					await tree.refresh(node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.resubmitRun",
 				async (node?: IAzureNode) => {
 					await resubmitRun(tree, node);
-				}
+				},
 			);
 
 			registerCommand(
 				"azureLogicApps.runTrigger",
 				async (node?: IAzureNode) => {
 					await runTrigger(tree, node);
-				}
+				},
 			);
 
 			registerCommand("azureLogicApps.selectSubscriptions", () => {
 				vscode.commands.executeCommand(
-					"azure-account.selectSubscriptions"
+					"azure-account.selectSubscriptions",
 				);
 			});
 
@@ -293,16 +293,16 @@ export async function activate(
 				vscode.workspace.onDidSaveTextDocument,
 				async function (
 					this: IActionContext,
-					document: vscode.TextDocument
+					document: vscode.TextDocument,
 				): Promise<void> {
 					await logicAppEditor.onDidSaveTextDocument(
 						this,
 						context.globalState,
-						document
+						document,
 					);
-				}
+				},
 			);
-		}
+		},
 	);
 
 	await callWithTelemetryAndErrorHandling(
@@ -313,14 +313,14 @@ export async function activate(
 			const integrationAccountProvider = new IntegrationAccountProvider();
 			const integrationAccountTree = new AzureTreeDataProvider(
 				integrationAccountProvider,
-				"azIntegrationAccounts.loadMore"
+				"azIntegrationAccounts.loadMore",
 			);
 			context.subscriptions.push(integrationAccountTree);
 			context.subscriptions.push(
 				vscode.window.registerTreeDataProvider(
 					"azureIntegrationAccountsExplorer",
-					integrationAccountTree
-				)
+					integrationAccountTree,
+				),
 			);
 
 			const integrationAccountAgreementEditor =
@@ -345,9 +345,9 @@ export async function activate(
 					await createChildNode(
 						integrationAccountTree,
 						Constants.SubscriptionContextValue,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -356,14 +356,14 @@ export async function activate(
 					const child = await createChildNode(
 						integrationAccountTree,
 						IntegrationAccountAgreementsTreeItem.contextValue,
-						node
+						node,
 					);
 					await openIntegrationAccountAgreementInEditor(
 						integrationAccountTree,
 						integrationAccountAgreementEditor,
-						child
+						child,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -372,14 +372,14 @@ export async function activate(
 					const child = await createChildNode(
 						integrationAccountTree,
 						IntegrationAccountMapsTreeItem.contextValue,
-						node
+						node,
 					);
 					await openIntegrationAccountMapInEditor(
 						integrationAccountTree,
 						integrationAccountMapEditor,
-						child
+						child,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -388,14 +388,14 @@ export async function activate(
 					const child = await createChildNode(
 						integrationAccountTree,
 						IntegrationAccountPartnersTreeItem.contextValue,
-						node
+						node,
 					);
 					await openIntegrationAccountPartnerInEditor(
 						integrationAccountTree,
 						integrationAccountPartnerEditor,
-						child
+						child,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -404,14 +404,14 @@ export async function activate(
 					const child = await createChildNode(
 						integrationAccountTree,
 						IntegrationAccountSchemasTreeItem.contextValue,
-						node
+						node,
 					);
 					await openIntegrationAccountSchemaInEditor(
 						integrationAccountTree,
 						integrationAccountSchemaEditor,
-						child
+						child,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -419,9 +419,9 @@ export async function activate(
 				async (node: IAzureNode) => {
 					await deleteIntegrationAccount(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -429,9 +429,9 @@ export async function activate(
 				async (node: IAzureNode) => {
 					await deleteIntegrationAccountAgreement(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -439,9 +439,9 @@ export async function activate(
 				async (node: IAzureNode) => {
 					await deleteIntegrationAccountMap(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -449,9 +449,9 @@ export async function activate(
 				async (node: IAzureNode) => {
 					await deleteIntegrationAccountPartner(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -459,16 +459,16 @@ export async function activate(
 				async (node: IAzureNode) => {
 					await deleteIntegrationAccountSchema(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
 				"azIntegrationAccounts.loadMore",
 				async (node: IAzureNode) => {
 					await integrationAccountTree.loadMore(node);
-				}
+				},
 			);
 
 			registerEvent(
@@ -476,14 +476,14 @@ export async function activate(
 				vscode.workspace.onDidSaveTextDocument,
 				async function (
 					this: IActionContext,
-					document: vscode.TextDocument
+					document: vscode.TextDocument,
 				): Promise<void> {
 					await integrationAccountAgreementEditor.onDidSaveTextDocument(
 						this,
 						context.globalState,
-						document
+						document,
 					);
-				}
+				},
 			);
 
 			registerEvent(
@@ -491,14 +491,14 @@ export async function activate(
 				vscode.workspace.onDidSaveTextDocument,
 				async function (
 					this: IActionContext,
-					document: vscode.TextDocument
+					document: vscode.TextDocument,
 				): Promise<void> {
 					await integrationAccountMapEditor.onDidSaveTextDocument(
 						this,
 						context.globalState,
-						document
+						document,
 					);
-				}
+				},
 			);
 
 			registerEvent(
@@ -506,14 +506,14 @@ export async function activate(
 				vscode.workspace.onDidSaveTextDocument,
 				async function (
 					this: IActionContext,
-					document: vscode.TextDocument
+					document: vscode.TextDocument,
 				): Promise<void> {
 					await integrationAccountPartnerEditor.onDidSaveTextDocument(
 						this,
 						context.globalState,
-						document
+						document,
 					);
-				}
+				},
 			);
 
 			registerEvent(
@@ -521,14 +521,14 @@ export async function activate(
 				vscode.workspace.onDidSaveTextDocument,
 				async function (
 					this: IActionContext,
-					document: vscode.TextDocument
+					document: vscode.TextDocument,
 				): Promise<void> {
 					await integrationAccountSchemaEditor.onDidSaveTextDocument(
 						this,
 						context.globalState,
-						document
+						document,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -537,9 +537,9 @@ export async function activate(
 					await openIntegrationAccountAgreementInEditor(
 						integrationAccountTree,
 						integrationAccountAgreementEditor,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -548,9 +548,9 @@ export async function activate(
 					await openIntegrationAccountMapInEditor(
 						integrationAccountTree,
 						integrationAccountMapEditor,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -559,9 +559,9 @@ export async function activate(
 					await openIntegrationAccountPartnerInEditor(
 						integrationAccountTree,
 						integrationAccountPartnerEditor,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -570,21 +570,21 @@ export async function activate(
 					await openIntegrationAccountSchemaInEditor(
 						integrationAccountTree,
 						integrationAccountSchemaEditor,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
 				"azIntegrationAccounts.refresh",
 				async (node?: IAzureNode) => {
 					await integrationAccountTree.refresh(node);
-				}
+				},
 			);
 
 			registerCommand("azIntegrationAccounts.selectSubscriptions", () => {
 				vscode.commands.executeCommand(
-					"azure-account.selectSubscriptions"
+					"azure-account.selectSubscriptions",
 				);
 			});
 
@@ -593,9 +593,9 @@ export async function activate(
 				async (node?: IAzureNode) => {
 					await viewIntegrationAccountAgreementProperties(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -603,9 +603,9 @@ export async function activate(
 				async (node?: IAzureNode) => {
 					await viewIntegrationAccountMapProperties(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -613,9 +613,9 @@ export async function activate(
 				async (node?: IAzureNode) => {
 					await viewIntegrationAccountPartnerProperties(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -623,9 +623,9 @@ export async function activate(
 				async (node?: IAzureNode) => {
 					await viewIntegrationAccountSchemaProperties(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
 
 			registerCommand(
@@ -633,11 +633,11 @@ export async function activate(
 				async (node?: IAzureNode) => {
 					await viewIntegrationAccountProperties(
 						integrationAccountTree,
-						node
+						node,
 					);
-				}
+				},
 			);
-		}
+		},
 	);
 }
 

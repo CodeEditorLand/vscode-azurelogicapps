@@ -7,21 +7,21 @@ import LogicAppsManagementClient from "azure-arm-logic";
 import { IntegrationAccountSchema } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
-	addExtensionUserAgent,
 	AzureWizardPromptStep,
 	UserCancelledError,
+	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../../localize";
 import { ISchemaWizardContext } from "./createSchemaWizard";
 
 export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> {
 	public async prompt(
-		wizardContext: ISchemaWizardContext
+		wizardContext: ISchemaWizardContext,
 	): Promise<ISchemaWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azIntegrationAccounts.promptForSchemaName",
-				"Enter a name for the new Schema."
+				"Enter a name for the new Schema.",
 			),
 			validateInput: async (name: string) => {
 				name = name ? name.trim() : "";
@@ -29,25 +29,25 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 				if (!name) {
 					return localize(
 						"azIntegrationAccounts.nameRequired",
-						"A name is required."
+						"A name is required.",
 					);
 				} else if (name.length > 80) {
 					return localize(
 						"azIntegrationAccounts.nameTooLong",
-						"The name has a maximum length of 80 characters."
+						"The name has a maximum length of 80 characters.",
 					);
 				} else if (!/^[0-9a-zA-Z-_.()]+$/.test(name)) {
 					return localize(
 						"azIntegrationAccounts.nameContainsInvalidCharacters",
-						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
+						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
 					);
-				} else if (!(await this.isNameAvailable(name, wizardContext))) {
+				} else if (await this.isNameAvailable(name, wizardContext)) {
+					return undefined;
+				} else {
 					return localize(
 						"azIntegrationAccounts.nameAlreadyInUse",
-						"The name is already in use."
+						"The name is already in use.",
 					);
-				} else {
-					return undefined;
 				}
 			},
 		};
@@ -63,22 +63,22 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 
 	private async isNameAvailable(
 		name: string,
-		wizardContext: ISchemaWizardContext
+		wizardContext: ISchemaWizardContext,
 	): Promise<boolean> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
 		let schemas = await client.integrationAccountSchemas.list(
 			wizardContext.resourceGroup!.name!,
-			wizardContext.integrationAccountName
+			wizardContext.integrationAccountName,
 		);
 		let nextPageLink = schemas.nextLink;
 		if (
 			schemas.some(
-				(schema: IntegrationAccountSchema) => schema.name! === name
+				(schema: IntegrationAccountSchema) => schema.name! === name,
 			)
 		) {
 			return false;
@@ -89,7 +89,7 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 				await client.integrationAccountSchemas.listNext(nextPageLink);
 			if (
 				schemas.some(
-					(schema: IntegrationAccountSchema) => schema.name! === name
+					(schema: IntegrationAccountSchema) => schema.name! === name,
 				)
 			) {
 				return false;

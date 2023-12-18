@@ -22,7 +22,7 @@ export class LogicAppRunActionsTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflowRunActions";
 	public readonly childTypeLabel = localize(
 		"azLogicApps.RunAction",
-		"Action"
+		"Action",
 	);
 	public readonly contextValue = LogicAppRunActionsTreeItem.contextValue;
 	public readonly label = localize("azLogicApps.RunActions", "Actions");
@@ -32,7 +32,7 @@ export class LogicAppRunActionsTreeItem implements IAzureParentTreeItem {
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
 		private readonly workflow: Workflow,
-		private readonly workflowRun: WorkflowRun
+		private readonly workflowRun: WorkflowRun,
 	) {}
 
 	public hasMoreChildren(): boolean {
@@ -61,7 +61,7 @@ export class LogicAppRunActionsTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -72,15 +72,15 @@ export class LogicAppRunActionsTreeItem implements IAzureParentTreeItem {
 				? await this.client.workflowRunActions.list(
 						this.resourceGroupName,
 						this.workflowName,
-						this.runName
-					)
+						this.runName,
+				  )
 				: await this.client.workflowRunActions.listNext(this.nextLink);
 
 		this.nextLink = workflowRunActions.nextLink;
 
 		return workflowRunActions.map(
 			(workflowRunAction: WorkflowRunAction) =>
-				new LogicAppRunActionTreeItem(workflowRunAction)
+				new LogicAppRunActionTreeItem(workflowRunAction),
 		);
 	}
 }

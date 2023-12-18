@@ -22,7 +22,7 @@ export async function createNewAgreement(
 	hostPartner: string,
 	hostIdentity: BusinessIdentity,
 	guestPartner: string,
-	guestIdentity: BusinessIdentity
+	guestIdentity: BusinessIdentity,
 ): Promise<IntegrationAccountAgreement> {
 	let content: AgreementContent;
 	switch (agreementType) {

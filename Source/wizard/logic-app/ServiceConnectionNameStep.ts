@@ -13,7 +13,7 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class ServiceConnectionNameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext
+		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const azureSubscription = await askForAzureSubscriptionName();
 		if (!azureSubscription) {
@@ -29,12 +29,12 @@ export class ServiceConnectionNameStep extends AzureWizardPromptStep<IBuildDefin
 
 async function askForAzureSubscriptionName(): Promise<string | undefined> {
 	function validateInput(
-		value: string
+		value: string,
 	): string | null | undefined | Thenable<string | null | undefined> {
 		if (value === "") {
 			return localize(
 				"azLogicApps.azureSubscriptionRequired",
-				"An ARM service connection name is required."
+				"An ARM service connection name is required.",
 			);
 		}
 
@@ -44,7 +44,7 @@ async function askForAzureSubscriptionName(): Promise<string | undefined> {
 	const azureSubscriptionInputBoxOptions: vscode.InputBoxOptions = {
 		prompt: localize(
 			"azLogicApps.azureSubscriptionPrompt",
-			"Enter Azure Resource Manager connection name."
+			"Enter Azure Resource Manager connection name.",
 		),
 		validateInput,
 	};

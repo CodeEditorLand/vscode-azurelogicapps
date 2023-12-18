@@ -14,11 +14,11 @@ import { openAndShowTextDocument } from "../../utils/commandUtils";
 
 export async function deleteIntegrationAccountSchema(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountSchemaTreeItem.contextValue
+			IntegrationAccountSchemaTreeItem.contextValue,
 		);
 	}
 
@@ -26,18 +26,18 @@ export async function deleteIntegrationAccountSchema(
 		localize("azIntegrationAccounts.deleting", "Deleting..."),
 		async () => {
 			await node!.deleteNode();
-		}
+		},
 	);
 }
 
 export async function openIntegrationAccountSchemaInEditor(
 	tree: AzureTreeDataProvider,
 	editor: BaseEditor<IAzureNode>,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountSchemaTreeItem.contextValue
+			IntegrationAccountSchemaTreeItem.contextValue,
 		);
 	}
 
@@ -46,11 +46,11 @@ export async function openIntegrationAccountSchemaInEditor(
 
 export async function viewIntegrationAccountSchemaProperties(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(
-			IntegrationAccountSchemaTreeItem.contextValue
+			IntegrationAccountSchemaTreeItem.contextValue,
 		);
 	}
 

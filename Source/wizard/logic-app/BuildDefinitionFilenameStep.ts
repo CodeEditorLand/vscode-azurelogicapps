@@ -14,11 +14,11 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class BuildDefinitionFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(
-		wizardContext: IBuildDefinitionWizardContext
+		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const { workspaceFolderPath } = wizardContext;
 		const buildDefinitionFilename = await askForBuildDefinitionFilename(
-			workspaceFolderPath!
+			workspaceFolderPath!,
 		);
 		if (!buildDefinitionFilename) {
 			throw new UserCancelledError();
@@ -32,16 +32,16 @@ export class BuildDefinitionFilenameStep extends AzureWizardPromptStep<IBuildDef
 }
 
 async function askForBuildDefinitionFilename(
-	workspaceFolderPath: string
+	workspaceFolderPath: string,
 ): Promise<string | undefined> {
 	const yamlSaveDialogOptions: vscode.SaveDialogOptions = {
 		defaultUri: vscode.Uri.file(
-			path.join(workspaceFolderPath, "azure-pipelines.yml")
+			path.join(workspaceFolderPath, "azure-pipelines.yml"),
 		),
 		filters: {
 			[localize(
 				"azLogicApps.azurePipelinesYamlFiles",
-				"Azure Pipelines YAML Files"
+				"Azure Pipelines YAML Files",
 			)]: ["yml"],
 		},
 	};

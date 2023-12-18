@@ -29,7 +29,7 @@ export interface IAzureLogicAppWizardContext
 
 export async function createLogicApp(
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void
+	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a workflow name, resource group, and location.
 	const promptSteps: Array<
@@ -56,7 +56,7 @@ export async function createLogicApp(
 	const wizard = new AzureWizard<IAzureLogicAppWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext
+		wizardContext,
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

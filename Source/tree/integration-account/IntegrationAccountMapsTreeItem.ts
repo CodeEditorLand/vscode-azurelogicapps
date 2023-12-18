@@ -14,7 +14,7 @@ import {
 	IAzureTreeItem,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { getThemedIconPath, IThemedIconPath } from "../../utils/nodeUtils";
+import { IThemedIconPath, getThemedIconPath } from "../../utils/nodeUtils";
 import { runNewMapWizard } from "../../wizard/integration-account/maps/createMapWizard";
 import { IntegrationAccountMapTreeItem } from "./IntegrationAccountMapTreeItem";
 
@@ -22,7 +22,7 @@ export class IntegrationAccountMapsTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azIntegrationAccountMaps";
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.Map",
-		"Map"
+		"Map",
 	);
 	public readonly contextValue = IntegrationAccountMapsTreeItem.contextValue;
 	public readonly label = localize("azIntegrationAccounts.Maps", "Maps");
@@ -30,7 +30,7 @@ export class IntegrationAccountMapsTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly integrationAccount: IntegrationAccount
+		private readonly integrationAccount: IntegrationAccount,
 	) {}
 
 	public get iconPath(): IThemedIconPath {
@@ -55,7 +55,7 @@ export class IntegrationAccountMapsTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -65,23 +65,23 @@ export class IntegrationAccountMapsTreeItem implements IAzureParentTreeItem {
 			this.nextLink === undefined
 				? await this.client.integrationAccountMaps.list(
 						this.resourceGroupName,
-						this.integrationAccountName
-					)
+						this.integrationAccountName,
+				  )
 				: await this.client.integrationAccountMaps.listNext(
-						this.nextLink
-					);
+						this.nextLink,
+				  );
 
 		this.nextLink = integrationAccountMaps.nextLink;
 
 		return integrationAccountMaps.map(
 			(map: IntegrationAccountMap) =>
-				new IntegrationAccountMapTreeItem(this.client, map)
+				new IntegrationAccountMapTreeItem(this.client, map),
 		);
 	}
 
 	public async createChild(
 		node: IAzureNode,
-		showCreatingNode: (label: string) => void
+		showCreatingNode: (label: string) => void,
 	): Promise<IAzureTreeItem> {
 		return runNewMapWizard(this.integrationAccount, node, showCreatingNode);
 	}

@@ -6,10 +6,10 @@
 import LogicAppsManagementClient from "azure-arm-logic";
 import { Workflow } from "azure-arm-logic/lib/models";
 import {
-	addExtensionUserAgent,
 	IAzureNode,
 	IAzureTreeItem,
 	IChildProvider,
+	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { createLogicApp } from "../../wizard/logic-app/createLogicApp";
@@ -18,14 +18,14 @@ import { LogicAppTreeItem } from "./LogicAppTreeItem";
 export class LogicAppsProvider implements IChildProvider {
 	public readonly childTypeLabel = localize(
 		"azLogicApps.LogicApp",
-		"Logic App"
+		"Logic App",
 	);
 
 	private nextLink: string | undefined;
 
 	public async createChild(
 		node: IAzureNode,
-		showCreatingNode: (label: string) => void
+		showCreatingNode: (label: string) => void,
 	): Promise<IAzureTreeItem> {
 		return createLogicApp(node, showCreatingNode);
 	}
@@ -36,7 +36,7 @@ export class LogicAppsProvider implements IChildProvider {
 
 	public async loadMoreChildren(
 		node: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -44,7 +44,7 @@ export class LogicAppsProvider implements IChildProvider {
 
 		const client = new LogicAppsManagementClient(
 			node.credentials,
-			node.subscriptionId
+			node.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -56,7 +56,7 @@ export class LogicAppsProvider implements IChildProvider {
 		this.nextLink = logicApps.nextLink;
 
 		return logicApps.map(
-			(logicApp: Workflow) => new LogicAppTreeItem(client, logicApp)
+			(logicApp: Workflow) => new LogicAppTreeItem(client, logicApp),
 		);
 	}
 }

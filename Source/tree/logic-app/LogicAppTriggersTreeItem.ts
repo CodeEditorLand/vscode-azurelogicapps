@@ -11,7 +11,7 @@ import {
 	IAzureTreeItem,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { getThemedIconPath, IThemedIconPath } from "../../utils/nodeUtils";
+import { IThemedIconPath, getThemedIconPath } from "../../utils/nodeUtils";
 import { LogicAppTriggerTreeItem } from "./LogicAppTriggerTreeItem";
 
 export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {
@@ -24,7 +24,7 @@ export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private readonly workflow: Workflow
+		private readonly workflow: Workflow,
 	) {}
 
 	public hasMoreChildren(): boolean {
@@ -49,7 +49,7 @@ export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {
 
 	public async loadMoreChildren(
 		_: IAzureNode,
-		clearCache: boolean
+		clearCache: boolean,
 	): Promise<IAzureTreeItem[]> {
 		if (clearCache) {
 			this.nextLink = undefined;
@@ -59,15 +59,15 @@ export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {
 			this.nextLink === undefined
 				? await this.client.workflowTriggers.list(
 						this.resourceGroupName,
-						this.workflowName
-					)
+						this.workflowName,
+				  )
 				: await this.client.workflowTriggers.listNext(this.nextLink);
 
 		this.nextLink = workflowTriggers.nextLink;
 
 		return workflowTriggers.map(
 			(workflowTrigger: WorkflowTrigger) =>
-				new LogicAppTriggerTreeItem(this.client, workflowTrigger)
+				new LogicAppTriggerTreeItem(this.client, workflowTrigger),
 		);
 	}
 }

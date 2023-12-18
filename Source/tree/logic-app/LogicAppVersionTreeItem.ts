@@ -19,7 +19,7 @@ export class LogicAppVersionTreeItem implements IAzureTreeItem {
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
 		private readonly workflow: Workflow,
-		private readonly workflowVersion: WorkflowVersion
+		private readonly workflowVersion: WorkflowVersion,
 	) {}
 
 	public get commandId(): string {
@@ -73,7 +73,7 @@ export class LogicAppVersionTreeItem implements IAzureTreeItem {
 			this.resourceGroupName,
 			this.workflowName,
 			this.workflowVersion.name!,
-			this.client.apiVersion
+			this.client.apiVersion,
 		);
 	}
 
@@ -86,7 +86,7 @@ export class LogicAppVersionTreeItem implements IAzureTreeItem {
 		await this.client.workflows.createOrUpdate(
 			this.resourceGroupName,
 			this.workflowName,
-			workflow
+			workflow,
 		);
 	}
 }

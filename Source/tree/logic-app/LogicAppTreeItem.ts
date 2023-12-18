@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import * as path from "path";
 import LogicAppsManagementClient from "azure-arm-logic";
 import { Sku, Workflow } from "azure-arm-logic/lib/models";
 import * as fse from "fs-extra";
-import * as path from "path";
 import { IAzureParentTreeItem, IAzureTreeItem } from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { Callbacks, getCallbacks } from "../../utils/logic-app/callbackUtils";
@@ -33,7 +33,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflow";
 	public readonly childTypeLabel: string = localize(
 		"azLogicApps.child",
-		"Child"
+		"Child",
 	);
 	public contextValue = LogicAppTreeItem.contextValue;
 	public logicAppRunsItem: LogicAppRunsTreeItem;
@@ -42,16 +42,16 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private workflow: Workflow
+		private workflow: Workflow,
 	) {
 		this.logicAppRunsItem = new LogicAppRunsTreeItem(client, workflow);
 		this.logicAppTriggersItem = new LogicAppTriggersTreeItem(
 			client,
-			workflow
+			workflow,
 		);
 		this.logicAppVersionsItem = new LogicAppVersionsTreeItem(
 			client,
-			workflow
+			workflow,
 		);
 	}
 
@@ -100,41 +100,41 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		await fse.writeJSON(
 			path.join(
 				workspaceFolderPath,
-				`${this.workflowName!}.definition.json`
+				`${this.workflowName!}.definition.json`,
 			),
 			template,
-			{ spaces: 4 }
+			{ spaces: 4 },
 		);
 
 		const parameters = generateParameters(this.workflow!);
 		await fse.writeJSON(
 			path.join(
 				workspaceFolderPath,
-				`${this.workflowName!}.parameters.json`
+				`${this.workflowName!}.parameters.json`,
 			),
 			parameters,
-			{ spaces: 4 }
+			{ spaces: 4 },
 		);
 	}
 
 	public async deleteTreeItem(): Promise<void> {
 		await this.client.workflows.deleteMethod(
 			this.resourceGroupName,
-			this.workflowName
+			this.workflowName,
 		);
 	}
 
 	public async disable(): Promise<void> {
 		await this.client.workflows.disable(
 			this.resourceGroupName,
-			this.workflowName
+			this.workflowName,
 		);
 	}
 
 	public async enable(): Promise<void> {
 		await this.client.workflows.enable(
 			this.resourceGroupName,
-			this.workflowName
+			this.workflowName,
 		);
 	}
 
@@ -143,7 +143,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 			this.client,
 			this.workflow.definition,
 			this.resourceGroupName,
-			this.workflowName
+			this.workflowName,
 		);
 	}
 
@@ -151,7 +151,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		if (refresh) {
 			this.workflow = await this.client.workflows.get(
 				this.resourceGroupName,
-				this.workflowName
+				this.workflowName,
 			);
 		}
 
@@ -168,7 +168,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 			this.client.subscriptionId,
 			this.resourceGroupName,
 			this.workflowName,
-			this.client.apiVersion
+			this.client.apiVersion,
 		);
 	}
 
@@ -181,7 +181,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 	}
 
 	public pickTreeItem(
-		expectedContextValue: string
+		expectedContextValue: string,
 	): IAzureTreeItem | undefined {
 		switch (expectedContextValue) {
 			case LogicAppRunsTreeItem.contextValue:
@@ -200,7 +200,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 
 	public async update(
 		stringifiedDefinition: string,
-		parameters?: Record<string, any> | undefined
+		parameters?: Record<string, any> | undefined,
 	): Promise<string> {
 		const definition = JSON.parse(stringifiedDefinition);
 		delete definition.parameters.$authentication;
@@ -216,7 +216,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		const updatedWorkflow = await this.client.workflows.createOrUpdate(
 			this.resourceGroupName,
 			this.workflowName,
-			workflow
+			workflow,
 		);
 
 		return JSON.stringify(updatedWorkflow.definition, null, 4);
@@ -224,7 +224,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 }
 
 function removeAuthenticationParameter(
-	parameters: Record<string, any> | undefined
+	parameters: Record<string, any> | undefined,
 ): Record<string, any> | undefined {
 	if (parameters === undefined) {
 		return parameters;

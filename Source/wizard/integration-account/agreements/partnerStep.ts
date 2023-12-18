@@ -12,7 +12,7 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 export class PartnerStep {
 	public async prompt(
 		wizardContext: IAgreementWizardContext,
-		namesToExclude: string[] = []
+		namesToExclude: string[] = [],
 	): Promise<string> {
 		let partnerNames: string[];
 		if (!wizardContext.partners) {
@@ -20,7 +20,7 @@ export class PartnerStep {
 				wizardContext.credentials,
 				wizardContext.subscriptionId,
 				wizardContext.resourceGroup!.name!,
-				wizardContext.integrationAccountName
+				wizardContext.integrationAccountName,
 			);
 			wizardContext.partners = arrayToMap(partners, "name");
 		}

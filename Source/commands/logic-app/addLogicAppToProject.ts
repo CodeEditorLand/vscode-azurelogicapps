@@ -12,7 +12,7 @@ import { selectWorkspaceFolder } from "../../utils/workspaceUtils";
 
 export async function addLogicAppToProject(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker(LogicAppTreeItem.contextValue);
@@ -23,8 +23,8 @@ export async function addLogicAppToProject(
 		await vscode.window.showErrorMessage(
 			localize(
 				"azLogicApps.noWorkspaceFolders",
-				"You must create a project first before adding Logic Apps to a project."
-			)
+				"You must create a project first before adding Logic Apps to a project.",
+			),
 		);
 		return;
 	}

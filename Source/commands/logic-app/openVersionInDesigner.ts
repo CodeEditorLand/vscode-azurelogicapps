@@ -16,7 +16,7 @@ import { getWebviewContentForDesigner } from "../../utils/logic-app/designerUtil
 
 export async function openVersionInDesigner(
 	tree: AzureTreeDataProvider,
-	node?: IAzureNode
+	node?: IAzureNode,
 ): Promise<void> {
 	if (!node) {
 		node = await tree.showNodePicker([
@@ -27,7 +27,7 @@ export async function openVersionInDesigner(
 
 	const readOnlySuffix = localize(
 		"azLogicApps.readOnlySuffix",
-		"(read-only)"
+		"(read-only)",
 	);
 	const authorization = await getAuthorization(node.credentials);
 	const canvasMode = vscode.workspace
@@ -47,7 +47,7 @@ export async function openVersionInDesigner(
 		sku,
 	} = treeItem;
 	const { domain: tenantId, userName: userId } = getCredentialsMetadata(
-		node.credentials
+		node.credentials,
 	);
 	const title = `${workflowVersionName} ${readOnlySuffix}`;
 
@@ -58,7 +58,7 @@ export async function openVersionInDesigner(
 		"readonlyDesigner",
 		title,
 		vscode.ViewColumn.Beside,
-		options
+		options,
 	);
 	panel.webview.html = getWebviewContentForDesigner({
 		authorization,

@@ -9,7 +9,7 @@ import { IdentityStep } from "./identityStep";
 
 export class HostIdentityStep extends AzureWizardPromptStep<IAgreementWizardContext> {
 	public async prompt(
-		wizardContext: IAgreementWizardContext
+		wizardContext: IAgreementWizardContext,
 	): Promise<IAgreementWizardContext> {
 		const identityStep = new IdentityStep();
 		await identityStep

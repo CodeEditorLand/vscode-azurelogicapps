@@ -46,7 +46,7 @@ export interface IAgreementWizardContext
 export async function runNewAgreementWizard(
 	integrationAccount: IntegrationAccount,
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void
+	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a agreement type and agreement name.
 	const promptSteps: Array<AzureWizardPromptStep<IAgreementWizardContext>> = [
@@ -78,7 +78,7 @@ export async function runNewAgreementWizard(
 	const wizard = new AzureWizard<IAgreementWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext
+		wizardContext,
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

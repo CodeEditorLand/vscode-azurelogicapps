@@ -6,8 +6,8 @@
 import LogicAppsManagementClient from "azure-arm-logic";
 import { IntegrationAccountAgreement } from "azure-arm-logic/lib/models";
 import {
-	addExtensionUserAgent,
 	AzureWizardExecuteStep,
+	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { IntegrationAccountAgreementTreeItem } from "../../../tree/integration-account/IntegrationAccountAgreementTreeItem";
 import {
@@ -18,11 +18,11 @@ import { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class AgreementCreateStep extends AzureWizardExecuteStep<IAgreementWizardContext> {
 	public async execute(
-		wizardContext: IAgreementWizardContext
+		wizardContext: IAgreementWizardContext,
 	): Promise<IAgreementWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -39,13 +39,13 @@ export class AgreementCreateStep extends AzureWizardExecuteStep<IAgreementWizard
 					wizardContext.hostPartner!,
 					wizardContext.hostIdentity!,
 					wizardContext.guestPartner!,
-					wizardContext.guestIdentity!
-				)
+					wizardContext.guestIdentity!,
+				),
 			);
 
 		wizardContext.agreement = new IntegrationAccountAgreementTreeItem(
 			client,
-			newAgreement
+			newAgreement,
 		);
 
 		return wizardContext;

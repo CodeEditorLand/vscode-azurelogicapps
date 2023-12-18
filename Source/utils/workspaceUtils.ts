@@ -35,17 +35,17 @@ export async function openFolder(uri: vscode.Uri): Promise<void> {
 }
 
 export async function selectWorkspaceFolder(
-	ui: IAzureUserInput
+	ui: IAzureUserInput,
 ): Promise<string | undefined> {
 	const { workspaceFolders } = vscode.workspace;
 
-	const folderItems = !workspaceFolders
-		? []
-		: workspaceFolders.map(({ uri: { fsPath } }) => ({
+	const folderItems = workspaceFolders
+		? workspaceFolders.map(({ uri: { fsPath } }) => ({
 				data: fsPath,
 				description: fsPath,
 				label: path.basename(fsPath),
-			}));
+		  }))
+		: [];
 	const browseItem = {
 		label: localize("azLogicApps.browse", "$(file-directory) Browse..."),
 	};

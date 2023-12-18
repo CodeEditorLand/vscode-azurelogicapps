@@ -6,23 +6,23 @@
 import LogicAppsManagementClient from "azure-arm-logic";
 import { IntegrationAccount } from "azure-arm-logic/lib/models";
 import {
-	addExtensionUserAgent,
 	AzureWizardExecuteStep,
+	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { IntegrationAccountTreeItem } from "../../tree/integration-account/IntegrationAccountTreeItem";
 import {
-	createNewIntegrationAccount,
 	IntegrationAccountSku,
+	createNewIntegrationAccount,
 } from "../../utils/integration-account/integrationAccountUtils";
 import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
 
 export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegrationAccountWizardContext> {
 	public async execute(
-		wizardContext: IIntegrationAccountWizardContext
+		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<IIntegrationAccountWizardContext> {
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
@@ -35,13 +35,13 @@ export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegr
 					IntegrationAccountSku[
 						wizardContext.sku! as IntegrationAccountSku
 					],
-					wizardContext.location!.name!
-				)
+					wizardContext.location!.name!,
+				),
 			);
 
 		wizardContext.integrationAccount = new IntegrationAccountTreeItem(
 			client,
-			newIntegrationAccount
+			newIntegrationAccount,
 		);
 
 		return wizardContext;

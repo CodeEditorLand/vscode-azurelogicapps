@@ -13,12 +13,12 @@ import { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerValueStep extends AzureWizardPromptStep<IPartnerWizardContext> {
 	public async prompt(
-		wizardContext: IPartnerWizardContext
+		wizardContext: IPartnerWizardContext,
 	): Promise<IPartnerWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azIntegrationAccounts.promptForPartnerName",
-				"Enter a value for the qualifier."
+				"Enter a value for the qualifier.",
 			),
 			validateInput: async (value: string) => {
 				value = value ? value.trim() : "";
@@ -26,20 +26,20 @@ export class PartnerValueStep extends AzureWizardPromptStep<IPartnerWizardContex
 				if (!value) {
 					return localize(
 						"azIntegrationAccounts.valueRequired",
-						"A value is required."
+						"A value is required.",
 					);
 				} else if (value.length > 128) {
 					return localize(
 						"azIntegrationAccounts.valueTooLong",
-						"The value has a maximum length of 128 characters."
+						"The value has a maximum length of 128 characters.",
 					);
-				} else if (!/^\"?[a-zA-Z0-9\-_.() ]+\"?$/.test(value)) {
+				} else if (/^\"?[a-zA-Z0-9\-_.() ]+\"?$/.test(value)) {
+					return undefined;
+				} else {
 					return localize(
 						"azIntegrationAccounts.valueContainsInvalidCharacters",
-						"The value can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
+						"The value can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
 					);
-				} else {
-					return undefined;
 				}
 			},
 		};

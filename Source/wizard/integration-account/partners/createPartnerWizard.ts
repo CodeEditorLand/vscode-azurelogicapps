@@ -33,7 +33,7 @@ export interface IPartnerWizardContext
 export async function runNewPartnerWizard(
 	integrationAccount: IntegrationAccount,
 	node: IAzureNode,
-	showCreatingNode: (label: string) => void
+	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a partner name and a business identity.
 	const promptSteps: Array<AzureWizardPromptStep<IPartnerWizardContext>> = [
@@ -63,7 +63,7 @@ export async function runNewPartnerWizard(
 	const wizard = new AzureWizard<IPartnerWizardContext>(
 		promptSteps,
 		executeSteps,
-		wizardContext
+		wizardContext,
 	);
 
 	// Create a fake action context until https://github.com/Microsoft/vscode-azuretools/issues/120 is fixed.

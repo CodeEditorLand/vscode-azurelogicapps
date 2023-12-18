@@ -8,8 +8,8 @@ import { IntegrationAccountMap } from "azure-arm-logic/lib/models";
 import * as request from "request-promise-native";
 import { IAzureTreeItem } from "vscode-azureextensionui";
 import {
-	getContentType,
 	MapType,
+	getContentType,
 } from "../../utils/integration-account/mapUtils";
 import { getIconPath } from "../../utils/nodeUtils";
 
@@ -19,7 +19,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 
 	public constructor(
 		private readonly client: LogicAppsManagementClient,
-		private integrationAccountMap: IntegrationAccountMap
+		private integrationAccountMap: IntegrationAccountMap,
 	) {}
 
 	public get commandId(): string {
@@ -30,7 +30,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 		await this.client.integrationAccountMaps.deleteMethod(
 			this.resourceGroupName,
 			this.integrationAccountName,
-			this.label
+			this.label,
 		);
 	}
 
@@ -72,7 +72,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 				await this.client.integrationAccountMaps.get(
 					this.resourceGroupName,
 					this.integrationAccountName,
-					this.integrationAccountMapName
+					this.integrationAccountMapName,
 				);
 		}
 
@@ -91,7 +91,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 				this.resourceGroupName,
 				this.integrationAccountName,
 				this.integrationAccountMapName,
-				map
+				map,
 			);
 		return request(updatedMap.contentLink!.uri!);
 	}

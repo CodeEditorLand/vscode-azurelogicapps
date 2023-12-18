@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import * as path from "path";
 import { Workflow } from "azure-arm-logic/lib/models";
 import * as fse from "fs-extra";
 import { glob } from "glob";
-import * as path from "path";
 import { AzureWizardExecuteStep } from "vscode-azureextensionui";
 import {
 	generateTemplateParameter,
@@ -17,7 +17,7 @@ import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class GenerateBuildDefinitionStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
 	public async execute(
-		wizardContext: IBuildDefinitionWizardContext
+		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const {
 			location,
@@ -28,17 +28,17 @@ export class GenerateBuildDefinitionStep extends AzureWizardExecuteStep<IBuildDe
 		} = wizardContext;
 
 		const definitions = await glob(
-			path.join(workspaceFolderPath!, "**/*.definition.json")
+			path.join(workspaceFolderPath!, "**/*.definition.json"),
 		);
 
 		const names = definitions.map((definition) =>
-			path.basename(definition).replace(/\.definition\.json$/i, "")
+			path.basename(definition).replace(/\.definition\.json$/i, ""),
 		);
 
 		for (const name of names) {
 			const file = path.join(
 				workspaceFolderPath!,
-				`${name}.definition.json`
+				`${name}.definition.json`,
 			);
 			const json = await fse.readJSON(file);
 			const {
@@ -59,7 +59,7 @@ export class GenerateBuildDefinitionStep extends AzureWizardExecuteStep<IBuildDe
 				generateTemplateParameterDefinition(workflow);
 			Object.assign(
 				templateParameterDefinitions,
-				templateParameterDefinition
+				templateParameterDefinition,
 			);
 
 			const templateParameter = generateTemplateParameter(workflow);

@@ -7,22 +7,22 @@ import LogicAppsManagementClient from "azure-arm-logic";
 import { IntegrationAccount } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
-	addExtensionUserAgent,
 	AzureWizardPromptStep,
 	ResourceGroupListStep,
 	UserCancelledError,
+	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
 
 export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrationAccountWizardContext> {
 	public async prompt(
-		wizardContext: IIntegrationAccountWizardContext
+		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<IIntegrationAccountWizardContext> {
 		const options: vscode.InputBoxOptions = {
 			prompt: localize(
 				"azIntegrationAccounts.promptForName",
-				"Enter a name for the new Integration Account."
+				"Enter a name for the new Integration Account.",
 			),
 			validateInput: async (name: string) => {
 				name = name ? name.trim() : "";
@@ -30,25 +30,25 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 				if (!name) {
 					return localize(
 						"azIntegrationAccounts.nameRequired",
-						"A name is required."
+						"A name is required.",
 					);
 				} else if (name.length > 80) {
 					return localize(
 						"azIntegrationAccounts.nameTooLong",
-						"The name has a maximum length of 80 characters."
+						"The name has a maximum length of 80 characters.",
 					);
 				} else if (!/^[0-9a-zA-Z-_.()]+$/.test(name)) {
 					return localize(
 						"azIntegrationAccounts.nameContainsInvalidCharacters",
-						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'"
+						"The name can only contain letters, numbers, and '-', '(', ')', '_', or '.'",
 					);
-				} else if (!(await this.isNameAvailable(name, wizardContext))) {
+				} else if (await this.isNameAvailable(name, wizardContext)) {
+					return undefined;
+				} else {
 					return localize(
 						"azIntegrationAccounts.nameAlreadyInUse",
-						"The name is already in use."
+						"The name is already in use.",
 					);
-				} else {
-					return undefined;
 				}
 			},
 		};
@@ -66,14 +66,14 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 
 	protected async isRelatedNameAvailable(
 		wizardContext: IIntegrationAccountWizardContext,
-		name: string
+		name: string,
 	): Promise<boolean> {
 		return ResourceGroupListStep.isNameAvailable(wizardContext, name);
 	}
 
 	private async isNameAvailable(
 		name: string,
-		wizardContext: IIntegrationAccountWizardContext
+		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<boolean> {
 		let resourceGroupName: string;
 		if (wizardContext.newResourceGroupName) {
@@ -84,19 +84,19 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 
 		const client = new LogicAppsManagementClient(
 			wizardContext.credentials,
-			wizardContext.subscriptionId
+			wizardContext.subscriptionId,
 		);
 		addExtensionUserAgent(client);
 
 		let integrationAccounts =
 			await client.integrationAccounts.listByResourceGroup(
-				resourceGroupName
+				resourceGroupName,
 			);
 		let nextPageLink = integrationAccounts.nextLink;
 		if (
 			integrationAccounts.some(
 				(integrationAccount: IntegrationAccount) =>
-					integrationAccount.name! === name
+					integrationAccount.name! === name,
 			)
 		) {
 			return false;
@@ -105,12 +105,12 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 		while (nextPageLink) {
 			integrationAccounts =
 				await client.integrationAccounts.listByResourceGroupNext(
-					nextPageLink
+					nextPageLink,
 				);
 			if (
 				integrationAccounts.some(
 					(integrationAccount: IntegrationAccount) =>
-						integrationAccount.name! === name
+						integrationAccount.name! === name,
 				)
 			) {
 				return false;
