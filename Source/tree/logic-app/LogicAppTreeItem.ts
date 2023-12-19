@@ -80,7 +80,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.workflow.id!.split("/").slice(-5, -4)[0];
+		return this.workflow.id?.split("/").slice(-5, -4)[0];
 	}
 
 	public get sku(): Sku | undefined {
@@ -203,7 +203,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		parameters?: Record<string, any> | undefined,
 	): Promise<string> {
 		const definition = JSON.parse(stringifiedDefinition);
-		delete definition.parameters.$authentication;
+		definition.parameters.$authentication = undefined;
 
 		parameters = removeAuthenticationParameter(parameters);
 
@@ -231,6 +231,6 @@ function removeAuthenticationParameter(
 	}
 
 	parameters = { ...parameters };
-	delete parameters.$authentication;
+	parameters.$authentication = undefined;
 	return parameters;
 }

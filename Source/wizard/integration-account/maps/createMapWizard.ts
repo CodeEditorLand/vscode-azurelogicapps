@@ -34,13 +34,13 @@ export async function runNewMapWizard(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a map type and map name.
-	const promptSteps: Array<AzureWizardPromptStep<IMapWizardContext>> = [
+	const promptSteps: AzureWizardPromptStep<IMapWizardContext>[] = [
 		new MapTypeStep(),
 		new MapNameStep(),
 	];
 
 	// Create the new Map.
-	const executeSteps: Array<AzureWizardExecuteStep<IMapWizardContext>> = [
+	const executeSteps: AzureWizardExecuteStep<IMapWizardContext>[] = [
 		new MapCreateStep(),
 	];
 
@@ -50,7 +50,7 @@ export async function runNewMapWizard(
 		integrationAccountName: integrationAccount.name!,
 		resourceGroup: {
 			location: integrationAccount.location!,
-			name: integrationAccount.id!.split("/").slice(-5, -4)[0],
+			name: integrationAccount.id?.split("/").slice(-5, -4)[0],
 		},
 		subscriptionDisplayName: node.subscriptionDisplayName,
 		subscriptionId: node.subscriptionId,

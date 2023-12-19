@@ -49,7 +49,7 @@ export async function runNewAgreementWizard(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a agreement type and agreement name.
-	const promptSteps: Array<AzureWizardPromptStep<IAgreementWizardContext>> = [
+	const promptSteps: AzureWizardPromptStep<IAgreementWizardContext>[] = [
 		new AgreementTypeStep(),
 		new AgreementNameStep(),
 		new HostPartnerStep(),
@@ -59,8 +59,9 @@ export async function runNewAgreementWizard(
 	];
 
 	// Create the new Agreement.
-	const executeSteps: Array<AzureWizardExecuteStep<IAgreementWizardContext>> =
-		[new AgreementCreateStep()];
+	const executeSteps: AzureWizardExecuteStep<IAgreementWizardContext>[] = [
+		new AgreementCreateStep(),
+	];
 
 	// Initialize the wizard context.
 	let wizardContext: IAgreementWizardContext = {
@@ -68,7 +69,7 @@ export async function runNewAgreementWizard(
 		integrationAccountName: integrationAccount.name!,
 		resourceGroup: {
 			location: integrationAccount.location!,
-			name: integrationAccount.id!.split("/").slice(-5, -4)[0],
+			name: integrationAccount.id?.split("/").slice(-5, -4)[0],
 		},
 		subscriptionDisplayName: node.subscriptionDisplayName,
 		subscriptionId: node.subscriptionId,

@@ -25,18 +25,20 @@ export async function createNewMap(
 ): Promise<IntegrationAccountMap> {
 	let content: string;
 	switch (mapType) {
-		case MapType.Liquid:
+		case MapType.Liquid: {
 			content = "{% if user %}\nHello {{ user.name }}\n{% endif %}";
 			break;
-		case MapType.Xslt30:
+		}
+		case MapType.Xslt30: {
 			content =
 				'<?xml version="1.0" encoding="UTF-8"?>\n<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">\n\t<xsl:template match="/">\n\n\t</xsl:template>\n</xsl:stylesheet>';
 			break;
-		case MapType.Xslt20:
+		}
+		case MapType.Xslt20: {
 			content =
 				'<?xml version="1.0" encoding="UTF-8"?>\n<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">\n\t<xsl:template match="/">\n\n\t</xsl:template>\n</xsl:stylesheet>';
 			break;
-		case MapType.Xslt:
+		}
 		default:
 			content =
 				'<?xml version="1.0" encoding="UTF-8"?>\n<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">\n\t<xsl:template match="/">\n\n\t</xsl:template>\n</xsl:stylesheet>';

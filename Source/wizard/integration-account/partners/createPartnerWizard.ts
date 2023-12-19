@@ -36,14 +36,14 @@ export async function runNewPartnerWizard(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a partner name and a business identity.
-	const promptSteps: Array<AzureWizardPromptStep<IPartnerWizardContext>> = [
+	const promptSteps: AzureWizardPromptStep<IPartnerWizardContext>[] = [
 		new PartnerNameStep(),
 		new PartnerQualifierStep(),
 		new PartnerValueStep(),
 	];
 
 	// Create the new Partner.
-	const executeSteps: Array<AzureWizardExecuteStep<IPartnerWizardContext>> = [
+	const executeSteps: AzureWizardExecuteStep<IPartnerWizardContext>[] = [
 		new PartnerCreateStep(),
 	];
 
@@ -53,7 +53,7 @@ export async function runNewPartnerWizard(
 		integrationAccountName: integrationAccount.name!,
 		resourceGroup: {
 			location: integrationAccount.location!,
-			name: integrationAccount.id!.split("/").slice(-5, -4)[0],
+			name: integrationAccount.id?.split("/").slice(-5, -4)[0],
 		},
 		subscriptionDisplayName: node.subscriptionDisplayName,
 		subscriptionId: node.subscriptionId,

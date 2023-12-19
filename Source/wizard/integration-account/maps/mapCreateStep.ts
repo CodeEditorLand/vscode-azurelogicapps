@@ -28,7 +28,7 @@ export class MapCreateStep extends AzureWizardExecuteStep<IMapWizardContext> {
 
 		const newMap: IntegrationAccountMap =
 			await client.integrationAccountMaps.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 				wizardContext.mapName!,
 				await createNewMap(

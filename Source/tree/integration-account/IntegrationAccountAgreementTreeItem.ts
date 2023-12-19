@@ -44,7 +44,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.integrationAccountAgreement.id!.split("/").slice(-7, -6)[0];
+		return this.integrationAccountAgreement.id?.split("/").slice(-7, -6)[0];
 	}
 
 	public get integrationAccountAgreementName(): string {
@@ -52,7 +52,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 	}
 
 	public get integrationAccountName(): string {
-		return this.integrationAccountAgreement.id!.split("/").slice(-3, -2)[0];
+		return this.integrationAccountAgreement.id?.split("/").slice(-3, -2)[0];
 	}
 
 	public get agreementType(): AgreementType {
@@ -86,7 +86,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 		const integrationAccountAgreement: Record<string, any> = {
 			...this.integrationAccountAgreement,
 		};
-		delete integrationAccountAgreement.content;
+		integrationAccountAgreement.content = undefined;
 
 		return JSON.stringify(integrationAccountAgreement, null, 4);
 	}

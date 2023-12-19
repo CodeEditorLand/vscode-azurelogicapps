@@ -126,8 +126,7 @@ export function generateTemplateParameter(workflow: Workflow) {
 		// Checks whether said parameter already has a value (most likely set from prior deployment), and use its value as defaultValue if exist
 		parameters[`workflows_${workflow.name}_parameters_${key}`] = {
 			value:
-				((parametersValue as any)[key] &&
-					(parametersValue as any)[key].value) ||
+				(parametersValue as any)[key]?.value ||
 				parameters[key].defaultValue,
 		};
 		delete parameters[key];
@@ -161,10 +160,7 @@ export function generateTemplateParameterDefinition(workflow: Workflow) {
 			parameters[key];
 
 		// Checks whether said parameter already has a value (most likely set from prior deployment), and use its value as defaultValue if exist
-		if (
-			(parametersValue as any)[key] &&
-			(parametersValue as any)[key].value
-		) {
+		if ((parametersValue as any)[key]?.value) {
 			parameters[
 				`workflows_${workflow.name}_parameters_${key}`
 			].defaultValue = (parametersValue as any)[key].value;

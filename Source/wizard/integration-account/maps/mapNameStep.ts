@@ -72,7 +72,7 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 		addExtensionUserAgent(client);
 
 		let maps = await client.integrationAccountMaps.list(
-			wizardContext.resourceGroup!.name!,
+			wizardContext.resourceGroup?.name!,
 			wizardContext.integrationAccountName,
 		);
 		let nextPageLink = maps.nextLink;

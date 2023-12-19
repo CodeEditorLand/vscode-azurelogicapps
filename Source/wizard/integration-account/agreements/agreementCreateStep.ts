@@ -28,7 +28,7 @@ export class AgreementCreateStep extends AzureWizardExecuteStep<IAgreementWizard
 
 		const newAgreement: IntegrationAccountAgreement =
 			await client.integrationAccountAgreements.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 				wizardContext.agreementName!,
 				await createNewAgreement(

@@ -18,7 +18,7 @@ export async function deleteLogicApp(
 	await node.runWithTemporaryDescription(
 		localize("azLogicApp.deleting", "Deleting..."),
 		async () => {
-			await node!.deleteNode();
+			await node?.deleteNode();
 		},
 	);
 }

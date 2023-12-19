@@ -67,7 +67,7 @@ export class PartnerNameStep extends AzureWizardPromptStep<IPartnerWizardContext
 		const partners = await getAllPartners(
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
-			wizardContext.resourceGroup!.name!,
+			wizardContext.resourceGroup?.name!,
 			wizardContext.integrationAccountName,
 		);
 

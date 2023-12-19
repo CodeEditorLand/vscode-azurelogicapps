@@ -76,24 +76,27 @@ export async function openInDesigner(
 	panel.webview.onDidReceiveMessage(
 		async (message) => {
 			switch (message.command) {
-				case "OpenWindow":
+				case "OpenWindow": {
 					await vscode.env.openExternal(message.url);
 					break;
+				}
 
-				case "Save":
+				case "Save": {
 					await handleSave(
 						node! as IAzureNode<LogicAppTreeItem>,
 						message.definition,
 						message.parameters,
 					);
 					break;
+				}
 
-				case "ShowError":
+				case "ShowError": {
 					await vscode.window.showErrorMessage(
 						message.errorMessage,
 						DialogResponses.ok,
 					);
 					break;
+				}
 
 				default:
 					break;

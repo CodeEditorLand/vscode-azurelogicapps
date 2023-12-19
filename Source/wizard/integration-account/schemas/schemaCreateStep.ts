@@ -25,7 +25,7 @@ export class SchemaCreateStep extends AzureWizardExecuteStep<ISchemaWizardContex
 
 		const newSchema: IntegrationAccountSchema =
 			await client.integrationAccountSchemas.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 				wizardContext.schemaName!,
 				await createNewSchema(wizardContext.schemaName!),

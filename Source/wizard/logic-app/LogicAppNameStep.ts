@@ -78,7 +78,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 		if (wizardContext.newResourceGroupName) {
 			return true;
 		} else {
-			resourceGroupName = wizardContext.resourceGroup!.name!;
+			resourceGroupName = wizardContext.resourceGroup?.name!;
 		}
 
 		const client = new LogicAppsManagementClient(

@@ -47,7 +47,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.integrationAccountPartner.id!.split("/").slice(-7, -6)[0];
+		return this.integrationAccountPartner.id?.split("/").slice(-7, -6)[0];
 	}
 
 	public get integrationAccountPartnerName(): string {
@@ -55,7 +55,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 	}
 
 	public get integrationAccountName(): string {
-		return this.integrationAccountPartner.id!.split("/").slice(-3, -2)[0];
+		return this.integrationAccountPartner.id?.split("/").slice(-3, -2)[0];
 	}
 
 	public get partnerType(): PartnerType {

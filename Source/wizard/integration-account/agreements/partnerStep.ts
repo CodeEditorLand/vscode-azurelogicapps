@@ -19,7 +19,7 @@ export class PartnerStep {
 			const partners = await getAllPartners(
 				wizardContext.credentials,
 				wizardContext.subscriptionId,
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 			);
 			wizardContext.partners = arrayToMap(partners, "name");

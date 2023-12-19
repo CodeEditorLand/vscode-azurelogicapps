@@ -45,7 +45,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.integrationAccountSchema.id!.split("/").slice(-7, -6)[0];
+		return this.integrationAccountSchema.id?.split("/").slice(-7, -6)[0];
 	}
 
 	public get integrationAccountSchemaName(): string {
@@ -53,7 +53,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 	}
 
 	public get integrationAccountName(): string {
-		return this.integrationAccountSchema.id!.split("/").slice(-3, -2)[0];
+		return this.integrationAccountSchema.id?.split("/").slice(-3, -2)[0];
 	}
 
 	public get schemaType(): SchemaType {
@@ -61,7 +61,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 	}
 
 	public async getContent(): Promise<string> {
-		return request(this.integrationAccountSchema.contentLink!.uri!);
+		return request(this.integrationAccountSchema.contentLink?.uri!);
 	}
 
 	public async getProperties(refresh = false): Promise<string> {
@@ -91,6 +91,6 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 				this.integrationAccountSchemaName,
 				schema,
 			);
-		return request(updatedSchema.contentLink!.uri!);
+		return request(updatedSchema.contentLink?.uri!);
 	}
 }

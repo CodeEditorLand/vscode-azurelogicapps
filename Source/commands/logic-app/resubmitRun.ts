@@ -18,9 +18,9 @@ export async function resubmitRun(
 	node.runWithTemporaryDescription(
 		localize("azLogicApps.resubmitting", "Resubmitting..."),
 		async () => {
-			const logicAppRunTreeItem = node!.treeItem as LogicAppRunTreeItem;
+			const logicAppRunTreeItem = node?.treeItem as LogicAppRunTreeItem;
 			await logicAppRunTreeItem.resubmit();
-			await node!.parent!.refresh();
+			await node?.parent?.refresh();
 		},
 	);
 }

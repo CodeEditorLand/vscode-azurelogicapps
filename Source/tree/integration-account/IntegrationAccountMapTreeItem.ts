@@ -47,7 +47,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.integrationAccountMap.id!.split("/").slice(-7, -6)[0];
+		return this.integrationAccountMap.id?.split("/").slice(-7, -6)[0];
 	}
 
 	public get integrationAccountMapName(): string {
@@ -55,7 +55,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 	}
 
 	public get integrationAccountName(): string {
-		return this.integrationAccountMap.id!.split("/").slice(-3, -2)[0];
+		return this.integrationAccountMap.id?.split("/").slice(-3, -2)[0];
 	}
 
 	public get mapType(): MapType {
@@ -63,7 +63,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 	}
 
 	public async getContent(): Promise<string> {
-		return request(this.integrationAccountMap.contentLink!.uri!);
+		return request(this.integrationAccountMap.contentLink?.uri!);
 	}
 
 	public async getProperties(refresh = false): Promise<string> {
@@ -93,6 +93,6 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 				this.integrationAccountMapName,
 				map,
 			);
-		return request(updatedMap.contentLink!.uri!);
+		return request(updatedMap.contentLink?.uri!);
 	}
 }

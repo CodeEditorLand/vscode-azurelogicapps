@@ -25,7 +25,7 @@ export class PartnerCreateStep extends AzureWizardExecuteStep<IPartnerWizardCont
 
 		const newPartner: IntegrationAccountPartner =
 			await client.integrationAccountPartners.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 				wizardContext.partnerName!,
 				await createNewPartner(

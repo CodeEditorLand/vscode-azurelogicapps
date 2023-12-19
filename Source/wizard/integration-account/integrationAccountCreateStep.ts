@@ -28,14 +28,14 @@ export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegr
 
 		const newIntegrationAccount: IntegrationAccount =
 			await client.integrationAccounts.createOrUpdate(
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName!,
 				await createNewIntegrationAccount(
 					wizardContext.integrationAccountName!,
 					IntegrationAccountSku[
 						wizardContext.sku! as IntegrationAccountSku
 					],
-					wizardContext.location!.name!,
+					wizardContext.location?.name!,
 				),
 			);
 

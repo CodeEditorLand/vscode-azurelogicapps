@@ -72,7 +72,7 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 		addExtensionUserAgent(client);
 
 		let schemas = await client.integrationAccountSchemas.list(
-			wizardContext.resourceGroup!.name!,
+			wizardContext.resourceGroup?.name!,
 			wizardContext.integrationAccountName,
 		);
 		let nextPageLink = schemas.nextLink;

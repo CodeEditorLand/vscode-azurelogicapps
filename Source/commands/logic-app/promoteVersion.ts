@@ -30,10 +30,10 @@ export async function promoteVersion(
 		node.runWithTemporaryDescription(
 			localize("azLogicApps.promoting", "Promoting..."),
 			async () => {
-				const logicAppRunTreeItem = node!
-					.treeItem as LogicAppVersionTreeItem;
+				const logicAppRunTreeItem =
+					node?.treeItem as LogicAppVersionTreeItem;
 				await logicAppRunTreeItem.promote();
-				await node!.parent!.refresh();
+				await node?.parent?.refresh();
 			},
 		);
 	}

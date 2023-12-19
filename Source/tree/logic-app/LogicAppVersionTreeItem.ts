@@ -47,7 +47,7 @@ export class LogicAppVersionTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.workflow.id!.split("/").slice(-5, -4)[0];
+		return this.workflow.id?.split("/").slice(-5, -4)[0];
 	}
 
 	public get sku(): Sku | undefined {

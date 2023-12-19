@@ -34,7 +34,7 @@ export class LogicAppTriggerTreeItem implements IAzureTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.workflowTrigger.id!.split("/").slice(-7, -6)[0];
+		return this.workflowTrigger.id?.split("/").slice(-7, -6)[0];
 	}
 
 	public get triggerName(): string {
@@ -42,7 +42,7 @@ export class LogicAppTriggerTreeItem implements IAzureTreeItem {
 	}
 
 	public get workflowName(): string {
-		return this.workflowTrigger.id!.split("/").slice(-3, -2)[0];
+		return this.workflowTrigger.id?.split("/").slice(-3, -2)[0];
 	}
 
 	public async getData(): Promise<string> {

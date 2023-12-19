@@ -42,7 +42,7 @@ export class IntegrationAccountMapsTreeItem implements IAzureParentTreeItem {
 	}
 
 	public get resourceGroupName(): string {
-		return this.integrationAccount.id!.split("/").slice(-5, -4)[0];
+		return this.integrationAccount.id?.split("/").slice(-5, -4)[0];
 	}
 
 	public get integrationAccountName(): string {

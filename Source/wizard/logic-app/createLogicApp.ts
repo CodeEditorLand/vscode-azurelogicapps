@@ -32,18 +32,15 @@ export async function createLogicApp(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a workflow name, resource group, and location.
-	const promptSteps: Array<
-		AzureWizardPromptStep<IAzureLogicAppWizardContext>
-	> = [
+	const promptSteps: AzureWizardPromptStep<IAzureLogicAppWizardContext>[] = [
 		new ResourceGroupListStep(),
 		new LocationListStep(),
 		new LogicAppNameStep(),
 	];
 
 	// Create a new resource group (if necessary) and the new Logic App.
-	const executeSteps: Array<
-		AzureWizardExecuteStep<IAzureLogicAppWizardContext>
-	> = [new ResourceGroupCreateStep(), new LogicAppCreateStep()];
+	const executeSteps: AzureWizardExecuteStep<IAzureLogicAppWizardContext>[] =
+		[new ResourceGroupCreateStep(), new LogicAppCreateStep()];
 
 	// Initialize the wizard context.
 	let wizardContext: IAzureLogicAppWizardContext = {

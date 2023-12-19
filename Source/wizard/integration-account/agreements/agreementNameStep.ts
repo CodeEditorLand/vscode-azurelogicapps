@@ -72,7 +72,7 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 		addExtensionUserAgent(client);
 
 		let agreements = await client.integrationAccountAgreements.list(
-			wizardContext.resourceGroup!.name!,
+			wizardContext.resourceGroup?.name!,
 			wizardContext.integrationAccountName,
 		);
 		let nextPageLink = agreements.nextLink;

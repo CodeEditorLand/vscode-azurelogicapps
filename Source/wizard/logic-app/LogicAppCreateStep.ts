@@ -22,8 +22,8 @@ export class LogicAppCreateStep extends AzureWizardExecuteStep<IAzureLogicAppWiz
 		);
 		addExtensionUserAgent(client);
 
-		const location = wizardContext.location!.name!;
-		const resourceGroupName = wizardContext.resourceGroup!.name!;
+		const location = wizardContext.location?.name!;
+		const resourceGroupName = wizardContext.resourceGroup?.name!;
 		const workflowName = wizardContext.workflowName!;
 		const emptyWorkflow: Workflow = {
 			definition: {

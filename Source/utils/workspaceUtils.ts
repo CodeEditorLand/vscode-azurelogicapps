@@ -51,7 +51,7 @@ export async function selectWorkspaceFolder(
 	};
 	const items: IWorkspaceFolder[] = [...folderItems, browseItem];
 	const selectedItem = await ui.showQuickPick(items, quickPickOptions);
-	if (selectedItem && selectedItem.data) {
+	if (selectedItem?.data) {
 		return selectedItem.data;
 	}
 

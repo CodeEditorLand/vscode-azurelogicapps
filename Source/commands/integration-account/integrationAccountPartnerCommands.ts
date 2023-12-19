@@ -25,7 +25,7 @@ export async function deleteIntegrationAccountPartner(
 	await node.runWithTemporaryDescription(
 		localize("azIntegrationAccounts.deleting", "Deleting..."),
 		async () => {
-			await node!.deleteNode();
+			await node?.deleteNode();
 		},
 	);
 }

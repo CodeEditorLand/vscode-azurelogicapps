@@ -47,7 +47,7 @@ export function getWebviewContentForDesigner({
 	userId,
 	workflowId,
 }: IGetWebviewContentOptions): string {
-	readOnly = readOnly || false;
+	readOnly = readOnly;
 	sku = sku || { name: "Consumption" };
 
 	const workflowOptions = readOnly

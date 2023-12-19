@@ -18,10 +18,10 @@ export async function runTrigger(
 	node.runWithTemporaryDescription(
 		localize("azLogicApps.running", "Running..."),
 		async () => {
-			const logicAppTriggerTreeItem = node!
-				.treeItem as LogicAppTriggerTreeItem;
+			const logicAppTriggerTreeItem =
+				node?.treeItem as LogicAppTriggerTreeItem;
 			await logicAppTriggerTreeItem.run();
-			await node!.parent!.parent!.refresh();
+			await node?.parent?.parent?.refresh();
 		},
 	);
 }

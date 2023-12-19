@@ -32,12 +32,12 @@ export async function runNewSchemaWizard(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a schema type and schema name.
-	const promptSteps: Array<AzureWizardPromptStep<ISchemaWizardContext>> = [
+	const promptSteps: AzureWizardPromptStep<ISchemaWizardContext>[] = [
 		new SchemaNameStep(),
 	];
 
 	// Create the new Schema.
-	const executeSteps: Array<AzureWizardExecuteStep<ISchemaWizardContext>> = [
+	const executeSteps: AzureWizardExecuteStep<ISchemaWizardContext>[] = [
 		new SchemaCreateStep(),
 	];
 
@@ -47,7 +47,7 @@ export async function runNewSchemaWizard(
 		integrationAccountName: integrationAccount.name!,
 		resourceGroup: {
 			location: integrationAccount.location!,
-			name: integrationAccount.id!.split("/").slice(-5, -4)[0],
+			name: integrationAccount.id?.split("/").slice(-5, -4)[0],
 		},
 		subscriptionDisplayName: node.subscriptionDisplayName,
 		subscriptionId: node.subscriptionId,

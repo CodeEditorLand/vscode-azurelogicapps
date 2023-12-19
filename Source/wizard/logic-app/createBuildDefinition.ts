@@ -38,27 +38,25 @@ export async function createBuildDefinition(
 	workspaceFolderPath?: string,
 ): Promise<IBuildDefinitionWizardContext> {
 	// Prompt the user for an Azure DevOps ARM service connection, resource group, location, deployment template filename, deployment template parameters filename, and build definition filename.
-	const promptSteps: Array<
-		AzureWizardPromptStep<IBuildDefinitionWizardContext>
-	> = [
-		new WorkspaceFolderSelectionStep(),
-		new ServiceConnectionNameStep(),
-		new ResourceGroupNameStep(),
-		new LocationListStep(),
-		new CsmFilenameStep(),
-		new CsmParametersFilenameStep(),
-		new BuildDefinitionFilenameStep(),
-	];
+	const promptSteps: AzureWizardPromptStep<IBuildDefinitionWizardContext>[] =
+		[
+			new WorkspaceFolderSelectionStep(),
+			new ServiceConnectionNameStep(),
+			new ResourceGroupNameStep(),
+			new LocationListStep(),
+			new CsmFilenameStep(),
+			new CsmParametersFilenameStep(),
+			new BuildDefinitionFilenameStep(),
+		];
 
 	// Create a deployment template, a deployment template parameters file, and a build definition.
-	const executeSteps: Array<
-		AzureWizardExecuteStep<IBuildDefinitionWizardContext>
-	> = [
-		new GenerateBuildDefinitionStep(),
-		new CsmFileCreateStep(),
-		new CsmParametersFileCreateStep(),
-		new BuildDefinitionCreateStep(),
-	];
+	const executeSteps: AzureWizardExecuteStep<IBuildDefinitionWizardContext>[] =
+		[
+			new GenerateBuildDefinitionStep(),
+			new CsmFileCreateStep(),
+			new CsmParametersFileCreateStep(),
+			new BuildDefinitionCreateStep(),
+		];
 
 	// Initialize the wizard context.
 	let wizardContext: IBuildDefinitionWizardContext = {

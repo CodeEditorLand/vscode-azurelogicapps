@@ -34,19 +34,17 @@ export async function runNewIntegrationAccountWizard(
 	showCreatingNode: (label: string) => void,
 ): Promise<IAzureTreeItem> {
 	// Prompt the user for a integration account name, resource group, location, and sku.
-	const promptSteps: Array<
-		AzureWizardPromptStep<IIntegrationAccountWizardContext>
-	> = [
-		new ResourceGroupListStep(),
-		new LocationListStep(),
-		new IntegrationAccountNameStep(),
-		new IntegrationAccountSkuStep(),
-	];
+	const promptSteps: AzureWizardPromptStep<IIntegrationAccountWizardContext>[] =
+		[
+			new ResourceGroupListStep(),
+			new LocationListStep(),
+			new IntegrationAccountNameStep(),
+			new IntegrationAccountSkuStep(),
+		];
 
 	// Create a new resource group (if necessary) and the new Integration Account.
-	const executeSteps: Array<
-		AzureWizardExecuteStep<IIntegrationAccountWizardContext>
-	> = [new ResourceGroupCreateStep(), new IntegrationAccountCreateStep()];
+	const executeSteps: AzureWizardExecuteStep<IIntegrationAccountWizardContext>[] =
+		[new ResourceGroupCreateStep(), new IntegrationAccountCreateStep()];
 
 	// Initialize the wizard context.
 	let wizardContext: IIntegrationAccountWizardContext = {

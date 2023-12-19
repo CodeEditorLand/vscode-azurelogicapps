@@ -26,7 +26,7 @@ export async function createNewAgreement(
 ): Promise<IntegrationAccountAgreement> {
 	let content: AgreementContent;
 	switch (agreementType) {
-		case AgreementType.AS2:
+		case AgreementType.AS2: {
 			content = {
 				aS2: {
 					receiveAgreement: {
@@ -44,7 +44,8 @@ export async function createNewAgreement(
 				},
 			};
 			break;
-		case AgreementType.X12:
+		}
+		case AgreementType.X12: {
 			content = {
 				x12: {
 					receiveAgreement: {
@@ -62,7 +63,7 @@ export async function createNewAgreement(
 				},
 			};
 			break;
-		case AgreementType.Edifact:
+		}
 		default:
 			content = {
 				edifact: {

@@ -21,15 +21,15 @@ export class IdentityStep {
 			const partners = await getAllPartners(
 				wizardContext.credentials,
 				wizardContext.subscriptionId,
-				wizardContext.resourceGroup!.name!,
+				wizardContext.resourceGroup?.name!,
 				wizardContext.integrationAccountName,
 			);
 			wizardContext.partners = arrayToMap(partners, "name");
 		}
 
 		const businessIdentities =
-			wizardContext.partners.get(partnerName)!.content.b2b!
-				.businessIdentities!;
+			wizardContext.partners.get(partnerName)?.content.b2b
+				?.businessIdentities!;
 		const filteredBusinessIdentities =
 			this.filterBusinessIdentitiesForAgreementType(
 				wizardContext.agreementType!,
