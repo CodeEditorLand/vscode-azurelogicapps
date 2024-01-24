@@ -3,9 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import LogicAppsManagementClient from "azure-arm-logic";
-import { Workflow, WorkflowRun } from "azure-arm-logic/lib/models";
-import { IAzureParentTreeItem, IAzureTreeItem } from "vscode-azureextensionui";
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type { Workflow, WorkflowRun } from "azure-arm-logic/lib/models";
+import type {
+	IAzureParentTreeItem,
+	IAzureTreeItem,
+} from "vscode-azureextensionui";
 import * as nodeUtils from "../../utils/nodeUtils";
 import { LogicAppRunActionsTreeItem } from "./LogicAppRunActionsTreeItem";
 

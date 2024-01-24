@@ -9,7 +9,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class ServiceConnectionNameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(

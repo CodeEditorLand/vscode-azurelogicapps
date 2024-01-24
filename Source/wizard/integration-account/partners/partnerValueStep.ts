@@ -9,7 +9,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { localize } from "../../../localize";
-import { IPartnerWizardContext } from "./createPartnerWizard";
+import type { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerValueStep extends AzureWizardPromptStep<IPartnerWizardContext> {
 	public async prompt(

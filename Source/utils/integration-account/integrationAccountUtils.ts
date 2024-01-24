@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IntegrationAccount } from "azure-arm-logic/lib/models";
+import type { IntegrationAccount } from "azure-arm-logic/lib/models";
 
 export enum IntegrationAccountSku {
 	Free = "Free",

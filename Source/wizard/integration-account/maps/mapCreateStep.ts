@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountMap } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountMap } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
@@ -14,7 +14,7 @@ import {
 	MapType,
 	createNewMap,
 } from "../../../utils/integration-account/mapUtils";
-import { IMapWizardContext } from "./createMapWizard";
+import type { IMapWizardContext } from "./createMapWizard";
 
 export class MapCreateStep extends AzureWizardExecuteStep<IMapWizardContext> {
 	public async execute(

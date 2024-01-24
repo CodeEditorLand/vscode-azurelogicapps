@@ -3,15 +3,21 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
-import LogicAppsManagementClient from "azure-arm-logic";
-import { Sku, Workflow } from "azure-arm-logic/lib/models";
+import * as path from "node:path";
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type { Sku, Workflow } from "azure-arm-logic/lib/models";
 import * as fse from "fs-extra";
-import { IAzureParentTreeItem, IAzureTreeItem } from "vscode-azureextensionui";
+import type {
+	IAzureParentTreeItem,
+	IAzureTreeItem,
+} from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { Callbacks, getCallbacks } from "../../utils/logic-app/callbackUtils";
 import {
-	ConnectionReferences,
+	type Callbacks,
+	getCallbacks,
+} from "../../utils/logic-app/callbackUtils";
+import {
+	type ConnectionReferences,
 	getConnectionReferencesForLogicApp,
 } from "../../utils/logic-app/connectionReferenceUtils";
 import {

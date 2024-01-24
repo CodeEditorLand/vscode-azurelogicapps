@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccount } from "azure-arm-logic/lib/models";
+import type { IntegrationAccount } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
@@ -14,7 +14,7 @@ import {
 	IntegrationAccountSku,
 	createNewIntegrationAccount,
 } from "../../utils/integration-account/integrationAccountUtils";
-import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
+import type { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
 
 export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegrationAccountWizardContext> {
 	public async execute(

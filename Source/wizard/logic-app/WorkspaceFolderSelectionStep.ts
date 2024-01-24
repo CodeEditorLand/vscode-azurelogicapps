@@ -9,7 +9,7 @@ import {
 } from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { selectWorkspaceFolder } from "../../utils/workspaceUtils";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class WorkspaceFolderSelectionStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(

@@ -4,7 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+import type {
+	AzureTreeDataProvider,
+	IAzureNode,
+} from "vscode-azureextensionui";
 import { ext } from "../../extensionVariables";
 import { localize } from "../../localize";
 import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";

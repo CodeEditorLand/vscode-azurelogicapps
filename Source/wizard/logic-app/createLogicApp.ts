@@ -5,18 +5,18 @@
 
 import {
 	AzureWizard,
-	AzureWizardExecuteStep,
-	AzureWizardPromptStep,
-	IActionContext,
-	IAzureNode,
-	IAzureTreeItem,
-	ILocationWizardContext,
-	IResourceGroupWizardContext,
+	type AzureWizardExecuteStep,
+	type AzureWizardPromptStep,
+	type IActionContext,
+	type IAzureNode,
+	type IAzureTreeItem,
+	type ILocationWizardContext,
+	type IResourceGroupWizardContext,
 	LocationListStep,
 	ResourceGroupCreateStep,
 	ResourceGroupListStep,
 } from "vscode-azureextensionui";
-import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
+import type { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
 import { LogicAppCreateStep } from "./LogicAppCreateStep";
 import { LogicAppNameStep } from "./LogicAppNameStep";
 

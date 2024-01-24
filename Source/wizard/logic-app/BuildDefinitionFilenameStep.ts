@@ -3,14 +3,14 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
+import * as path from "node:path";
 import * as vscode from "vscode";
 import {
 	AzureWizardPromptStep,
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class BuildDefinitionFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(

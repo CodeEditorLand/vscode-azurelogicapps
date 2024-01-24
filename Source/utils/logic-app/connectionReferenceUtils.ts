@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { ServiceClientCredentials } from "ms-rest";
+import type { ServiceClientCredentials } from "ms-rest";
 import * as request from "request-promise-native";
 import { getAuthorization } from "../authorizationUtils";
 

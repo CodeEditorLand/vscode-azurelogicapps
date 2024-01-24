@@ -4,7 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+import type {
+	AzureTreeDataProvider,
+	IAzureNode,
+} from "vscode-azureextensionui";
 import { localize } from "../../localize";
 import { IntegrationAccountTreeItem } from "../../tree/integration-account/IntegrationAccountTreeItem";
 import { openAndShowTextDocument } from "../../utils/commandUtils";

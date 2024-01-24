@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
-import { Workflow } from "azure-arm-logic/lib/models";
+import * as path from "node:path";
+import type { Workflow } from "azure-arm-logic/lib/models";
 import * as fse from "fs-extra";
 import { glob } from "glob";
 import { AzureWizardExecuteStep } from "vscode-azureextensionui";
@@ -13,7 +13,7 @@ import {
 	generateTemplateParameterDefinition,
 	generateTemplateResource,
 } from "../../utils/logic-app/templateUtils";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class GenerateBuildDefinitionStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
 	public async execute(

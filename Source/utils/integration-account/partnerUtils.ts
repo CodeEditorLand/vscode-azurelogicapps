@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
-import { ServiceClientCredentials } from "ms-rest";
+import type { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
+import type { ServiceClientCredentials } from "ms-rest";
 import { addExtensionUserAgent } from "vscode-azureextensionui";
 
 export enum PartnerType {

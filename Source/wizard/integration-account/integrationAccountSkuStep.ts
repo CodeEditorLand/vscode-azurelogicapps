@@ -9,7 +9,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { IntegrationAccountSku } from "../../utils/integration-account/integrationAccountUtils";
-import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
+import type { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
 
 export class IntegrationAccountSkuStep extends AzureWizardPromptStep<IIntegrationAccountWizardContext> {
 	public async prompt(

@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccount } from "azure-arm-logic/lib/models";
+import type { IntegrationAccount } from "azure-arm-logic/lib/models";
 import {
-	IAzureNode,
-	IAzureTreeItem,
-	IChildProvider,
+	type IAzureNode,
+	type IAzureTreeItem,
+	type IChildProvider,
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";

@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { WorkflowRunAction } from "azure-arm-logic/lib/models";
-import { IAzureTreeItem } from "vscode-azureextensionui";
+import type { WorkflowRunAction } from "azure-arm-logic/lib/models";
+import type { IAzureTreeItem } from "vscode-azureextensionui";
 import * as nodeUtils from "../../utils/nodeUtils";
 
 enum LogicAppRunStatus {

@@ -4,7 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+import type {
+	AzureTreeDataProvider,
+	IAzureNode,
+} from "vscode-azureextensionui";
 import { LogicAppRunTreeItem } from "../../tree/logic-app/LogicAppRunTreeItem";
 import { getAuthorization } from "../../utils/authorizationUtils";
 import { getWebviewContent } from "../../utils/logic-app/monitoringViewUtils";

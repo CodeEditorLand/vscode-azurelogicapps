@@ -5,18 +5,18 @@
 
 import {
 	AzureWizard,
-	AzureWizardExecuteStep,
-	AzureWizardPromptStep,
-	IActionContext,
-	IAzureNode,
-	IAzureTreeItem,
-	ILocationWizardContext,
-	IResourceGroupWizardContext,
+	type AzureWizardExecuteStep,
+	type AzureWizardPromptStep,
+	type IActionContext,
+	type IAzureNode,
+	type IAzureTreeItem,
+	type ILocationWizardContext,
+	type IResourceGroupWizardContext,
 	LocationListStep,
 	ResourceGroupCreateStep,
 	ResourceGroupListStep,
 } from "vscode-azureextensionui";
-import { IntegrationAccountTreeItem } from "../../tree/integration-account/IntegrationAccountTreeItem";
+import type { IntegrationAccountTreeItem } from "../../tree/integration-account/IntegrationAccountTreeItem";
 import { IntegrationAccountCreateStep } from "./integrationAccountCreateStep";
 import { IntegrationAccountNameStep } from "./integrationAccountNameStep";
 import { IntegrationAccountSkuStep } from "./integrationAccountSkuStep";

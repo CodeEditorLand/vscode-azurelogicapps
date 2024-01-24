@@ -9,7 +9,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { MapType } from "../../../utils/integration-account/mapUtils";
-import { IMapWizardContext } from "./createMapWizard";
+import type { IMapWizardContext } from "./createMapWizard";
 
 export class MapTypeStep extends AzureWizardPromptStep<IMapWizardContext> {
 	public async prompt(

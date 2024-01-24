@@ -3,14 +3,14 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as fs from "fs";
+import * as fs from "node:fs";
 import * as vscode from "vscode";
 import {
 	AzureTreeDataProvider,
 	AzureUserInput,
-	IActionContext,
-	IAzureNode,
-	IAzureParentNode,
+	type IActionContext,
+	type IAzureNode,
+	type IAzureParentNode,
 	callWithTelemetryAndErrorHandling,
 	registerCommand,
 	registerEvent,

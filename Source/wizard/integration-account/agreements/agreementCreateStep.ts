@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountAgreement } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountAgreement } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
@@ -14,7 +14,7 @@ import {
 	AgreementType,
 	createNewAgreement,
 } from "../../../utils/integration-account/agreementUtils";
-import { IAgreementWizardContext } from "./createAgreementWizard";
+import type { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class AgreementCreateStep extends AzureWizardExecuteStep<IAgreementWizardContext> {
 	public async execute(

@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { Sku } from "azure-arm-logic/lib/models";
+import type { Sku } from "azure-arm-logic/lib/models";
 import { Constants } from "../../constants";
-import { Callbacks } from "./callbackUtils";
-import { ConnectionReferences } from "./connectionReferenceUtils";
+import type { Callbacks } from "./callbackUtils";
+import type { ConnectionReferences } from "./connectionReferenceUtils";
 
 interface IGetWebviewContentOptions {
 	authorization: string;

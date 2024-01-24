@@ -9,7 +9,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { AgreementType } from "../../../utils/integration-account/agreementUtils";
-import { IAgreementWizardContext } from "./createAgreementWizard";
+import type { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class AgreementTypeStep extends AzureWizardPromptStep<IAgreementWizardContext> {
 	public async prompt(

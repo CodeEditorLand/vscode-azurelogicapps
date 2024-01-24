@@ -5,9 +5,9 @@
 
 import {
 	AzureWizard,
-	AzureWizardExecuteStep,
-	AzureWizardPromptStep,
-	IActionContext,
+	type AzureWizardExecuteStep,
+	type AzureWizardPromptStep,
+	type IActionContext,
 } from "vscode-azureextensionui";
 import { BuildDefinitionCreateStep } from "./BuildDefinitionCreateStep";
 import { BuildDefinitionFilenameStep } from "./BuildDefinitionFilenameStep";

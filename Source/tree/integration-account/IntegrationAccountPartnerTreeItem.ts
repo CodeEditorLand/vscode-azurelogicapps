@@ -3,12 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import LogicAppsManagementClient from "azure-arm-logic";
-import {
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type {
 	IntegrationAccountPartner,
 	PartnerContent,
 } from "azure-arm-logic/lib/models";
-import { IAzureTreeItem } from "vscode-azureextensionui";
+import type { IAzureTreeItem } from "vscode-azureextensionui";
 import { PartnerType } from "../../utils/integration-account/partnerUtils";
 import { getIconPath } from "../../utils/nodeUtils";
 

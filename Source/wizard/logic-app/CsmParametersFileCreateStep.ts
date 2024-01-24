@@ -6,7 +6,7 @@
 import * as fse from "fs-extra";
 import { AzureWizardExecuteStep } from "vscode-azureextensionui";
 import { generateDeploymentTemplateParameters } from "../../utils/logic-app/templateUtils";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class CsmParametersFileCreateStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
 	public async execute(

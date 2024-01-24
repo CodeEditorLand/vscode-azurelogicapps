@@ -3,22 +3,22 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import {
+import type {
 	BusinessIdentity,
 	IntegrationAccount,
 	IntegrationAccountPartner,
 } from "azure-arm-logic/lib/models";
 import {
 	AzureWizard,
-	AzureWizardExecuteStep,
-	AzureWizardPromptStep,
-	IActionContext,
-	IAzureNode,
-	IAzureTreeItem,
-	ILocationWizardContext,
-	IResourceGroupWizardContext,
+	type AzureWizardExecuteStep,
+	type AzureWizardPromptStep,
+	type IActionContext,
+	type IAzureNode,
+	type IAzureTreeItem,
+	type ILocationWizardContext,
+	type IResourceGroupWizardContext,
 } from "vscode-azureextensionui";
-import { IntegrationAccountAgreementTreeItem } from "../../../tree/integration-account/IntegrationAccountAgreementTreeItem";
+import type { IntegrationAccountAgreementTreeItem } from "../../../tree/integration-account/IntegrationAccountAgreementTreeItem";
 import { AgreementCreateStep } from "./agreementCreateStep";
 import { AgreementNameStep } from "./agreementNameStep";
 import { AgreementTypeStep } from "./agreementTypeStep";

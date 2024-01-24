@@ -3,18 +3,18 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IntegrationAccount } from "azure-arm-logic/lib/models";
+import type { IntegrationAccount } from "azure-arm-logic/lib/models";
 import {
 	AzureWizard,
-	AzureWizardExecuteStep,
-	AzureWizardPromptStep,
-	IActionContext,
-	IAzureNode,
-	IAzureTreeItem,
-	ILocationWizardContext,
-	IResourceGroupWizardContext,
+	type AzureWizardExecuteStep,
+	type AzureWizardPromptStep,
+	type IActionContext,
+	type IAzureNode,
+	type IAzureTreeItem,
+	type ILocationWizardContext,
+	type IResourceGroupWizardContext,
 } from "vscode-azureextensionui";
-import { IntegrationAccountSchemaTreeItem } from "../../../tree/integration-account/IntegrationAccountSchemaTreeItem";
+import type { IntegrationAccountSchemaTreeItem } from "../../../tree/integration-account/IntegrationAccountSchemaTreeItem";
 import { SchemaCreateStep } from "./schemaCreateStep";
 import { SchemaNameStep } from "./schemaNameStep";
 

@@ -3,14 +3,14 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { BusinessIdentity } from "azure-arm-logic/lib/models";
+import type { BusinessIdentity } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import { UserCancelledError } from "vscode-azureextensionui";
 import { Constants } from "../../../constants";
 import { AgreementType } from "../../../utils/integration-account/agreementUtils";
 import { getAllPartners } from "../../../utils/integration-account/partnerUtils";
 import { arrayToMap } from "../../../utils/nodeUtils";
-import { IAgreementWizardContext } from "./createAgreementWizard";
+import type { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class IdentityStep {
 	public async prompt(

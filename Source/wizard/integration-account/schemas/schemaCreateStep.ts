@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountSchema } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountSchema } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { IntegrationAccountSchemaTreeItem } from "../../../tree/integration-account/IntegrationAccountSchemaTreeItem";
 import { createNewSchema } from "../../../utils/integration-account/schemaUtils";
-import { ISchemaWizardContext } from "./createSchemaWizard";
+import type { ISchemaWizardContext } from "./createSchemaWizard";
 
 export class SchemaCreateStep extends AzureWizardExecuteStep<ISchemaWizardContext> {
 	public async execute(

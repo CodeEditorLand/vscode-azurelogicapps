@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { IntegrationAccountPartnerTreeItem } from "../../../tree/integration-account/IntegrationAccountPartnerTreeItem";
 import { createNewPartner } from "../../../utils/integration-account/partnerUtils";
-import { IPartnerWizardContext } from "./createPartnerWizard";
+import type { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerCreateStep extends AzureWizardExecuteStep<IPartnerWizardContext> {
 	public async execute(

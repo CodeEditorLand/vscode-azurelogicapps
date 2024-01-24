@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { Workflow } from "azure-arm-logic/lib/models";
+import type { Workflow } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizardPromptStep,
@@ -13,7 +13,7 @@ import {
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IAzureLogicAppWizardContext } from "./createLogicApp";
+import type { IAzureLogicAppWizardContext } from "./createLogicApp";
 
 export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizardContext> {
 	public async prompt(

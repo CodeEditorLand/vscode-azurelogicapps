@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { BaseEditor, IAzureNode } from "vscode-azureextensionui";
+import { BaseEditor, type IAzureNode } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IntegrationAccountSchemaTreeItem } from "../../tree/integration-account/IntegrationAccountSchemaTreeItem";
+import type { IntegrationAccountSchemaTreeItem } from "../../tree/integration-account/IntegrationAccountSchemaTreeItem";
 
 export class IntegrationAccountSchemaEditor extends BaseEditor<
 	IAzureNode<IntegrationAccountSchemaTreeItem>

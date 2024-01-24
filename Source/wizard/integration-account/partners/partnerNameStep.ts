@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountPartner } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizardPromptStep,
@@ -11,7 +11,7 @@ import {
 } from "vscode-azureextensionui";
 import { localize } from "../../../localize";
 import { getAllPartners } from "../../../utils/integration-account/partnerUtils";
-import { IPartnerWizardContext } from "./createPartnerWizard";
+import type { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerNameStep extends AzureWizardPromptStep<IPartnerWizardContext> {
 	public async prompt(

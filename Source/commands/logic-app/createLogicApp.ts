@@ -5,9 +5,9 @@
 
 import {
 	AzureTreeDataProvider,
-	BaseEditor,
-	IAzureNode,
-	IAzureParentNode,
+	type BaseEditor,
+	type IAzureNode,
+	type IAzureParentNode,
 } from "vscode-azureextensionui";
 
 export async function createLogicApp(

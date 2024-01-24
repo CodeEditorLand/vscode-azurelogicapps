@@ -7,7 +7,7 @@ import * as vscode from "vscode";
 import { UserCancelledError } from "vscode-azureextensionui";
 import { getAllPartners } from "../../../utils/integration-account/partnerUtils";
 import { arrayToMap } from "../../../utils/nodeUtils";
-import { IAgreementWizardContext } from "./createAgreementWizard";
+import type { IAgreementWizardContext } from "./createAgreementWizard";
 
 export class PartnerStep {
 	public async prompt(

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountMap } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountMap } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizardPromptStep,
@@ -12,7 +12,7 @@ import {
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../../localize";
-import { IMapWizardContext } from "./createMapWizard";
+import type { IMapWizardContext } from "./createMapWizard";
 
 export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 	public async prompt(

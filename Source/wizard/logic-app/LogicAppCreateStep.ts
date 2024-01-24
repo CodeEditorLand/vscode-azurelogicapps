@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { Workflow } from "azure-arm-logic/lib/models";
+import type { Workflow } from "azure-arm-logic/lib/models";
 import {
 	AzureWizardExecuteStep,
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { LogicAppTreeItem } from "../../tree/logic-app/LogicAppTreeItem";
-import { IAzureLogicAppWizardContext } from "./createLogicApp";
+import type { IAzureLogicAppWizardContext } from "./createLogicApp";
 
 export class LogicAppCreateStep extends AzureWizardExecuteStep<IAzureLogicAppWizardContext> {
 	public async execute(

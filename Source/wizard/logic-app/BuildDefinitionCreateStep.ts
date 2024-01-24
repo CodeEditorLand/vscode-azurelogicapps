@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "path";
+import * as path from "node:path";
 import * as fse from "fs-extra";
 import { AzureWizardExecuteStep } from "vscode-azureextensionui";
 import { generateBuildDefinition } from "../../utils/logic-app/templateUtils";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class BuildDefinitionCreateStep extends AzureWizardExecuteStep<IBuildDefinitionWizardContext> {
 	public async execute(

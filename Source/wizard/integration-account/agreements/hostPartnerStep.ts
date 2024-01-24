@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { AzureWizardPromptStep } from "vscode-azureextensionui";
-import { IAgreementWizardContext } from "./createAgreementWizard";
+import type { IAgreementWizardContext } from "./createAgreementWizard";
 import { PartnerStep } from "./partnerStep";
 
 export class HostPartnerStep extends AzureWizardPromptStep<IAgreementWizardContext> {

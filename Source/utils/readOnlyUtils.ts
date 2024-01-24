@@ -10,12 +10,12 @@
     call sites to the "genuine" implementation.
 */
 
-import { createHash } from "crypto";
-import { isNullOrUndefined } from "util";
+import { createHash } from "node:crypto";
+import { isNullOrUndefined } from "node:util";
 import {
-	Event,
+	type Event,
 	EventEmitter,
-	TextDocumentContentProvider,
+	type TextDocumentContentProvider,
 	Uri,
 	window,
 	workspace,

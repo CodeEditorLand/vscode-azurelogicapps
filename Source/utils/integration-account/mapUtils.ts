@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IntegrationAccountMap } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountMap } from "azure-arm-logic/lib/models";
 import { Constants } from "../../constants";
 
 export enum MapType {

@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { BaseEditor, IAzureNode } from "vscode-azureextensionui";
+import { BaseEditor, type IAzureNode } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IntegrationAccountMapTreeItem } from "../../tree/integration-account/IntegrationAccountMapTreeItem";
+import type { IntegrationAccountMapTreeItem } from "../../tree/integration-account/IntegrationAccountMapTreeItem";
 import { MapType } from "../../utils/integration-account/mapUtils";
 
 export class IntegrationAccountMapEditor extends BaseEditor<

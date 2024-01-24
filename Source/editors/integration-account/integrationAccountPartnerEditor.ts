@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { PartnerContent } from "azure-arm-logic/lib/models";
+import type { PartnerContent } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
-import { BaseEditor, IAzureNode } from "vscode-azureextensionui";
+import { BaseEditor, type IAzureNode } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IntegrationAccountPartnerTreeItem } from "../../tree/integration-account/IntegrationAccountPartnerTreeItem";
+import type { IntegrationAccountPartnerTreeItem } from "../../tree/integration-account/IntegrationAccountPartnerTreeItem";
 
 export class IntegrationAccountPartnerEditor extends BaseEditor<
 	IAzureNode<IntegrationAccountPartnerTreeItem>

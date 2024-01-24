@@ -3,15 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import LogicAppsManagementClient from "azure-arm-logic";
-import { Workflow, WorkflowTrigger } from "azure-arm-logic/lib/models";
-import {
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type { Workflow, WorkflowTrigger } from "azure-arm-logic/lib/models";
+import type {
 	IAzureNode,
 	IAzureParentTreeItem,
 	IAzureTreeItem,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IThemedIconPath, getThemedIconPath } from "../../utils/nodeUtils";
+import { type IThemedIconPath, getThemedIconPath } from "../../utils/nodeUtils";
 import { LogicAppTriggerTreeItem } from "./LogicAppTriggerTreeItem";
 
 export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {

@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IntegrationAccountSchema } from "azure-arm-logic/lib/models";
+import type { IntegrationAccountSchema } from "azure-arm-logic/lib/models";
 import { Constants } from "../../constants";
 
 export enum SchemaType {

@@ -3,7 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+import type {
+	AzureTreeDataProvider,
+	IAzureNode,
+} from "vscode-azureextensionui";
 import { LogicAppTriggerTreeItem } from "../../tree/logic-app/LogicAppTriggerTreeItem";
 import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 

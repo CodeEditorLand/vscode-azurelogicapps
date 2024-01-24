@@ -8,7 +8,7 @@ import {
 	UserCancelledError,
 } from "vscode-azureextensionui";
 import { askForLocation } from "../../utils/locationUtils";
-import { IBuildDefinitionWizardContext } from "./createBuildDefinition";
+import type { IBuildDefinitionWizardContext } from "./createBuildDefinition";
 
 export class LocationListStep extends AzureWizardPromptStep<IBuildDefinitionWizardContext> {
 	public async prompt(

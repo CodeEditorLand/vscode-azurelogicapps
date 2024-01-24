@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import {
+import type {
 	AzureTreeDataProvider,
 	IAzureNode,
 	IAzureParentNode,

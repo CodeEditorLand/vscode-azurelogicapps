@@ -3,10 +3,10 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccountMap } from "azure-arm-logic/lib/models";
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type { IntegrationAccountMap } from "azure-arm-logic/lib/models";
 import * as request from "request-promise-native";
-import { IAzureTreeItem } from "vscode-azureextensionui";
+import type { IAzureTreeItem } from "vscode-azureextensionui";
 import {
 	MapType,
 	getContentType,

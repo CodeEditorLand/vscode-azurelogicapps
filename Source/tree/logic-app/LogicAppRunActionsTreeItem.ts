@@ -3,13 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import LogicAppsManagementClient from "azure-arm-logic";
-import {
+import type LogicAppsManagementClient from "azure-arm-logic";
+import type {
 	Workflow,
 	WorkflowRun,
 	WorkflowRunAction,
 } from "azure-arm-logic/lib/models";
-import {
+import type {
 	IAzureNode,
 	IAzureParentTreeItem,
 	IAzureTreeItem,

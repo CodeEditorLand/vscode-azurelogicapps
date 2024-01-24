@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { ServiceClientCredentials, WebResource } from "ms-rest";
+import { type ServiceClientCredentials, WebResource } from "ms-rest";
 
 export interface CredentialsMetadata {
 	domain: string;
@@ -15,16 +15,13 @@ export function getAuthorization(
 ): Promise<string> {
 	return new Promise((resolve, reject) => {
 		const webResource = new WebResource();
-		credentials.signRequest(
-			webResource,
-			(err: Error | undefined): void => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve(webResource.headers.authorization);
-				}
-			},
-		);
+		credentials.signRequest(webResource, (err: Error | undefined): void => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(webResource.headers.authorization);
+			}
+		});
 	});
 }
 

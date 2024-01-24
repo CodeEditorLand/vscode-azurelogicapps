@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import LogicAppsManagementClient from "azure-arm-logic";
-import { IntegrationAccount } from "azure-arm-logic/lib/models";
+import type { IntegrationAccount } from "azure-arm-logic/lib/models";
 import * as vscode from "vscode";
 import {
 	AzureWizardPromptStep,
@@ -13,7 +13,7 @@ import {
 	addExtensionUserAgent,
 } from "vscode-azureextensionui";
 import { localize } from "../../localize";
-import { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
+import type { IIntegrationAccountWizardContext } from "./createIntegrationAccountWizard";
 
 export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrationAccountWizardContext> {
 	public async prompt(
