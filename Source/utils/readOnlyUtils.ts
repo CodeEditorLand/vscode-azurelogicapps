@@ -10,8 +10,8 @@
     call sites to the "genuine" implementation.
 */
 
-import { createHash } from "node:crypto";
-import { isNullOrUndefined } from "node:util";
+import { createHash } from "crypto";
+import { isNullOrUndefined } from "util";
 import {
 	type Event,
 	EventEmitter,

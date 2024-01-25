@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "node:path";
+import * as path from "path";
 import * as vscode from "vscode";
 import type { IAzureUserInput } from "vscode-azureextensionui";
 import { localize } from "../localize";

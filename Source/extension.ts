@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as fs from "node:fs";
+import * as fs from "fs";
 import * as vscode from "vscode";
 import {
 	AzureTreeDataProvider,

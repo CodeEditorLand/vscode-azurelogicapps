@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as path from "node:path";
+import * as path from "path";
 import type LogicAppsManagementClient from "azure-arm-logic";
 import type { Sku, Workflow } from "azure-arm-logic/lib/models";
 import * as fse from "fs-extra";
