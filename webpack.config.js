@@ -5,45 +5,47 @@
 
 // @ts-check
 
-const path = require("node:path");
+"use strict";
+
+const path = require("path");
 
 /** @type {import("webpack").Configuration} */
 const config = {
-	devtool: "source-map",
-	entry: "./src/extension.ts",
-	externals: {
-		"azure-arm-logic": "commonjs azure-arm-logic",
-		"azure-arm-resource": "commonjs azure-arm-resource",
-		"fs-extra": "commonjs fs-extra",
-		glob: "commonjs glob",
-		"js-yaml": "commonjs js-yaml",
-		"ms-rest": "commonjs ms-rest",
-		request: "commonjs request",
-		"request-promise-native": "commonjs request-promise-native",
-		vscode: "commonjs vscode",
-		"vscode-azureextensionui": "commonjs vscode-azureextensionui",
-		"vscode-extension-telemetry": "commonjs vscode-extension-telemetry",
-		"vscode-nls": "commonjs vscode-nls",
-	},
-	module: {
-		rules: [
-			{
-				test: /\.ts$/,
-				exclude: /node_modules/,
-				loader: "ts-loader",
-			},
-		],
-	},
-	output: {
-		devtoolModuleFilenameTemplate: "../[resource-path]",
-		filename: "extension.js",
-		libraryTarget: "commonjs2",
-		path: path.resolve(__dirname, "out"),
-	},
-	resolve: {
-		extensions: [".ts", ".js"],
-	},
-	target: "node",
+    devtool: "source-map",
+    entry: "./src/extension.ts",
+    externals: {
+        "azure-arm-logic": "commonjs azure-arm-logic",
+        "azure-arm-resource": "commonjs azure-arm-resource",
+        "fs-extra": "commonjs fs-extra",
+        "glob": "commonjs glob",
+        "js-yaml": "commonjs js-yaml",
+        "ms-rest": "commonjs ms-rest",
+        "request": "commonjs request",
+        "request-promise-native": "commonjs request-promise-native",
+        "vscode": "commonjs vscode",
+        "vscode-azureextensionui": "commonjs vscode-azureextensionui",
+        "vscode-extension-telemetry": "commonjs vscode-extension-telemetry",
+        "vscode-nls": "commonjs vscode-nls"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: "ts-loader"
+            }
+        ]
+    },
+    output: {
+        devtoolModuleFilenameTemplate: "../[resource-path]",
+        filename: "extension.js",
+        libraryTarget: "commonjs2",
+        path: path.resolve(__dirname, "out")
+    },
+    resolve: {
+        extensions: [".ts", ".js"]
+    },
+    target: "node"
 };
 
 module.exports = config;
