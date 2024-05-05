@@ -4,28 +4,29 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "%extension.description%",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandAzureLogicapps#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandAzureLogicapps/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandAzureLogicapps.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"main": "./out/extension",
 	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
 		"compile": "webpack --mode development",
-		"package": "vsce package",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run webpack-prod",
-		"watch": "webpack --mode development --watch",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"webpack-dev": "webpack --mode development --watch",
 		"webpack-prod": "webpack --mode production"
 	},
@@ -686,33 +687,21 @@
 	},
 	"activationEvents": [],
 	"dependencies": {
-		"azure-arm-logic": "^6.0.0",
-		"azure-arm-resource": "^3.0.0-preview",
-		"fs-extra": "^11.1.1",
-		"glob": "^10.3.3",
-		"js-yaml": "^4.1.0",
-		"lodash": "^4.17.21",
-		"request": "^2.88.2",
-		"request-promise-native": "^1.0.9",
-		"vscode-azureextensionui": "0.16.6",
-		"vscode-extension-telemetry": "0.0.18",
-		"vscode-nls": "^5.2.0"
+		"fs-extra": "11.2.0",
+		"glob": "10.3.12",
+		"js-yaml": "4.1.0",
+		"lodash": "4.17.21",
+		"request": "2.88.2",
+		"request-promise-native": "1.0.9"
 	},
 	"devDependencies": {
-		"@types/fs-extra": "^11.0.1",
-		"@types/js-yaml": "^4.0.5",
-		"@types/mocha": "^10.0.1",
-		"@types/node": "^16.18.38",
-		"@types/request-promise-native": "^1.0.18",
-		"@types/vscode": "^1.74.0",
-		"@vscode/test-electron": "^2.3.3",
-		"@vscode/vsce": "^2.19.0",
-		"mocha": "^10.2.0",
-		"ts-loader": "^9.4.4",
-		"typescript": "^5.1.6",
-		"typescript-esbuild": "0.4.5",
-		"webpack": "^5.88.1",
-		"webpack-cli": "^5.1.4"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/fs-extra": "11.0.4",
+		"@types/js-yaml": "4.0.9",
+		"@types/node": "20.12.7",
+		"@types/request-promise-native": "1.0.21",
+		"ts-loader": "9.5.1"
 	},
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
