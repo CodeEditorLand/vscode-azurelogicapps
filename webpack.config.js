@@ -9,7 +9,7 @@
 
 const path = require("path");
 
-/** @type {import("webpack").Configuration} */
+
 const config = {
     devtool: "source-map",
     entry: "./src/extension.ts",
