@@ -665,19 +665,19 @@
 	},
 	"activationEvents": [],
 	"dependencies": {
-		"fs-extra": "^11.2.0",
-		"glob": "^10.4.2",
-		"js-yaml": "^4.1.0",
-		"lodash": "^4.17.21",
-		"request": "^2.88.2",
-		"request-promise-native": "^1.0.9"
+		"fs-extra": "11.2.0",
+		"glob": "10.4.2",
+		"js-yaml": "4.1.0",
+		"lodash": "4.17.21",
+		"request": "2.88.2",
+		"request-promise-native": "1.0.9"
 	},
 	"devDependencies": {
-		"@types/fs-extra": "^11.0.4",
-		"@types/js-yaml": "^4.0.9",
-		"@types/node": "^20.14.8",
-		"@types/request-promise-native": "^1.0.21",
-		"ts-loader": "^9.5.1"
+		"@types/fs-extra": "11.0.4",
+		"@types/js-yaml": "4.0.9",
+		"@types/node": "20.14.8",
+		"@types/request-promise-native": "1.0.21",
+		"ts-loader": "9.5.1"
 	},
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
