@@ -1,11 +1,12 @@
 {
-	"activationEvents": [],
-	"aiKey": "b6385546-3be0-489c-a298-baccd6c152fb",
-	"capabilities": {
-		"untrustedWorkspaces": {
-			"supported": true
-		},
-		"virtualWorkspaces": false
+	"name": "vscode-logicapps",
+	"displayName": "Azure Logic Apps (Consumption)",
+	"description": "%extension.description%",
+	"main": "./out/extension",
+	"scripts": {
+		"compile": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"webpack-prod": "webpack --mode production"
 	},
 	"contributes": {
 		"commands": [
@@ -662,6 +663,7 @@
 			]
 		}
 	},
+	"activationEvents": [],
 	"dependencies": {
 		"fs-extra": "11.2.0",
 		"glob": "10.4.2",
@@ -670,7 +672,6 @@
 		"request": "2.88.2",
 		"request-promise-native": "1.0.9"
 	},
-	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/fs-extra": "11.0.4",
 		"@types/js-yaml": "4.0.9",
@@ -678,20 +679,19 @@
 		"@types/request-promise-native": "1.0.21",
 		"ts-loader": "9.5.1"
 	},
-	"displayName": "Azure Logic Apps (Consumption)",
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
 	],
+	"icon": "resources/azLogicApps.png",
 	"galleryBanner": {
 		"color": "#3a3d41",
 		"theme": "dark"
 	},
-	"icon": "resources/azLogicApps.png",
-	"main": "./out/extension",
-	"name": "vscode-logicapps",
-	"scripts": {
-		"compile": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch",
-		"webpack-prod": "webpack --mode production"
+	"aiKey": "b6385546-3be0-489c-a298-baccd6c152fb",
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		},
+		"virtualWorkspaces": false
 	}
 }
