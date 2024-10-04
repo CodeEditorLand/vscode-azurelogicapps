@@ -4,14 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+
 import { LogicAppTriggerTreeItem } from "../../tree/logic-app/LogicAppTriggerTreeItem";
 import { openReadOnlyJson } from "../../utils/readOnlyUtils";
 
-export async function openTriggerInEditor(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker(LogicAppTriggerTreeItem.contextValue);
-    }
+export async function openTriggerInEditor(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode,
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker(LogicAppTriggerTreeItem.contextValue);
+	}
 
-    const content = await (node.treeItem as LogicAppTriggerTreeItem).getData();
-    await openReadOnlyJson(node.id, content);
+	const content = await (node.treeItem as LogicAppTriggerTreeItem).getData();
+	await openReadOnlyJson(node.id, content);
 }

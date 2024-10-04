@@ -4,21 +4,35 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureTreeDataProvider, IAzureNode, IAzureParentNode, IAzureTreeItem } from "vscode-azureextensionui";
+import {
+	AzureTreeDataProvider,
+	IAzureNode,
+	IAzureParentNode,
+	IAzureTreeItem,
+} from "vscode-azureextensionui";
 
-export async function openAndShowTextDocument(content: string, language = "json"): Promise<void> {
-    const document = await vscode.workspace.openTextDocument({
-        content,
-        language
-    });
+export async function openAndShowTextDocument(
+	content: string,
+	language = "json",
+): Promise<void> {
+	const document = await vscode.workspace.openTextDocument({
+		content,
+		language,
+	});
 
-    await vscode.window.showTextDocument(document);
+	await vscode.window.showTextDocument(document);
 }
 
-export async function createChildNode(tree: AzureTreeDataProvider, parentContextValue: string, node?: IAzureParentNode): Promise<IAzureNode<IAzureTreeItem>> {
-    if (!node) {
-        node = await tree.showNodePicker(parentContextValue) as IAzureParentNode;
-    }
+export async function createChildNode(
+	tree: AzureTreeDataProvider,
+	parentContextValue: string,
+	node?: IAzureParentNode,
+): Promise<IAzureNode<IAzureTreeItem>> {
+	if (!node) {
+		node = (await tree.showNodePicker(
+			parentContextValue,
+		)) as IAzureParentNode;
+	}
 
-    return await node.createChild();
+	return await node.createChild();
 }

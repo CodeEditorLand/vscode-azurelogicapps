@@ -6,105 +6,119 @@
 import LogicAppsManagementClient from "azure-arm-logic";
 import { Workflow, WorkflowRun } from "azure-arm-logic/lib/models";
 import { IAzureParentTreeItem, IAzureTreeItem } from "vscode-azureextensionui";
+
 import * as nodeUtils from "../../utils/nodeUtils";
 import { LogicAppRunActionsTreeItem } from "./LogicAppRunActionsTreeItem";
 
 enum LogicAppRunStatus {
-    Aborted = "Aborted",
-    Cancelled = "Cancelled",
-    Failed = "Failed",
-    Running = "Running",
-    Skipped = "Skipped",
-    Succeeded = "Succeeded"
+	Aborted = "Aborted",
+	Cancelled = "Cancelled",
+	Failed = "Failed",
+	Running = "Running",
+	Skipped = "Skipped",
+	Succeeded = "Succeeded",
 }
 
 export class LogicAppRunTreeItem implements IAzureParentTreeItem {
-    public static readonly contextValue = "azLogicAppsWorkflowRun";
-    public readonly contextValue = LogicAppRunTreeItem.contextValue;
-    private readonly logicAppRunActionsTreeItem: LogicAppRunActionsTreeItem;
+	public static readonly contextValue = "azLogicAppsWorkflowRun";
+	public readonly contextValue = LogicAppRunTreeItem.contextValue;
+	private readonly logicAppRunActionsTreeItem: LogicAppRunActionsTreeItem;
 
-    public constructor(private readonly client: LogicAppsManagementClient, private readonly workflow: Workflow, private readonly workflowRun: WorkflowRun) {
-        this.logicAppRunActionsTreeItem = new LogicAppRunActionsTreeItem(client, workflow, workflowRun);
-    }
+	public constructor(
+		private readonly client: LogicAppsManagementClient,
+		private readonly workflow: Workflow,
+		private readonly workflowRun: WorkflowRun,
+	) {
+		this.logicAppRunActionsTreeItem = new LogicAppRunActionsTreeItem(
+			client,
+			workflow,
+			workflowRun,
+		);
+	}
 
-    public get commandId(): string {
-        return "azureLogicApps.openRunInEditor";
-    }
+	public get commandId(): string {
+		return "azureLogicApps.openRunInEditor";
+	}
 
-    public get iconPath(): string {
-        const status = this.workflowRun.status!;
+	public get iconPath(): string {
+		const status = this.workflowRun.status!;
 
-        switch (status) {
-            case LogicAppRunStatus.Aborted:
-            case LogicAppRunStatus.Cancelled:
-            case LogicAppRunStatus.Failed:
-            case LogicAppRunStatus.Running:
-            case LogicAppRunStatus.Skipped:
-            case LogicAppRunStatus.Succeeded:
-                return nodeUtils.getStatusIconPath(status);
+		switch (status) {
+			case LogicAppRunStatus.Aborted:
+			case LogicAppRunStatus.Cancelled:
+			case LogicAppRunStatus.Failed:
+			case LogicAppRunStatus.Running:
+			case LogicAppRunStatus.Skipped:
+			case LogicAppRunStatus.Succeeded:
+				return nodeUtils.getStatusIconPath(status);
 
-            default:
-                return nodeUtils.getStatusIconPath("Unknown");
-        }
-    }
+			default:
+				return nodeUtils.getStatusIconPath("Unknown");
+		}
+	}
 
-    public get historyName(): string {
-        return this.workflowRun.name!;
-    }
+	public get historyName(): string {
+		return this.workflowRun.name!;
+	}
 
-    public get id(): string {
-        return this.workflowRun.id!;
-    }
+	public get id(): string {
+		return this.workflowRun.id!;
+	}
 
-    public get label(): string {
-        return this.workflowRun.name!;
-    }
+	public get label(): string {
+		return this.workflowRun.name!;
+	}
 
-    public get location(): string {
-        return this.workflow.location!;
-    }
+	public get location(): string {
+		return this.workflow.location!;
+	}
 
-    public get resourceGroupName(): string {
-        return this.workflow.id!.split("/").slice(-5, -4)[0];
-    }
+	public get resourceGroupName(): string {
+		return this.workflow.id!.split("/").slice(-5, -4)[0];
+	}
 
-    public get triggerName(): string {
-        return this.workflowRun.trigger!.name!;
-    }
+	public get triggerName(): string {
+		return this.workflowRun.trigger!.name!;
+	}
 
-    public get workflowId(): string {
-        return this.workflow.id!;
-    }
+	public get workflowId(): string {
+		return this.workflow.id!;
+	}
 
-    public get workflowName(): string {
-        return this.workflow.name!;
-    }
+	public get workflowName(): string {
+		return this.workflow.name!;
+	}
 
-    public async getData(): Promise<string> {
-        return JSON.stringify(this.workflowRun, null, 4);
-    }
+	public async getData(): Promise<string> {
+		return JSON.stringify(this.workflowRun, null, 4);
+	}
 
-    public hasMoreChildren(): boolean {
-        return false;
-    }
+	public hasMoreChildren(): boolean {
+		return false;
+	}
 
-    public async loadMoreChildren(): Promise<IAzureTreeItem[]> {
-        return [
-            this.logicAppRunActionsTreeItem
-        ];
-    }
+	public async loadMoreChildren(): Promise<IAzureTreeItem[]> {
+		return [this.logicAppRunActionsTreeItem];
+	}
 
-    public pickTreeItem(expectedContextValue: string): IAzureTreeItem | undefined {
-        switch (expectedContextValue) {
-            case LogicAppRunActionsTreeItem.contextValue:
-                return this.logicAppRunActionsTreeItem;
+	public pickTreeItem(
+		expectedContextValue: string,
+	): IAzureTreeItem | undefined {
+		switch (expectedContextValue) {
+			case LogicAppRunActionsTreeItem.contextValue:
+				return this.logicAppRunActionsTreeItem;
 
-            default:
-                return undefined;
-        }
-    }
+			default:
+				return undefined;
+		}
+	}
 
-    public async resubmit(): Promise<void> {
-        await this.client.workflowTriggerHistories.resubmit(this.resourceGroupName, this.workflowName, this.triggerName, this.historyName);
-    }
+	public async resubmit(): Promise<void> {
+		await this.client.workflowTriggerHistories.resubmit(
+			this.resourceGroupName,
+			this.workflowName,
+			this.triggerName,
+			this.historyName,
+		);
+	}
 }
