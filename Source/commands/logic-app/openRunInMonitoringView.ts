@@ -5,25 +5,51 @@
 
 import * as vscode from "vscode";
 import { AzureTreeDataProvider, IAzureNode } from "vscode-azureextensionui";
+
 import { LogicAppRunTreeItem } from "../../tree/logic-app/LogicAppRunTreeItem";
 import { getAuthorization } from "../../utils/authorizationUtils";
 import { getWebviewContent } from "../../utils/logic-app/monitoringViewUtils";
 
-export async function openRunInMonitoringView(tree: AzureTreeDataProvider, node?: IAzureNode): Promise<void> {
-    if (!node) {
-        node = await tree.showNodePicker(LogicAppRunTreeItem.contextValue);
-    }
+export async function openRunInMonitoringView(
+	tree: AzureTreeDataProvider,
+	node?: IAzureNode,
+): Promise<void> {
+	if (!node) {
+		node = await tree.showNodePicker(LogicAppRunTreeItem.contextValue);
+	}
 
-    const authorization = await getAuthorization(node.credentials);
-    const canvasMode = vscode.workspace.getConfiguration("azureLogicApps").get<boolean>("canvasMode")!;
-    const runNode = node as IAzureNode<LogicAppRunTreeItem>;
-    const { id: runId, label: title, location, resourceGroupName, workflowId } = runNode.treeItem;
-    const { subscriptionId } = runNode;
+	const authorization = await getAuthorization(node.credentials);
+	const canvasMode = vscode.workspace
+		.getConfiguration("azureLogicApps")
+		.get<boolean>("canvasMode")!;
+	const runNode = node as IAzureNode<LogicAppRunTreeItem>;
+	const {
+		id: runId,
+		label: title,
+		location,
+		resourceGroupName,
+		workflowId,
+	} = runNode.treeItem;
+	const { subscriptionId } = runNode;
 
-    const options: vscode.WebviewOptions & vscode.WebviewPanelOptions = {
-        enableScripts: true,
-        retainContextWhenHidden: true
-    };
-    const panel = vscode.window.createWebviewPanel("monitoringView", title, vscode.ViewColumn.Beside, options);
-    panel.webview.html = getWebviewContent({ authorization, canvasMode, location, resourceGroupName, runId, subscriptionId, title, workflowId });
+	const options: vscode.WebviewOptions & vscode.WebviewPanelOptions = {
+		enableScripts: true,
+		retainContextWhenHidden: true,
+	};
+	const panel = vscode.window.createWebviewPanel(
+		"monitoringView",
+		title,
+		vscode.ViewColumn.Beside,
+		options,
+	);
+	panel.webview.html = getWebviewContent({
+		authorization,
+		canvasMode,
+		location,
+		resourceGroupName,
+		runId,
+		subscriptionId,
+		title,
+		workflowId,
+	});
 }

@@ -6,20 +6,29 @@
 import { Constants } from "../../constants";
 
 interface IGetWebviewContentOptions {
-    authorization: string;
-    canvasMode: boolean;
-    location: string;
-    resourceGroupName: string;
-    runId: string;
-    subscriptionId: string;
-    title: string;
-    workflowId: string;
+	authorization: string;
+	canvasMode: boolean;
+	location: string;
+	resourceGroupName: string;
+	runId: string;
+	subscriptionId: string;
+	title: string;
+	workflowId: string;
 }
 
 const version = Constants.DesignerVersion;
 
-export function getWebviewContent({ authorization, canvasMode, location, resourceGroupName, runId, subscriptionId, title, workflowId }: IGetWebviewContentOptions): string {
-    return `<!DOCTYPE html>
+export function getWebviewContent({
+	authorization,
+	canvasMode,
+	location,
+	resourceGroupName,
+	runId,
+	subscriptionId,
+	title,
+	workflowId,
+}: IGetWebviewContentOptions): string {
+	return `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -41,7 +50,9 @@ export function getWebviewContent({ authorization, canvasMode, location, resourc
         .msla-container {
             margin-top: 52px;
         }
-${canvasMode ? `
+${
+	canvasMode
+		? `
         .msla-container {
             max-height: calc(100vh - 52px);
             overflow-x: hidden;
@@ -52,7 +63,9 @@ ${canvasMode ? `
         .msla-panel-container .panel-container .msla-panel-root {
             height: calc(100vh - 45px); /* 52px - 7px negative margin */
         }
-` : ''}
+`
+		: ""
+}
         #app {
             position: fixed;
             top: 0;
@@ -65,10 +78,14 @@ ${canvasMode ? `
 <body>
     <div id="app"></div>
     <div id="monitoring-view" class="msla-container"></div>
-${canvasMode ? `
+${
+	canvasMode
+		? `
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/serverless/dagre.min.js"></script>
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/serverless/jsplumb.min.js"></script>
-` : ''}
+`
+		: ""
+}
     <script src="https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/logicappdesigner/require.min.js"></script>
     <script>
         (global => {
