@@ -4,20 +4,26 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from "vscode";
-import { AzureWizardPromptStep, UserCancelledError } from "vscode-azureextensionui";
+import {
+	AzureWizardPromptStep,
+	UserCancelledError,
+} from "vscode-azureextensionui";
+
 import { Constants } from "../../../constants";
 import { IPartnerWizardContext } from "./createPartnerWizard";
 
 export class PartnerQualifierStep extends AzureWizardPromptStep<IPartnerWizardContext> {
-    public async prompt(wizardContext: IPartnerWizardContext): Promise<IPartnerWizardContext> {
-        const qualifiers = Array.from(Constants.Qualifier.keys());
-        const qualifier = await vscode.window.showQuickPick(qualifiers);
+	public async prompt(
+		wizardContext: IPartnerWizardContext,
+	): Promise<IPartnerWizardContext> {
+		const qualifiers = Array.from(Constants.Qualifier.keys());
+		const qualifier = await vscode.window.showQuickPick(qualifiers);
 
-        if (qualifier) {
-            wizardContext.partnerQualifier = Constants.Qualifier.get(qualifier);
-            return wizardContext;
-        }
+		if (qualifier) {
+			wizardContext.partnerQualifier = Constants.Qualifier.get(qualifier);
+			return wizardContext;
+		}
 
-        throw new UserCancelledError();
-    }
+		throw new UserCancelledError();
+	}
 }

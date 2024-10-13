@@ -4,16 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { AzureWizardPromptStep } from "vscode-azureextensionui";
+
 import { IAgreementWizardContext } from "./createAgreementWizard";
 import { IdentityStep } from "./identityStep";
 
 export class GuestIdentityStep extends AzureWizardPromptStep<IAgreementWizardContext> {
-    public async prompt(wizardContext: IAgreementWizardContext): Promise<IAgreementWizardContext> {
-        const identityStep = new IdentityStep();
-        await identityStep.prompt(wizardContext, wizardContext.guestPartner!).then((result) => {
-            wizardContext.guestIdentity = result;
-        });
+	public async prompt(
+		wizardContext: IAgreementWizardContext,
+	): Promise<IAgreementWizardContext> {
+		const identityStep = new IdentityStep();
+		await identityStep
+			.prompt(wizardContext, wizardContext.guestPartner!)
+			.then((result) => {
+				wizardContext.guestIdentity = result;
+			});
 
-        return wizardContext;
-    }
+		return wizardContext;
+	}
 }
