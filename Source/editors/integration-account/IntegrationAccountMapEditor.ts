@@ -36,6 +36,7 @@ export class IntegrationAccountMapEditor extends BaseEditor<
 		node: IAzureNode<IntegrationAccountMapTreeItem>,
 	): Promise<string> {
 		const { label } = node.treeItem;
+
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Map in your integration account.",

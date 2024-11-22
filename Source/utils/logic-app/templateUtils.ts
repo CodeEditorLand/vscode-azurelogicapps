@@ -110,10 +110,13 @@ export function generateTemplate(workflow: Workflow) {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function generateTemplateParameter(workflow: Workflow) {
 	const value = normalizeResourceName(workflow.name!);
+
 	const nameParameter = normalizeParameterName(
 		`workflows_${workflow.name}_name`,
 	);
+
 	const parameters = { ...workflow.definition.parameters };
+
 	const parametersValue = { ...workflow.parameters };
 
 	const workflowNameParameters = {
@@ -143,10 +146,13 @@ export function generateTemplateParameter(workflow: Workflow) {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function generateTemplateParameterDefinition(workflow: Workflow) {
 	const defaultValue = normalizeResourceName(workflow.name!);
+
 	const nameParameter = normalizeParameterName(
 		`workflows_${workflow.name}_name`,
 	);
+
 	const parameters = { ...workflow.definition.parameters };
+
 	const parametersValue = { ...workflow.parameters };
 
 	const workflowNameParameters = {
@@ -183,7 +189,9 @@ export function generateTemplateParameterDefinition(workflow: Workflow) {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function generateTemplateResource(workflow: Workflow) {
 	const { definition, location, name } = workflow;
+
 	const nameParameter = normalizeParameterName(`workflows_${name!}_name`);
+
 	const parameters = { ...workflow.definition.parameters };
 
 	for (const key of Object.keys(parameters)) {

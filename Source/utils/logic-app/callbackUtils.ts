@@ -42,13 +42,17 @@ export async function getCallbacks(
 		resourceGroupName,
 		workflowName,
 	);
+
 	const hasCallbackFn = hasCallback(definition);
+
 	const triggersWithCallbacks = triggers.filter((trigger) =>
 		hasCallbackFn(trigger.name!),
 	);
+
 	const callbackUrls: ICallbackUrlAndTriggerName[] = await Promise.all(
 		triggersWithCallbacks.map(async (trigger) => {
 			const triggerName = trigger.name!;
+
 			const callbackUrl = await client.workflowTriggers.listCallbackUrl(
 				resourceGroupName,
 				workflowName,
@@ -87,10 +91,13 @@ function getCallback(callbackUrl: WorkflowTriggerCallbackUrl): ICallback {
 		};
 	} else {
 		const { basePath, method, queries } = callbackUrl;
+
 		const normalizedRelativePath = relativePath.startsWith("/")
 			? relativePath
 			: `/${relativePath}`;
+
 		const queryString = getQueryString(queries);
+
 		const urlTemplate =
 			queryString === undefined
 				? `${basePath!}/${normalizedRelativePath}`
@@ -133,6 +140,7 @@ function hasCallback(
 				.filter((key) => triggerName === key)
 				.some((key) => {
 					const { type } = triggers[key];
+
 					return /Manual/i.test(type) || /Request/i.test(type);
 				});
 		};

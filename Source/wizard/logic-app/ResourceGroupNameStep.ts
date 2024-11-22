@@ -17,6 +17,7 @@ export class ResourceGroupNameStep extends AzureWizardPromptStep<IBuildDefinitio
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const resourceGroupName = await askForResourceGroupName();
+
 		if (!resourceGroupName) {
 			throw new UserCancelledError();
 		}

@@ -14,6 +14,7 @@ export class CsmParametersFileCreateStep extends AzureWizardExecuteStep<IBuildDe
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const { csmParametersFilename, templateParameters } = wizardContext;
+
 		const deploymentTemplateParameters =
 			generateDeploymentTemplateParameters(templateParameters);
 

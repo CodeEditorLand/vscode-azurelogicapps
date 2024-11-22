@@ -19,6 +19,7 @@ export class WorkspaceFolderSelectionStep extends AzureWizardPromptStep<IBuildDe
 		const workspaceFolderPath =
 			wizardContext.workspaceFolderPath ||
 			(await selectWorkspaceFolder(ext.ui));
+
 		if (!workspaceFolderPath) {
 			throw new UserCancelledError();
 		}

@@ -56,6 +56,7 @@ export async function viewIntegrationAccountSchemaProperties(
 	}
 
 	const schema = node.treeItem as IntegrationAccountSchemaTreeItem;
+
 	const schemaProperties = await schema.getProperties();
 
 	await openAndShowTextDocument(schemaProperties, "json");

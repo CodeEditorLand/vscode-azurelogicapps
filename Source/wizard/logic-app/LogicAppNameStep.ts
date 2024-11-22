@@ -55,6 +55,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 		};
 
 		const workflowName = await vscode.window.showInputBox(options);
+
 		if (workflowName !== undefined) {
 			wizardContext.workflowName = workflowName.trim();
 		} else {
@@ -76,6 +77,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 		wizardContext: IAzureLogicAppWizardContext,
 	): Promise<boolean> {
 		let resourceGroupName: string;
+
 		if (wizardContext.newResourceGroupName) {
 			return true;
 		} else {
@@ -90,7 +92,9 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 
 		let workflows =
 			await client.workflows.listByResourceGroup(resourceGroupName);
+
 		let nextPageLink = workflows.nextLink;
+
 		if (workflows.some((workflow: Workflow) => workflow.name! === name)) {
 			return false;
 		}
@@ -98,6 +102,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 		while (nextPageLink !== undefined) {
 			workflows =
 				await client.workflows.listByResourceGroupNext(nextPageLink);
+
 			if (
 				workflows.some((workflow: Workflow) => workflow.name! === name)
 			) {

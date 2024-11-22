@@ -17,6 +17,7 @@ export class ServiceConnectionNameStep extends AzureWizardPromptStep<IBuildDefin
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const azureSubscription = await askForAzureSubscriptionName();
+
 		if (!azureSubscription) {
 			throw new UserCancelledError();
 		}

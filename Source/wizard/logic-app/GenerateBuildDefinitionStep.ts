@@ -41,7 +41,9 @@ export class GenerateBuildDefinitionStep extends AzureWizardExecuteStep<IBuildDe
 				workspaceFolderPath!,
 				`${name}.definition.json`,
 			);
+
 			const json = await fse.readJSON(file);
+
 			const {
 				properties: { definition, parameters },
 			} = json.resources[0];

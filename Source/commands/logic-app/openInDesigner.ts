@@ -25,14 +25,21 @@ export async function openInDesigner(
 	}
 
 	const authorization = await getAuthorization(node.credentials);
+
 	const { subscriptionId, treeItem } = node as IAzureNode<LogicAppTreeItem>;
+
 	const callbacks = await treeItem.getCallbacks();
+
 	const canvasMode = vscode.workspace
 		.getConfiguration("azureLogicApps")
 		.get<boolean>("canvasMode")!;
+
 	const definition = await treeItem.getData(/* refresh */ true);
+
 	const parameters = treeItem.getParameters();
+
 	const references = await treeItem.getReferences();
+
 	const {
 		id: workflowId,
 		integrationAccountId,
@@ -41,15 +48,18 @@ export async function openInDesigner(
 		resourceGroupName,
 		sku,
 	} = treeItem;
+
 	const { domain: tenantId, userName: userId } = getCredentialsMetadata(
 		node.credentials,
 	);
+
 	const title = workflowName;
 
 	const options: vscode.WebviewOptions & vscode.WebviewPanelOptions = {
 		enableScripts: true,
 		retainContextWhenHidden: true,
 	};
+
 	const panel = vscode.window.createWebviewPanel(
 		"readonlyDesigner",
 		title,
@@ -79,6 +89,7 @@ export async function openInDesigner(
 			switch (message.command) {
 				case "OpenWindow":
 					await vscode.env.openExternal(message.url);
+
 					break;
 
 				case "Save":
@@ -87,6 +98,7 @@ export async function openInDesigner(
 						message.definition,
 						message.parameters,
 					);
+
 					break;
 
 				case "ShowError":
@@ -94,6 +106,7 @@ export async function openInDesigner(
 						message.errorMessage,
 						DialogResponses.ok,
 					);
+
 					break;
 
 				default:
@@ -122,12 +135,14 @@ async function handleSave(
 				parameters,
 			);
 			await node.refresh();
+
 			return updatedDefinition;
 		} catch (error: any) {
 			await vscode.window.showErrorMessage(
 				error.message,
 				DialogResponses.ok,
 			);
+
 			throw error;
 		}
 	});

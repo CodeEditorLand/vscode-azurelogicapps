@@ -18,9 +18,11 @@ export class CsmFilenameStep extends AzureWizardPromptStep<IBuildDefinitionWizar
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const { workspaceFolderPath } = wizardContext;
+
 		const csmFilename = await askForDeploymentTemplateFilename(
 			workspaceFolderPath!,
 		);
+
 		if (!csmFilename) {
 			throw new UserCancelledError();
 		}
@@ -46,6 +48,7 @@ async function askForDeploymentTemplateFilename(
 			)]: ["json"],
 		},
 	};
+
 	const csmUri = await vscode.window.showSaveDialog(csmFileSaveDialogOptions);
 
 	return csmUri ? csmUri.fsPath : undefined;

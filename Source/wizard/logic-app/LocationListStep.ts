@@ -16,6 +16,7 @@ export class LocationListStep extends AzureWizardPromptStep<IBuildDefinitionWiza
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const location = await askForLocation();
+
 		if (!location) {
 			throw new UserCancelledError();
 		}

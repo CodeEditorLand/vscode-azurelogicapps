@@ -106,12 +106,16 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 		switch (expectedContextValue) {
 			case IntegrationAccountAgreementsTreeItem.contextValue:
 				return this.integrationAccountAgreementsItem;
+
 			case IntegrationAccountMapsTreeItem.contextValue:
 				return this.integrationAccountMapsItem;
+
 			case IntegrationAccountPartnersTreeItem.contextValue:
 				return this.integrationAccountPartnersItem;
+
 			case IntegrationAccountSchemasTreeItem.contextValue:
 				return this.integrationAccountSchemasItem;
+
 			default:
 				return undefined;
 		}

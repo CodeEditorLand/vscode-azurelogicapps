@@ -56,9 +56,11 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 
 		const integrationAccountName =
 			await vscode.window.showInputBox(options);
+
 		if (integrationAccountName) {
 			wizardContext.integrationAccountName =
 				integrationAccountName.trim();
+
 			return wizardContext;
 		}
 
@@ -77,6 +79,7 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<boolean> {
 		let resourceGroupName: string;
+
 		if (wizardContext.newResourceGroupName) {
 			return true;
 		} else {
@@ -93,7 +96,9 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 			await client.integrationAccounts.listByResourceGroup(
 				resourceGroupName,
 			);
+
 		let nextPageLink = integrationAccounts.nextLink;
+
 		if (
 			integrationAccounts.some(
 				(integrationAccount: IntegrationAccount) =>
@@ -108,6 +113,7 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 				await client.integrationAccounts.listByResourceGroupNext(
 					nextPageLink,
 				);
+
 			if (
 				integrationAccounts.some(
 					(integrationAccount: IntegrationAccount) =>

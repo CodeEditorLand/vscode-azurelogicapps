@@ -19,10 +19,13 @@ export async function openRunInMonitoringView(
 	}
 
 	const authorization = await getAuthorization(node.credentials);
+
 	const canvasMode = vscode.workspace
 		.getConfiguration("azureLogicApps")
 		.get<boolean>("canvasMode")!;
+
 	const runNode = node as IAzureNode<LogicAppRunTreeItem>;
+
 	const {
 		id: runId,
 		label: title,
@@ -30,12 +33,14 @@ export async function openRunInMonitoringView(
 		resourceGroupName,
 		workflowId,
 	} = runNode.treeItem;
+
 	const { subscriptionId } = runNode;
 
 	const options: vscode.WebviewOptions & vscode.WebviewPanelOptions = {
 		enableScripts: true,
 		retainContextWhenHidden: true,
 	};
+
 	const panel = vscode.window.createWebviewPanel(
 		"monitoringView",
 		title,

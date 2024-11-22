@@ -31,11 +31,13 @@ export class IdentityStep {
 		const businessIdentities =
 			wizardContext.partners.get(partnerName)!.content.b2b!
 				.businessIdentities!;
+
 		const filteredBusinessIdentities =
 			this.filterBusinessIdentitiesForAgreementType(
 				wizardContext.agreementType!,
 				businessIdentities,
 			);
+
 		const dropdownValues = filteredBusinessIdentities.map(
 			(businessIdentity) => {
 				return `${businessIdentity.qualifier} : ${businessIdentity.value}`;

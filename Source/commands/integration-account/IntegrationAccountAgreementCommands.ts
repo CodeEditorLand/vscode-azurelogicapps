@@ -56,6 +56,7 @@ export async function viewIntegrationAccountAgreementProperties(
 	}
 
 	const agreement = node.treeItem as IntegrationAccountAgreementTreeItem;
+
 	const agreementProperties = await agreement.getProperties();
 
 	await openAndShowTextDocument(agreementProperties, "json");

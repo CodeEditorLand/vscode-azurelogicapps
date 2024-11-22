@@ -32,6 +32,7 @@ export class IntegrationAccountAgreementEditor extends BaseEditor<
 		node: IAzureNode<IntegrationAccountAgreementTreeItem>,
 	): Promise<string> {
 		const { label } = node.treeItem;
+
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Agreement in your integration account.",

@@ -56,6 +56,7 @@ export async function viewIntegrationAccountMapProperties(
 	}
 
 	const map = node.treeItem as IntegrationAccountMapTreeItem;
+
 	const mapProperties = await map.getProperties();
 
 	await openAndShowTextDocument(mapProperties, "json");

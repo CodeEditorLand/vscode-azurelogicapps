@@ -40,6 +40,7 @@ export function arrayToMap<T, K extends keyof T>(
 	key: K,
 ): Map<string, T> {
 	const mappedObjects: Map<string, T> = new Map();
+
 	for (const item of array) {
 		mappedObjects.set(String(item[key]), item);
 	}

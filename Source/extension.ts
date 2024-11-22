@@ -78,6 +78,7 @@ import { createChildNode } from "./utils/commandUtils";
 
 function readJson(path: string) {
 	const json = fs.readFileSync(path, "utf8");
+
 	return JSON.parse(json);
 }
 
@@ -94,6 +95,7 @@ export async function activate(
 	context.subscriptions.push(outputChannel);
 
 	let reporter: TelemetryReporter | undefined;
+
 	try {
 		const { aiKey, name, version } = readJson(
 			context.asAbsolutePath("./package.json"),
@@ -112,6 +114,7 @@ export async function activate(
 			this.properties.isActivationEvent = "true";
 
 			const logicAppsProvider = new LogicAppsProvider();
+
 			const tree = new AzureTreeDataProvider(
 				logicAppsProvider,
 				"azureLogicApps.loadMore",
@@ -133,6 +136,7 @@ export async function activate(
 					if (uri) {
 						const workspaceFolder =
 							vscode.workspace.getWorkspaceFolder(uri);
+
 						if (workspaceFolder) {
 							await addBuildDefinitionToProject(
 								workspaceFolder.uri.fsPath,
@@ -312,6 +316,7 @@ export async function activate(
 			this.properties.isActivationEvent = "true";
 
 			const integrationAccountProvider = new IntegrationAccountProvider();
+
 			const integrationAccountTree = new AzureTreeDataProvider(
 				integrationAccountProvider,
 				"azIntegrationAccounts.loadMore",

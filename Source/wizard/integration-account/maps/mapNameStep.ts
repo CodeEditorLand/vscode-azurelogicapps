@@ -54,8 +54,10 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 		};
 
 		const mapName = await vscode.window.showInputBox(options);
+
 		if (mapName) {
 			wizardContext.mapName = mapName.trim();
+
 			return wizardContext;
 		}
 
@@ -76,13 +78,16 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 			wizardContext.resourceGroup!.name!,
 			wizardContext.integrationAccountName,
 		);
+
 		let nextPageLink = maps.nextLink;
+
 		if (maps.some((map: IntegrationAccountMap) => map.name! === name)) {
 			return false;
 		}
 
 		while (nextPageLink) {
 			maps = await client.integrationAccountMaps.listNext(nextPageLink);
+
 			if (maps.some((map: IntegrationAccountMap) => map.name! === name)) {
 				return false;
 			}

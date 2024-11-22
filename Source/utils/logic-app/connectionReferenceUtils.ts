@@ -64,6 +64,7 @@ async function getConnectionReferences(
 	uri: string,
 ): Promise<ConnectionReferences> {
 	const authorization = await getAuthorization(credentials);
+
 	const options: request.RequestPromiseOptions = {
 		headers: {
 			"Authorization": authorization,
@@ -74,7 +75,9 @@ async function getConnectionReferences(
 			$expand: "properties/connectionReferences",
 		},
 	};
+
 	const response = await request(uri, options);
+
 	const {
 		properties: { parameters },
 	}: IWorkflowWithConnectionReferences = JSON.parse(response);
@@ -83,6 +86,7 @@ async function getConnectionReferences(
 		return {};
 	} else {
 		const { $connections } = parameters;
+
 		return $connections === undefined ? {} : $connections.value;
 	}
 }

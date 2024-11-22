@@ -103,6 +103,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 				this.integrationAccountAgreementName,
 				agreement,
 			);
+
 		return JSON.stringify(updatedAgreement, null, 4);
 	}
 }

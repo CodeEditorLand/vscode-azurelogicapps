@@ -24,6 +24,7 @@ import {
 import { ext } from "../extensionVariables";
 
 let contentProvider: ReadOnlyContentProvider | undefined;
+
 const providerScheme = "azurelogicappsReadonly";
 
 export async function openReadOnlyJson(
@@ -64,6 +65,7 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 		fileExt: string,
 	): Promise<void> {
 		const nameHash = createHash("sha256").update(name).digest("hex");
+
 		const uri = Uri.parse(
 			`${providerScheme}:///${nameHash}/${name}${fileExt}`,
 		);
@@ -74,6 +76,7 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 
 	public async provideTextDocumentContent(uri: Uri): Promise<string> {
 		const content = this._contentMap.get(uri.toString());
+
 		if (isNullOrUndefined(content)) {
 			throw new Error(
 				"Internal error: Expected content from read-only provider to be neither null nor undefined",

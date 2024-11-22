@@ -94,6 +94,7 @@ export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 				this.integrationAccountMapName,
 				map,
 			);
+
 		return request(updatedMap.contentLink!.uri!);
 	}
 }

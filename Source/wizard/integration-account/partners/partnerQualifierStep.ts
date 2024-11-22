@@ -17,10 +17,12 @@ export class PartnerQualifierStep extends AzureWizardPromptStep<IPartnerWizardCo
 		wizardContext: IPartnerWizardContext,
 	): Promise<IPartnerWizardContext> {
 		const qualifiers = Array.from(Constants.Qualifier.keys());
+
 		const qualifier = await vscode.window.showQuickPick(qualifiers);
 
 		if (qualifier) {
 			wizardContext.partnerQualifier = Constants.Qualifier.get(qualifier);
+
 			return wizardContext;
 		}
 

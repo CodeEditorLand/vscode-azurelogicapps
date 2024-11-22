@@ -51,6 +51,7 @@ export async function viewIntegrationAccountProperties(
 	}
 
 	const integrationAccount = node.treeItem as IntegrationAccountTreeItem;
+
 	const integrationAccountProperties =
 		await integrationAccount.getProperties();
 

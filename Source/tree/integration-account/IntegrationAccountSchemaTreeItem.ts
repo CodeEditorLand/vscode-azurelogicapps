@@ -92,6 +92,7 @@ export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 				this.integrationAccountSchemaName,
 				schema,
 			);
+
 		return request(updatedSchema.contentLink!.uri!);
 	}
 }

@@ -53,8 +53,10 @@ export class PartnerNameStep extends AzureWizardPromptStep<IPartnerWizardContext
 		};
 
 		const partnerName = await vscode.window.showInputBox(options);
+
 		if (partnerName) {
 			wizardContext.partnerName = partnerName.trim();
+
 			return wizardContext;
 		}
 

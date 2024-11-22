@@ -18,9 +18,11 @@ export class BuildDefinitionFilenameStep extends AzureWizardPromptStep<IBuildDef
 		wizardContext: IBuildDefinitionWizardContext,
 	): Promise<IBuildDefinitionWizardContext> {
 		const { workspaceFolderPath } = wizardContext;
+
 		const buildDefinitionFilename = await askForBuildDefinitionFilename(
 			workspaceFolderPath!,
 		);
+
 		if (!buildDefinitionFilename) {
 			throw new UserCancelledError();
 		}
@@ -46,6 +48,7 @@ async function askForBuildDefinitionFilename(
 			)]: ["yml"],
 		},
 	};
+
 	const yamlUri = await vscode.window.showSaveDialog(yamlSaveDialogOptions);
 
 	return yamlUri ? yamlUri.fsPath : undefined;

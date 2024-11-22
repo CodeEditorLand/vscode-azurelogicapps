@@ -56,6 +56,7 @@ export async function viewIntegrationAccountPartnerProperties(
 	}
 
 	const partner = node.treeItem as IntegrationAccountPartnerTreeItem;
+
 	const partnerProperties = await partner.getProperties();
 
 	await openAndShowTextDocument(partnerProperties, "json");

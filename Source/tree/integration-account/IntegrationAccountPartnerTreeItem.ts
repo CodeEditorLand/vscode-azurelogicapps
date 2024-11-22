@@ -93,6 +93,7 @@ export class IntegrationAccountPartnerTreeItem implements IAzureTreeItem {
 				this.integrationAccountPartnerName,
 				partner,
 			);
+
 		return JSON.stringify(updatedPartner.content, null, 4);
 	}
 }

@@ -26,6 +26,7 @@ const quickPickOptions: vscode.QuickPickOptions = {
 
 export async function openFolder(uri: vscode.Uri): Promise<void> {
 	const { workspaceFolders } = vscode.workspace;
+
 	if (!workspaceFolders || workspaceFolders.length === 0) {
 		await vscode.commands.executeCommand("vscode.openFolder", uri);
 	} else {
@@ -47,11 +48,15 @@ export async function selectWorkspaceFolder(
 				description: fsPath,
 				label: path.basename(fsPath),
 			}));
+
 	const browseItem = {
 		label: localize("azLogicApps.browse", "$(file-directory) Browse..."),
 	};
+
 	const items: IWorkspaceFolder[] = [...folderItems, browseItem];
+
 	const selectedItem = await ui.showQuickPick(items, quickPickOptions);
+
 	if (selectedItem && selectedItem.data) {
 		return selectedItem.data;
 	}
@@ -62,5 +67,6 @@ export async function selectWorkspaceFolder(
 			? { defaultUri: workspaceFolders[0].uri }
 			: undefined),
 	});
+
 	return uris.length === 0 ? undefined : uris[0].fsPath;
 }

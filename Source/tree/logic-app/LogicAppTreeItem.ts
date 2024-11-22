@@ -233,5 +233,6 @@ function removeAuthenticationParameter(
 
 	parameters = { ...parameters };
 	delete parameters.$authentication;
+
 	return parameters;
 }

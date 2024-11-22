@@ -33,6 +33,7 @@ export class IntegrationAccountPartnerEditor extends BaseEditor<
 		node: IAzureNode<IntegrationAccountPartnerTreeItem>,
 	): Promise<string> {
 		const { label } = node.treeItem;
+
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Partner in your integration account.",
@@ -57,6 +58,7 @@ export class IntegrationAccountPartnerEditor extends BaseEditor<
 		}
 
 		const updatedText = vscode.window.activeTextEditor.document.getText();
+
 		const updatedContent: PartnerContent = JSON.parse(updatedText);
 
 		return node.treeItem.update(updatedContent);

@@ -46,8 +46,10 @@ export class PartnerValueStep extends AzureWizardPromptStep<IPartnerWizardContex
 		};
 
 		const partnerValue = await vscode.window.showInputBox(options);
+
 		if (partnerValue) {
 			wizardContext.partnerValue = partnerValue.trim();
+
 			return wizardContext;
 		}
 

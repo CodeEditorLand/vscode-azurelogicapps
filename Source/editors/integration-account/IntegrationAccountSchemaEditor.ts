@@ -32,6 +32,7 @@ export class IntegrationAccountSchemaEditor extends BaseEditor<
 		node: IAzureNode<IntegrationAccountSchemaTreeItem>,
 	): Promise<string> {
 		const { label } = node.treeItem;
+
 		return localize(
 			"azIntegrationAccounts.saveConfirmationText",
 			"Saving '{0}' will update the Schema in your integration account.",

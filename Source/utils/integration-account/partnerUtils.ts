@@ -48,6 +48,7 @@ export async function getAllPartners(
 		resourceGroup,
 		integrationAccount,
 	);
+
 	let nextPageLink = partners.nextLink;
 
 	while (nextPageLink) {

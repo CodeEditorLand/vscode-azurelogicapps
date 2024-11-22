@@ -54,8 +54,10 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 		};
 
 		const agreementName = await vscode.window.showInputBox(options);
+
 		if (agreementName) {
 			wizardContext.agreementName = agreementName.trim();
+
 			return wizardContext;
 		}
 
@@ -76,7 +78,9 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 			wizardContext.resourceGroup!.name!,
 			wizardContext.integrationAccountName,
 		);
+
 		let nextPageLink = agreements.nextLink;
+
 		if (
 			agreements.some(
 				(agreement: IntegrationAccountAgreement) =>
@@ -91,6 +95,7 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 				await client.integrationAccountAgreements.listNext(
 					nextPageLink,
 				);
+
 			if (
 				agreements.some(
 					(agreement: IntegrationAccountAgreement) =>

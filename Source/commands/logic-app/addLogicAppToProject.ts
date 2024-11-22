@@ -20,6 +20,7 @@ export async function addLogicAppToProject(
 	}
 
 	const { workspaceFolders } = vscode.workspace;
+
 	if (!workspaceFolders || workspaceFolders.length === 0) {
 		await vscode.window.showErrorMessage(
 			localize(
@@ -27,6 +28,7 @@ export async function addLogicAppToProject(
 				"You must create a project first before adding Logic Apps to a project.",
 			),
 		);
+
 		return;
 	}
 

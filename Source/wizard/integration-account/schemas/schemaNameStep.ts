@@ -54,8 +54,10 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 		};
 
 		const schemaName = await vscode.window.showInputBox(options);
+
 		if (schemaName) {
 			wizardContext.schemaName = schemaName.trim();
+
 			return wizardContext;
 		}
 
@@ -76,7 +78,9 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 			wizardContext.resourceGroup!.name!,
 			wizardContext.integrationAccountName,
 		);
+
 		let nextPageLink = schemas.nextLink;
+
 		if (
 			schemas.some(
 				(schema: IntegrationAccountSchema) => schema.name! === name,
@@ -88,6 +92,7 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 		while (nextPageLink) {
 			schemas =
 				await client.integrationAccountSchemas.listNext(nextPageLink);
+
 			if (
 				schemas.some(
 					(schema: IntegrationAccountSchema) => schema.name! === name,

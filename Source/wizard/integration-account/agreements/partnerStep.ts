@@ -16,6 +16,7 @@ export class PartnerStep {
 		namesToExclude: string[] = [],
 	): Promise<string> {
 		let partnerNames: string[];
+
 		if (!wizardContext.partners) {
 			const partners = await getAllPartners(
 				wizardContext.credentials,

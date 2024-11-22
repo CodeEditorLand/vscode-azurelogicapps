@@ -109,6 +109,7 @@ ${
                     "zh-hans": "zh-cn",
                     "zh-hant": "zh-tw"
                 };
+
                 return monacoLocalesMap[locale] || "en";
             }
 
@@ -348,7 +349,9 @@ ${
                     const oauthService = new OAuth.OAuthPopupService();
 
                     let monitor;
+
                     let flowConfigurationOptions;
+
                     const element = document.getElementById("monitoring-view");
 
                     function initialize(options, analyticsContextData) {
@@ -420,7 +423,9 @@ ${
 
                         const analyticsServiceFactory = version => {
                             const telemetryBaseUrl = options.telemetryBaseUrl || options.baseUrl;
+
                             const telemetryVersion = options.telemetryVersion || options.emaApiVersion;
+
                             const settings = {
                                 analyticsServiceUri: \`\${telemetryBaseUrl}/providers/Internal.Telemetry/collect?api-version=\${telemetryVersion}\`,
                                 getAccessToken: getArmAccessToken
@@ -536,10 +541,14 @@ ${
                     (async () => {
                         function changeTheme() {
                             const { classList } = document.body;
+
                             const isInverted = classList.contains("vscode-dark");
+
                             const theme = isInverted ? "dark" : "light";
+
                             if (!classList.contains(theme)) {
                                 classList.remove("dark", "light");
+
                                 classList.add(theme);
                                 monitor.changeTheme(theme);
                             }
@@ -555,11 +564,13 @@ ${
                             const callback = mutations => {
                                 if (mutations.length > 0) {
                                     const mutation = mutations[0];
+
                                     if (mutation.target instanceof Element) {
                                         changeTheme();
                                     }
                                 }
                             };
+
                             const observer = new MutationObserver(callback);
                             observer.observe(document.body, { attributeFilter: ["class"], attributes: true });
                         }

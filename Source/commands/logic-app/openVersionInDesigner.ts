@@ -30,15 +30,22 @@ export async function openVersionInDesigner(
 		"azLogicApps.readOnlySuffix",
 		"(read-only)",
 	);
+
 	const authorization = await getAuthorization(node.credentials);
+
 	const canvasMode = vscode.workspace
 		.getConfiguration("azureLogicApps")
 		.get<boolean>("canvasMode")!;
+
 	const { subscriptionId, treeItem } =
 		node as IAzureNode<LogicAppVersionTreeItem>;
+
 	const definition = await treeItem.getData();
+
 	const parameters = treeItem.getParameters();
+
 	const references = await treeItem.getReferences();
+
 	const {
 		id: workflowId,
 		integrationAccountId,
@@ -47,14 +54,17 @@ export async function openVersionInDesigner(
 		resourceGroupName,
 		sku,
 	} = treeItem;
+
 	const { domain: tenantId, userName: userId } = getCredentialsMetadata(
 		node.credentials,
 	);
+
 	const title = `${workflowVersionName} ${readOnlySuffix}`;
 
 	const options: vscode.WebviewOptions & vscode.WebviewPanelOptions = {
 		enableScripts: true,
 	};
+
 	const panel = vscode.window.createWebviewPanel(
 		"readonlyDesigner",
 		title,

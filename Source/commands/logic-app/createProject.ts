@@ -12,6 +12,7 @@ import { openFolder, selectWorkspaceFolder } from "../../utils/workspaceUtils";
 
 export async function createProject(): Promise<void> {
 	const fsPath = await selectWorkspaceFolder(ext.ui);
+
 	if (!fsPath) {
 		return;
 	}
