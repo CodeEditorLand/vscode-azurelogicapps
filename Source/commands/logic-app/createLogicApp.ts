@@ -23,6 +23,7 @@ export async function createLogicApp(
 		: subscription;
 
 	const logicAppNode = await node.createChild({ resourceGroup });
+
 	await editor.showEditor(logicAppNode);
 
 	return logicAppNode.id;

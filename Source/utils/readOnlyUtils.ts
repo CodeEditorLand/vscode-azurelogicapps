@@ -41,6 +41,7 @@ export async function openReadOnlyContent(
 ): Promise<void> {
 	if (!contentProvider) {
 		contentProvider = new ReadOnlyContentProvider();
+
 		ext.context.subscriptions.push(
 			workspace.registerTextDocumentContentProvider(
 				providerScheme,
@@ -48,11 +49,13 @@ export async function openReadOnlyContent(
 			),
 		);
 	}
+
 	await contentProvider.openReadOnlyContent(name, content, fileExt);
 }
 
 class ReadOnlyContentProvider implements TextDocumentContentProvider {
 	private _onDidChangeEmitter = new EventEmitter<Uri>();
+
 	private _contentMap = new Map<string, string>();
 
 	public get onDidChange(): Event<Uri> {
@@ -69,8 +72,11 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 		const uri = Uri.parse(
 			`${providerScheme}:///${nameHash}/${name}${fileExt}`,
 		);
+
 		this._contentMap.set(uri.toString(), content);
+
 		await window.showTextDocument(uri);
+
 		this._onDidChangeEmitter.fire(uri);
 	}
 
@@ -82,6 +88,7 @@ class ReadOnlyContentProvider implements TextDocumentContentProvider {
 				"Internal error: Expected content from read-only provider to be neither null nor undefined",
 			);
 		}
+
 		return content;
 	}
 }

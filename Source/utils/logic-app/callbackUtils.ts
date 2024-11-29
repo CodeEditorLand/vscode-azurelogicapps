@@ -13,11 +13,13 @@ export type Callbacks = Record<string, ICallback>;
 
 export interface ICallback {
 	method: string;
+
 	urlTemplate: string;
 }
 
 interface ICallbackUrlAndTriggerName {
 	callbackUrl: WorkflowTriggerCallbackUrl;
+
 	triggerName: string;
 }
 

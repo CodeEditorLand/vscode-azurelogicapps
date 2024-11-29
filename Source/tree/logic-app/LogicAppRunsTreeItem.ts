@@ -17,8 +17,11 @@ import { LogicAppRunTreeItem } from "./LogicAppRunTreeItem";
 
 export class LogicAppRunsTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflowRuns";
+
 	public readonly childTypeLabel = localize("azLogicApps.Run", "Run");
+
 	public readonly contextValue = LogicAppRunsTreeItem.contextValue;
+
 	public readonly label = localize("azLogicApps.Runs", "Runs");
 
 	private nextLink: string | undefined;

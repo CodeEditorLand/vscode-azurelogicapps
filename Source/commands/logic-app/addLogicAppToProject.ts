@@ -48,6 +48,7 @@ export async function addLogicAppToProject(
 
 	await vscode.window.withProgress(options, async () => {
 		const logicAppTreeItem = node!.treeItem as LogicAppTreeItem;
+
 		await logicAppTreeItem.addToProject(workspaceFolderPath);
 	});
 }

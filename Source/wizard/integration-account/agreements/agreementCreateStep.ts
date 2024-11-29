@@ -25,6 +25,7 @@ export class AgreementCreateStep extends AzureWizardExecuteStep<IAgreementWizard
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const newAgreement: IntegrationAccountAgreement =

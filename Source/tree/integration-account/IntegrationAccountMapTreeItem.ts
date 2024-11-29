@@ -16,6 +16,7 @@ import { getIconPath } from "../../utils/nodeUtils";
 
 export class IntegrationAccountMapTreeItem implements IAzureTreeItem {
 	public static readonly contextValue = "azIntegrationAccountMap";
+
 	public readonly contextValue = IntegrationAccountMapTreeItem.contextValue;
 
 	public constructor(

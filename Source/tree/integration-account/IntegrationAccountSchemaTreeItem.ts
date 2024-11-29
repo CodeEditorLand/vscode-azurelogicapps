@@ -13,6 +13,7 @@ import { getIconPath } from "../../utils/nodeUtils";
 
 export class IntegrationAccountSchemaTreeItem implements IAzureTreeItem {
 	public static readonly contextValue = "azIntegrationAccountSchema";
+
 	public readonly contextValue =
 		IntegrationAccountSchemaTreeItem.contextValue;
 

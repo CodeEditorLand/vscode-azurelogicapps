@@ -17,6 +17,7 @@ export class AgreementTypeStep extends AzureWizardPromptStep<IAgreementWizardCon
 		wizardContext: IAgreementWizardContext,
 	): Promise<IAgreementWizardContext> {
 		const agreementTypes = Object.keys(AgreementType);
+
 		wizardContext.agreementType =
 			await vscode.window.showQuickPick(agreementTypes);
 

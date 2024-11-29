@@ -20,6 +20,7 @@ export async function disableLogicApp(
 		localize("azLogicApps.disabling", "Disabling..."),
 		async () => {
 			const logicAppTreeItem = node!.treeItem as LogicAppTreeItem;
+
 			await logicAppTreeItem.disable();
 		},
 	);

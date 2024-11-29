@@ -26,19 +26,26 @@ import { LogicAppVersionsTreeItem } from "./LogicAppVersionsTreeItem";
 
 export interface ConnectionReference {
 	connectionId: string;
+
 	connectionName: string;
+
 	id: string;
 }
 
 export class LogicAppTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflow";
+
 	public readonly childTypeLabel: string = localize(
 		"azLogicApps.child",
 		"Child",
 	);
+
 	public contextValue = LogicAppTreeItem.contextValue;
+
 	public logicAppRunsItem: LogicAppRunsTreeItem;
+
 	public logicAppTriggersItem: LogicAppTriggersTreeItem;
+
 	public logicAppVersionsItem: LogicAppVersionsTreeItem;
 
 	public constructor(
@@ -46,10 +53,12 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		private workflow: Workflow,
 	) {
 		this.logicAppRunsItem = new LogicAppRunsTreeItem(client, workflow);
+
 		this.logicAppTriggersItem = new LogicAppTriggersTreeItem(
 			client,
 			workflow,
 		);
+
 		this.logicAppVersionsItem = new LogicAppVersionsTreeItem(
 			client,
 			workflow,
@@ -98,6 +107,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 
 	public async addToProject(workspaceFolderPath: string): Promise<void> {
 		const template = generateTemplate(this.workflow!);
+
 		await fse.writeJSON(
 			path.join(
 				workspaceFolderPath,
@@ -108,6 +118,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		);
 
 		const parameters = generateParameters(this.workflow!);
+
 		await fse.writeJSON(
 			path.join(
 				workspaceFolderPath,
@@ -204,6 +215,7 @@ export class LogicAppTreeItem implements IAzureParentTreeItem {
 		parameters?: Record<string, any> | undefined,
 	): Promise<string> {
 		const definition = JSON.parse(stringifiedDefinition);
+
 		delete definition.parameters.$authentication;
 
 		parameters = removeAuthenticationParameter(parameters);
@@ -232,6 +244,7 @@ function removeAuthenticationParameter(
 	}
 
 	parameters = { ...parameters };
+
 	delete parameters.$authentication;
 
 	return parameters;

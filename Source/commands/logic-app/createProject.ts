@@ -26,6 +26,7 @@ export async function createProject(): Promise<void> {
 		await fse.ensureDir(fsPath);
 
 		const uri = vscode.Uri.file(fsPath);
+
 		await openFolder(uri);
 	});
 }

@@ -47,6 +47,7 @@ export class LogicAppsProvider implements IChildProvider {
 			node.credentials,
 			node.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const logicApps =

@@ -66,6 +66,7 @@ export async function openInDesigner(
 		vscode.ViewColumn.Beside,
 		options,
 	);
+
 	panel.webview.html = getWebviewContentForDesigner({
 		authorization,
 		callbacks,
@@ -84,6 +85,7 @@ export async function openInDesigner(
 		userId,
 		workflowId,
 	});
+
 	panel.webview.onDidReceiveMessage(
 		async (message) => {
 			switch (message.command) {
@@ -134,6 +136,7 @@ async function handleSave(
 				definition,
 				parameters,
 			);
+
 			await node.refresh();
 
 			return updatedDefinition;

@@ -22,6 +22,7 @@ export class SchemaCreateStep extends AzureWizardExecuteStep<ISchemaWizardContex
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const newSchema: IntegrationAccountSchema =

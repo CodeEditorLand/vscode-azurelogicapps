@@ -90,6 +90,7 @@ export class IntegrationAccountNameStep extends AzureWizardPromptStep<IIntegrati
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		let integrationAccounts =

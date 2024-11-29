@@ -33,7 +33,9 @@ export async function promoteVersion(
 			async () => {
 				const logicAppRunTreeItem = node!
 					.treeItem as LogicAppVersionTreeItem;
+
 				await logicAppRunTreeItem.promote();
+
 				await node!.parent!.refresh();
 			},
 		);

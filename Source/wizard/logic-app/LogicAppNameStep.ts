@@ -88,6 +88,7 @@ export class LogicAppNameStep extends AzureWizardPromptStep<IAzureLogicAppWizard
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		let workflows =

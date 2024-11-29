@@ -13,6 +13,7 @@ export class GuestPartnerStep extends AzureWizardPromptStep<IAgreementWizardCont
 		wizardContext: IAgreementWizardContext,
 	): Promise<IAgreementWizardContext> {
 		const partnerStep = new PartnerStep();
+
 		await partnerStep
 			.prompt(wizardContext, [wizardContext.hostPartner!])
 			.then((result) => {

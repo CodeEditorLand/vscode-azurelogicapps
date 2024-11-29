@@ -17,6 +17,7 @@ export class IntegrationAccountSkuStep extends AzureWizardPromptStep<IIntegratio
 		wizardContext: IIntegrationAccountWizardContext,
 	): Promise<IIntegrationAccountWizardContext> {
 		const skus = Object.keys(IntegrationAccountSku);
+
 		wizardContext.sku = await vscode.window.showQuickPick(skus);
 
 		if (wizardContext.sku) {

@@ -25,6 +25,7 @@ export class IdentityStep {
 				wizardContext.resourceGroup!.name!,
 				wizardContext.integrationAccountName,
 			);
+
 			wizardContext.partners = arrayToMap(partners, "name");
 		}
 

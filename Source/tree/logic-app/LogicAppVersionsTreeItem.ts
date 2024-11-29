@@ -18,8 +18,11 @@ import { LogicAppVersionTreeItem } from "./LogicAppVersionTreeItem";
 
 export class LogicAppVersionsTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflowVersions";
+
 	public readonly childTypeLabel = localize("azLogicApps.Version", "Version");
+
 	public readonly contextValue = LogicAppVersionsTreeItem.contextValue;
+
 	public readonly label = localize("azLogicApps.Versions", "Versions");
 
 	private nextLink: string | undefined;

@@ -25,6 +25,7 @@ export class MapCreateStep extends AzureWizardExecuteStep<IMapWizardContext> {
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const newMap: IntegrationAccountMap =

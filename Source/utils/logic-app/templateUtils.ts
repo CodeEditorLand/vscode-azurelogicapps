@@ -10,9 +10,13 @@ import { normalizeParameterName, normalizeResourceName } from "../stringUtils";
 
 export interface IGenerateBuildDefinitionOptions {
 	azureSubscription: string;
+
 	csmFile: string;
+
 	csmParametersFile: string;
+
 	location: string;
+
 	resourceGroupName: string;
 }
 
@@ -134,6 +138,7 @@ export function generateTemplateParameter(workflow: Workflow) {
 					(parametersValue as any)[key].value) ||
 				parameters[key].defaultValue,
 		};
+
 		delete parameters[key];
 	}
 

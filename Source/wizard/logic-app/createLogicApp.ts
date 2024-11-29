@@ -25,6 +25,7 @@ export interface IAzureLogicAppWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	logicApp?: LogicAppTreeItem;
+
 	workflowName?: string;
 }
 

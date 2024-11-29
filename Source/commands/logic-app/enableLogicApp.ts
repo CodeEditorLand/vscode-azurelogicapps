@@ -20,6 +20,7 @@ export async function enableLogicApp(
 		localize("azLogicApps.enabling", "Enabling..."),
 		async () => {
 			const logicAppTreeItem = node!.treeItem as LogicAppTreeItem;
+
 			await logicAppTreeItem.enable();
 		},
 	);

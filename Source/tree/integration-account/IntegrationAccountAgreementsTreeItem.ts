@@ -23,16 +23,20 @@ export class IntegrationAccountAgreementsTreeItem
 	implements IAzureParentTreeItem
 {
 	public static contextValue = "azIntegrationAccountAgreements";
+
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.Agreement",
 		"Agreement",
 	);
+
 	public readonly contextValue =
 		IntegrationAccountAgreementsTreeItem.contextValue;
+
 	public readonly label = localize(
 		"azIntegrationAccounts.Agreements",
 		"Agreements",
 	);
+
 	private nextLink: string | undefined;
 
 	public constructor(

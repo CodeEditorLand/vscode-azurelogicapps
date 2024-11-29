@@ -21,7 +21,9 @@ enum LogicAppRunStatus {
 
 export class LogicAppRunTreeItem implements IAzureParentTreeItem {
 	public static readonly contextValue = "azLogicAppsWorkflowRun";
+
 	public readonly contextValue = LogicAppRunTreeItem.contextValue;
+
 	private readonly logicAppRunActionsTreeItem: LogicAppRunActionsTreeItem;
 
 	public constructor(

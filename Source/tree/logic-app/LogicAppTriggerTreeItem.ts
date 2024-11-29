@@ -11,6 +11,7 @@ import { getThemedIconPath, IThemedIconPath } from "../../utils/nodeUtils";
 
 export class LogicAppTriggerTreeItem implements IAzureTreeItem {
 	public static readonly contextValue = "azLogicAppsWorkflowTrigger";
+
 	public readonly contextValue = LogicAppTriggerTreeItem.contextValue;
 
 	public constructor(

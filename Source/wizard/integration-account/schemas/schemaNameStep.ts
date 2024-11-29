@@ -72,6 +72,7 @@ export class SchemaNameStep extends AzureWizardPromptStep<ISchemaWizardContext> 
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		let schemas = await client.integrationAccountSchemas.list(

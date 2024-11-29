@@ -23,7 +23,9 @@ export interface ISchemaWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	integrationAccountName: string;
+
 	schema?: IntegrationAccountSchemaTreeItem;
+
 	schemaName?: string;
 }
 

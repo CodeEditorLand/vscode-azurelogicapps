@@ -47,6 +47,7 @@ export async function openRunInMonitoringView(
 		vscode.ViewColumn.Beside,
 		options,
 	);
+
 	panel.webview.html = getWebviewContent({
 		authorization,
 		canvasMode,

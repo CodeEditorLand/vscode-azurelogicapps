@@ -13,6 +13,7 @@ export class LogicAppCurrentVersionTreeItem
 {
 	public static readonly contextValue: string =
 		"azLogicAppsWorkflowCurrentVersion";
+
 	public readonly contextValue: string =
 		LogicAppCurrentVersionTreeItem.contextValue;
 }

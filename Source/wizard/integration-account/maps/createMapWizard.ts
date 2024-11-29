@@ -24,8 +24,11 @@ export interface IMapWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	integrationAccountName: string;
+
 	map?: IntegrationAccountMapTreeItem;
+
 	mapName?: string;
+
 	mapType?: string;
 }
 

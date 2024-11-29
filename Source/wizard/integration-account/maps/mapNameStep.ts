@@ -72,6 +72,7 @@ export class MapNameStep extends AzureWizardPromptStep<IMapWizardContext> {
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		let maps = await client.integrationAccountMaps.list(

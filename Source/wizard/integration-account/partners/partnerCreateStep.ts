@@ -22,6 +22,7 @@ export class PartnerCreateStep extends AzureWizardExecuteStep<IPartnerWizardCont
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const newPartner: IntegrationAccountPartner =

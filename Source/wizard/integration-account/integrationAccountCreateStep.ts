@@ -25,6 +25,7 @@ export class IntegrationAccountCreateStep extends AzureWizardExecuteStep<IIntegr
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const newIntegrationAccount: IntegrationAccount =

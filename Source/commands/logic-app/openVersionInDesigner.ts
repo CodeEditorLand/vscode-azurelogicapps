@@ -71,6 +71,7 @@ export async function openVersionInDesigner(
 		vscode.ViewColumn.Beside,
 		options,
 	);
+
 	panel.webview.html = getWebviewContentForDesigner({
 		authorization,
 		callbacks: {},

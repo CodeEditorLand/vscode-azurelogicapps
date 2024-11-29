@@ -32,12 +32,19 @@ export interface IAgreementWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	integrationAccountName: string;
+
 	agreement?: IntegrationAccountAgreementTreeItem;
+
 	agreementName?: string;
+
 	agreementType?: string;
+
 	hostPartner?: string;
+
 	hostIdentity?: BusinessIdentity;
+
 	guestPartner?: string;
+
 	guestIdentity?: BusinessIdentity;
 
 	// Passing Data Around

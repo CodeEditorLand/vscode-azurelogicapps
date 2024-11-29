@@ -261,7 +261,10 @@ export class Constants {
 
 	// Content Types
 	public static JsonContentType = "application/json";
+
 	public static LiquidContentType = "text/plain";
+
 	public static TextContentType = "text/plain";
+
 	public static XmlContentType = "application/xml";
 }

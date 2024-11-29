@@ -42,6 +42,7 @@ export async function getAllPartners(
 	integrationAccount: string,
 ): Promise<IntegrationAccountPartner[]> {
 	const client = new LogicAppsManagementClient(credentials, subscriptionId);
+
 	addExtensionUserAgent(client);
 
 	const partners = await client.integrationAccountPartners.list(
@@ -55,6 +56,7 @@ export async function getAllPartners(
 		partners.push(
 			...(await client.integrationAccountPartners.listNext(nextPageLink)),
 		);
+
 		nextPageLink = partners.nextLink;
 	}
 

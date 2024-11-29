@@ -16,14 +16,20 @@ import { IntegrationAccountSchemasTreeItem } from "./IntegrationAccountSchemasTr
 
 export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azIntegrationAccount";
+
 	public readonly childTypeLabel: string = localize(
 		"azIntegrationAccounts.child",
 		"Child",
 	);
+
 	public contextValue = IntegrationAccountTreeItem.contextValue;
+
 	public integrationAccountAgreementsItem: IntegrationAccountAgreementsTreeItem;
+
 	public integrationAccountMapsItem: IntegrationAccountMapsTreeItem;
+
 	public integrationAccountPartnersItem: IntegrationAccountPartnersTreeItem;
+
 	public integrationAccountSchemasItem: IntegrationAccountSchemasTreeItem;
 
 	public constructor(
@@ -35,12 +41,15 @@ export class IntegrationAccountTreeItem implements IAzureParentTreeItem {
 				client,
 				integrationAccount,
 			);
+
 		this.integrationAccountMapsItem = new IntegrationAccountMapsTreeItem(
 			client,
 			integrationAccount,
 		);
+
 		this.integrationAccountPartnersItem =
 			new IntegrationAccountPartnersTreeItem(client, integrationAccount);
+
 		this.integrationAccountSchemasItem =
 			new IntegrationAccountSchemasTreeItem(client, integrationAccount);
 	}

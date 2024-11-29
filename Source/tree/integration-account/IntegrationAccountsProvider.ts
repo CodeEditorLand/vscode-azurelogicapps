@@ -40,6 +40,7 @@ export class IntegrationAccountProvider implements IChildProvider {
 			node.credentials,
 			node.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const integrationAccounts =

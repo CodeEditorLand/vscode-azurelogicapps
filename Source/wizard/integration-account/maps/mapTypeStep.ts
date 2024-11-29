@@ -17,6 +17,7 @@ export class MapTypeStep extends AzureWizardPromptStep<IMapWizardContext> {
 		wizardContext: IMapWizardContext,
 	): Promise<IMapWizardContext> {
 		const mapTypes = Object.keys(MapType);
+
 		wizardContext.mapType = await vscode.window.showQuickPick(mapTypes);
 
 		if (wizardContext.mapType) {

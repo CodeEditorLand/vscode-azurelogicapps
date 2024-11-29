@@ -7,12 +7,19 @@ import { Constants } from "../../constants";
 
 interface IGetWebviewContentOptions {
 	authorization: string;
+
 	canvasMode: boolean;
+
 	location: string;
+
 	resourceGroupName: string;
+
 	runId: string;
+
 	subscriptionId: string;
+
 	title: string;
+
 	workflowId: string;
 }
 
@@ -40,11 +47,15 @@ export function getWebviewContent({
     <style>
         body {
             background-color: --vscode-editor-background;
+
             margin: 0;
+
             padding: 0;
         }
+
         body.light {
             background-color: #f2f2f2;
+
             margin-top: 4em;
         }
         .msla-container {
@@ -55,6 +66,7 @@ ${
 		? `
         .msla-container {
             max-height: calc(100vh - 52px);
+
             overflow-x: hidden;
         }
         .msla-transformable-view-container {
@@ -68,8 +80,11 @@ ${
 }
         #app {
             position: fixed;
+
             top: 0;
+
             width: 100%;
+
             z-index: 9;
         }
     </style>
@@ -94,6 +109,7 @@ ${
             const $locale = "en";
 
             const baseUrl = "https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/logicappdesigner/";
+
             global.publicPath = baseUrl;
 
             function getMonacoLocale(locale) {
@@ -329,6 +345,7 @@ ${
 
             r(["react", "react-dom"], ( React, ReactDOM) => {
                 global.React = React;
+
                 global.ReactDOM = ReactDOM;
 
                 r(["core/main", "oauth", "@fluentui/react"], (designercore, OAuth, { CommandBar, Fabric }) => {
@@ -432,11 +449,15 @@ ${
                             };
 
                             const contextData = analyticsContextData || {};
+
                             contextData.host = window.location.host;
+
                             contextData.hostVersion = options.extensionVersion;
+
                             contextData.designerVersion = version;
 
                             const analyticsService = new designercore.AnalyticsService(settings, contextData);
+
                             analyticsService.startPublish();
 
                             return analyticsService;
@@ -550,15 +571,20 @@ ${
                                 classList.remove("dark", "light");
 
                                 classList.add(theme);
+
                                 monitor.changeTheme(theme);
                             }
                         }
 
                         async function renderMonitor(runId) {
                             disposeMonitor();
+
                             monitor = new designercore.Monitor(flowConfigurationOptions, element);
+
                             await monitor.loadRun(runId);
+
                             monitor.render();
+
                             changeTheme();
 
                             const callback = mutations => {
@@ -572,12 +598,14 @@ ${
                             };
 
                             const observer = new MutationObserver(callback);
+
                             observer.observe(document.body, { attributeFilter: ["class"], attributes: true });
                         }
 
                         function disposeMonitor() {
                             if (monitor) {
                                 ReactDOM.unmountComponentAtNode(element);
+
                                 monitor = null;
                             }
                         }
@@ -637,6 +665,7 @@ ${
                         };
 
                         await initialize(options, analyticsContextData);
+
                         await renderMonitor("${runId}");
 
                         ReactDOM.render(React.createElement(App), document.getElementById("app"));

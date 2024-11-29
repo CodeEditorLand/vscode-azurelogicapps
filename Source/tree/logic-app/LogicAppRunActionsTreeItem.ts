@@ -21,11 +21,14 @@ import { LogicAppRunActionTreeItem } from "./LogicAppRunActionTreeItem";
 
 export class LogicAppRunActionsTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflowRunActions";
+
 	public readonly childTypeLabel = localize(
 		"azLogicApps.RunAction",
 		"Action",
 	);
+
 	public readonly contextValue = LogicAppRunActionsTreeItem.contextValue;
+
 	public readonly label = localize("azLogicApps.RunActions", "Actions");
 
 	private nextLink: string | undefined;

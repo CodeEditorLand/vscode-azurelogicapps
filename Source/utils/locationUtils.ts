@@ -35,6 +35,7 @@ async function getLocations(): Promise<string[]> {
 	const locations = locationListResult.map(
 		(location) => location!.displayName!,
 	);
+
 	locations.sort();
 
 	return locations;

@@ -15,6 +15,7 @@ import * as nodeUtils from "../../utils/nodeUtils";
 
 export class LogicAppVersionTreeItem implements IAzureTreeItem {
 	public static readonly contextValue: string = "azLogicAppsWorkflowVersion";
+
 	public readonly contextValue: string = LogicAppVersionTreeItem.contextValue;
 
 	public constructor(

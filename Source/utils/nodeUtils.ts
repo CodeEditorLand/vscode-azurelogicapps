@@ -9,6 +9,7 @@ import { ext } from "../extensionVariables";
 
 export interface IThemedIconPath {
 	dark: string;
+
 	light: string;
 }
 

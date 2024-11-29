@@ -12,6 +12,7 @@ import { getIconPath } from "../../utils/nodeUtils";
 
 export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 	public static readonly contextValue = "azIntegrationAccountAgreement";
+
 	public readonly contextValue =
 		IntegrationAccountAgreementTreeItem.contextValue;
 
@@ -87,6 +88,7 @@ export class IntegrationAccountAgreementTreeItem implements IAzureTreeItem {
 		const integrationAccountAgreement: Record<string, any> = {
 			...this.integrationAccountAgreement,
 		};
+
 		delete integrationAccountAgreement.content;
 
 		return JSON.stringify(integrationAccountAgreement, null, 4);

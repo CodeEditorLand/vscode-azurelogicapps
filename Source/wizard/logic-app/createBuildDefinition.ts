@@ -24,14 +24,23 @@ import { WorkspaceFolderSelectionStep } from "./WorkspaceFolderSelectionStep";
 
 export interface IBuildDefinitionWizardContext {
 	azureSubscription?: string;
+
 	buildDefinitionFilename?: string;
+
 	csmFilename?: string;
+
 	csmParametersFilename?: string;
+
 	location?: string;
+
 	resourceGroupName?: string;
+
 	templateParameterDefinitions: Record<string, any>;
+
 	templateParameters: Record<string, any>;
+
 	templateResources: any[];
+
 	workspaceFolderPath?: string;
 }
 

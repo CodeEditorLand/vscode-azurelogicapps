@@ -21,7 +21,9 @@ export async function runTrigger(
 		async () => {
 			const logicAppTriggerTreeItem = node!
 				.treeItem as LogicAppTriggerTreeItem;
+
 			await logicAppTriggerTreeItem.run();
+
 			await node!.parent!.parent!.refresh();
 		},
 	);

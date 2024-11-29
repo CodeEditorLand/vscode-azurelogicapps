@@ -21,16 +21,20 @@ import { IntegrationAccountSchemaTreeItem } from "./IntegrationAccountSchemaTree
 
 export class IntegrationAccountSchemasTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azIntegrationAccountSchemas";
+
 	public readonly childTypeLabel = localize(
 		"azIntegrationAccounts.Schema",
 		"Schema",
 	);
+
 	public readonly contextValue =
 		IntegrationAccountSchemasTreeItem.contextValue;
+
 	public readonly label = localize(
 		"azIntegrationAccounts.Schemas",
 		"Schemas",
 	);
+
 	private nextLink: string | undefined;
 
 	public constructor(

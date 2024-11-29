@@ -25,9 +25,13 @@ export interface IPartnerWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	integrationAccountName: string;
+
 	partner?: IntegrationAccountPartnerTreeItem;
+
 	partnerName?: string;
+
 	partnerQualifier?: string;
+
 	partnerValue?: string;
 }
 

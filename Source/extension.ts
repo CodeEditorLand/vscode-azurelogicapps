@@ -86,12 +86,15 @@ export async function activate(
 	context: vscode.ExtensionContext,
 ): Promise<void> {
 	registerUIExtensionVariables(ext);
+
 	ext.context = context;
 
 	const outputChannel = vscode.window.createOutputChannel(
 		"Azure Logic Apps (Consumption)",
 	);
+
 	ext.outputChannel = outputChannel;
+
 	context.subscriptions.push(outputChannel);
 
 	let reporter: TelemetryReporter | undefined;
@@ -100,12 +103,16 @@ export async function activate(
 		const { aiKey, name, version } = readJson(
 			context.asAbsolutePath("./package.json"),
 		);
+
 		reporter = new TelemetryReporter(name, version, aiKey);
+
 		ext.reporter = reporter;
+
 		context.subscriptions.push(reporter);
 	} catch (error) {}
 
 	const ui = new AzureUserInput(context.globalState);
+
 	ext.ui = ui;
 
 	await callWithTelemetryAndErrorHandling(
@@ -119,7 +126,9 @@ export async function activate(
 				logicAppsProvider,
 				"azureLogicApps.loadMore",
 			);
+
 			context.subscriptions.push(tree);
+
 			context.subscriptions.push(
 				vscode.window.registerTreeDataProvider(
 					"azureLogicAppsExplorer",
@@ -128,6 +137,7 @@ export async function activate(
 			);
 
 			const logicAppEditor = new LogicAppEditor();
+
 			context.subscriptions.push(logicAppEditor);
 
 			registerCommand(
@@ -321,7 +331,9 @@ export async function activate(
 				integrationAccountProvider,
 				"azIntegrationAccounts.loadMore",
 			);
+
 			context.subscriptions.push(integrationAccountTree);
+
 			context.subscriptions.push(
 				vscode.window.registerTreeDataProvider(
 					"azureIntegrationAccountsExplorer",
@@ -331,18 +343,22 @@ export async function activate(
 
 			const integrationAccountAgreementEditor =
 				new IntegrationAccountAgreementEditor();
+
 			context.subscriptions.push(integrationAccountAgreementEditor);
 
 			const integrationAccountMapEditor =
 				new IntegrationAccountMapEditor();
+
 			context.subscriptions.push(integrationAccountMapEditor);
 
 			const integrationAccountPartnerEditor =
 				new IntegrationAccountPartnerEditor();
+
 			context.subscriptions.push(integrationAccountMapEditor);
 
 			const integrationAccountSchemaEditor =
 				new IntegrationAccountSchemaEditor();
+
 			context.subscriptions.push(integrationAccountMapEditor);
 
 			registerCommand(
@@ -364,6 +380,7 @@ export async function activate(
 						IntegrationAccountAgreementsTreeItem.contextValue,
 						node,
 					);
+
 					await openIntegrationAccountAgreementInEditor(
 						integrationAccountTree,
 						integrationAccountAgreementEditor,
@@ -380,6 +397,7 @@ export async function activate(
 						IntegrationAccountMapsTreeItem.contextValue,
 						node,
 					);
+
 					await openIntegrationAccountMapInEditor(
 						integrationAccountTree,
 						integrationAccountMapEditor,
@@ -396,6 +414,7 @@ export async function activate(
 						IntegrationAccountPartnersTreeItem.contextValue,
 						node,
 					);
+
 					await openIntegrationAccountPartnerInEditor(
 						integrationAccountTree,
 						integrationAccountPartnerEditor,
@@ -412,6 +431,7 @@ export async function activate(
 						IntegrationAccountSchemasTreeItem.contextValue,
 						node,
 					);
+
 					await openIntegrationAccountSchemaInEditor(
 						integrationAccountTree,
 						integrationAccountSchemaEditor,

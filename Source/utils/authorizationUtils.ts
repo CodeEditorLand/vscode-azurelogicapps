@@ -7,6 +7,7 @@ import { ServiceClientCredentials, WebResource } from "ms-rest";
 
 export interface CredentialsMetadata {
 	domain: string;
+
 	userName: string;
 }
 
@@ -15,6 +16,7 @@ export function getAuthorization(
 ): Promise<string> {
 	return new Promise((resolve, reject) => {
 		const webResource = new WebResource();
+
 		credentials.signRequest(webResource, (err: Error | undefined): void => {
 			if (err) {
 				reject(err);

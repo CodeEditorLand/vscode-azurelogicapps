@@ -11,20 +11,35 @@ import { ConnectionReferences } from "./connectionReferenceUtils";
 
 interface IGetWebviewContentOptions {
 	authorization: string;
+
 	callbacks: Callbacks;
+
 	canvasMode: boolean;
+
 	definition: string;
+
 	integrationAccountId?: string;
+
 	location: string;
+
 	parameters: Record<string, any> | undefined;
+
 	readOnly?: boolean;
+
 	references: ConnectionReferences;
+
 	resourceGroupName: string;
+
 	sku?: Sku;
+
 	subscriptionId: string;
+
 	tenantId?: string;
+
 	title: string;
+
 	userId?: string;
+
 	workflowId: string;
 }
 
@@ -49,6 +64,7 @@ export function getWebviewContentForDesigner({
 	workflowId,
 }: IGetWebviewContentOptions): string {
 	readOnly = readOnly || false;
+
 	sku = sku || { name: "Consumption" };
 
 	const workflowOptions = readOnly
@@ -69,9 +85,12 @@ export function getWebviewContentForDesigner({
     <style>
         body {
             background-color: --vscode-editor-background;
+
             margin: 0;
+
             padding: 0;
         }
+
         body.light {
             background-color: #f2f2f2;
         }
@@ -83,7 +102,9 @@ ${
 		? `
         .msla-container {
             margin-top: 0;
+
             max-height: 100vh;
+
             overflow-x: hidden;
         }
         .msla-transformable-view-container {
@@ -97,8 +118,11 @@ ${
 }
         #app {
             position: fixed;
+
             top: 0;
+
             width: 100%;
+
             z-index: 9;
         }
     </style>
@@ -125,6 +149,7 @@ ${
             const $locale = "en";
 
             const baseUrl = "https://ema.hosting.portal.azure.net/ema/Content/${version}/Scripts/logicappdesigner/";
+
             global.publicPath = baseUrl;
 
             function getMonacoLocale(locale) {
@@ -360,6 +385,7 @@ ${
 
             r(["react", "react-dom"], (React, ReactDOM) => {
                 global.React = React;
+
                 global.ReactDOM = ReactDOM;
 
                 r(["core/main", "oauth", "@fluentui/react"], (designercore, OAuth, { CommandBar, Fabric }) => {
@@ -435,11 +461,15 @@ ${
                             };
 
                             const contextData = analyticsContextData || {};
+
                             contextData.host = window.location.host;
+
                             contextData.hostVersion = options.extensionVersion;
+
                             contextData.designerVersion = version;
 
                             const analyticsService = new designercore.AnalyticsService(settings, contextData);
+
                             analyticsService.startPublish();
 
                             return analyticsService;
@@ -775,6 +805,7 @@ ${
                     function disposeDesigner() {
                         if (designer) {
                             designer.dispose();
+
                             designer = null;
                         }
                     }
@@ -791,6 +822,7 @@ ${
                                 classList.remove("dark", "light");
 
                                 classList.add(theme);
+
                                 designer.changeTheme(theme);
                             }
                         }
@@ -838,12 +870,14 @@ ${
                         const callbacks = ${JSON.stringify(callbacks)};
 
                         await initialize(options, analyticsContextData);
+
                         await loadDefinition(logicApp, callbacks, ${workflowOptions});
 
                         function App({ readOnly }) {
                             async function handleSave() {
                                 try {
                                     const { definition, parameters } = await designer.getWorkflow({ skipValidation: false });
+
                                     vscode.postMessage({
                                         command: "Save",
                                         definition: JSON.stringify(definition),
@@ -881,6 +915,7 @@ ${
                         }
 
                         designer.render();
+
                         changeTheme();
 
                         const callback = mutations => {
@@ -894,6 +929,7 @@ ${
                         };
 
                         const observer = new MutationObserver(callback);
+
                         observer.observe(document.body, { attributeFilter: ["class"], attributes: true });
 
                         ReactDOM.render(React.createElement(App, { readOnly: ${readOnly} }), document.getElementById("app"));

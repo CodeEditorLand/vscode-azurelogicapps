@@ -26,7 +26,9 @@ export interface IIntegrationAccountWizardContext
 	extends ILocationWizardContext,
 		IResourceGroupWizardContext {
 	integrationAccount?: IntegrationAccountTreeItem;
+
 	integrationAccountName?: string;
+
 	sku?: string;
 }
 

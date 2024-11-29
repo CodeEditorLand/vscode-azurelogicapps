@@ -17,5 +17,6 @@ export async function openRunInEditor(
 	}
 
 	const content = await (node.treeItem as LogicAppRunTreeItem).getData();
+
 	await openReadOnlyJson(node.id, content);
 }

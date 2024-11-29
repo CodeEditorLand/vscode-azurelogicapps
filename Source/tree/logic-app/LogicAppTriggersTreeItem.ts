@@ -17,8 +17,11 @@ import { LogicAppTriggerTreeItem } from "./LogicAppTriggerTreeItem";
 
 export class LogicAppTriggersTreeItem implements IAzureParentTreeItem {
 	public static contextValue = "azLogicAppsWorkflowTriggers";
+
 	public readonly childTypeLabel = localize("azLogicApps.Trigger", "Trigger");
+
 	public readonly contextValue = LogicAppTriggersTreeItem.contextValue;
+
 	public readonly label = localize("azLogicApps.Triggers", "Triggers");
 
 	private nextLink: string | undefined;

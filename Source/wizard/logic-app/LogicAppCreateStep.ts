@@ -21,6 +21,7 @@ export class LogicAppCreateStep extends AzureWizardExecuteStep<IAzureLogicAppWiz
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		const location = wizardContext.location!.name!;

@@ -17,5 +17,6 @@ export async function openTriggerInEditor(
 	}
 
 	const content = await (node.treeItem as LogicAppTriggerTreeItem).getData();
+
 	await openReadOnlyJson(node.id, content);
 }

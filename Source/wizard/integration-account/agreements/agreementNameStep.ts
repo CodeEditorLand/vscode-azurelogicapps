@@ -72,6 +72,7 @@ export class AgreementNameStep extends AzureWizardPromptStep<IAgreementWizardCon
 			wizardContext.credentials,
 			wizardContext.subscriptionId,
 		);
+
 		addExtensionUserAgent(client);
 
 		let agreements = await client.integrationAccountAgreements.list(

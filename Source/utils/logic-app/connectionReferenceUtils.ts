@@ -12,7 +12,9 @@ export type ConnectionReferences = Record<string, IConnectionReference>;
 
 export interface IConnectionReference {
 	connectionId: string;
+
 	connectionName: string;
+
 	id: string;
 }
 

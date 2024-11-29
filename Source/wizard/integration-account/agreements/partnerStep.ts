@@ -24,10 +24,12 @@ export class PartnerStep {
 				wizardContext.resourceGroup!.name!,
 				wizardContext.integrationAccountName,
 			);
+
 			wizardContext.partners = arrayToMap(partners, "name");
 		}
 
 		partnerNames = [...wizardContext.partners.keys()];
+
 		partnerNames = partnerNames.filter((partnerName) => {
 			return namesToExclude.indexOf(partnerName) === -1;
 		});
