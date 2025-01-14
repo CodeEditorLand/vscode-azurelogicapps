@@ -666,7 +666,7 @@
 	"activationEvents": [],
 	"dependencies": {
 		"fs-extra": "11.2.0",
-		"glob": "11.0.0",
+		"glob": "11.0.1",
 		"js-yaml": "4.1.0",
 		"lodash": "4.17.21",
 		"request": "2.88.2",
@@ -675,9 +675,9 @@
 	"devDependencies": {
 		"@types/fs-extra": "11.0.4",
 		"@types/js-yaml": "4.0.9",
-		"@types/node": "22.10.5",
+		"@types/node": "22.10.6",
 		"@types/request-promise-native": "1.0.21",
-		"ts-loader": "9.5.1"
+		"ts-loader": "9.5.2"
 	},
 	"extensionDependencies": [
 		"ms-vscode.azure-account"
